@@ -132,7 +132,7 @@
     <Compile Include="App_Start\RegisterRoutes.cs" />
     <Compile Include="App_Start\RegisterSwagger.cs" />
     <Compile Include="App_Start\RegisterValidation.cs" />
-    <Compile Include="Controllers\ValuesController.cs" />
+    <Compile Include="Controllers\ProductsController.cs" />
     <Compile Include="Infrastructure\GlobalExceptionHandler.cs" />
     <Compile Include="Infrastructure\GlobalExceptionLogger.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -144,7 +144,16 @@
       <DependentUpon>Web.config</DependentUpon>
     </Content>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <ProjectReference Include="..\Architecture3.Common\Architecture3.Common.csproj">
+      <Project>{B97EFB86-FB8B-43B7-9892-D4E2AF7257B6}</Project>
+      <Name>Architecture3.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Architecture3.WebApi.Dtos\Architecture3.WebApi.Dtos.csproj">
+      <Project>{D383FC01-3AB8-4106-98EA-543607ACE0E9}</Project>
+      <Name>Architecture3.WebApi.Dtos</Name>
+    </ProjectReference>
+  </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
   </ItemGroup>
