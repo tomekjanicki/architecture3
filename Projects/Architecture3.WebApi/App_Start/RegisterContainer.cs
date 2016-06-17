@@ -1,6 +1,8 @@
 ﻿namespace Architecture3.WebApi
 {
     using System.Web.Http;
+    using Architecture3.Common.Handlers;
+    using Architecture3.Common.Handlers.Interfaces;
     using SimpleInjector;
     using SimpleInjector.Integration.WebApi;
 
@@ -13,6 +15,8 @@
             container.Options.DefaultScopedLifestyle = new WebApiRequestLifestyle(true);
 
             container.RegisterWebApiControllers(configuration);
+
+            container.RegisterSingleton<IMediator, Mediator>();
 
             configuration.DependencyResolver = new SimpleInjectorWebApiDependencyResolver(container);
 

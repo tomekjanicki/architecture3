@@ -34,6 +34,10 @@
     <CodeAnalysisRuleSet>..\..\Architecture3.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="FluentValidation, Version=6.2.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\FluentValidation.6.2.1.0\lib\Net45\FluentValidation.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="log4net, Version=1.2.15.0, Culture=neutral, PublicKeyToken=669e0ddf0bb1aa2a, processorArchitecture=MSIL">
       <HintPath>..\..\packages\log4net.2.0.5\lib\net45-full\log4net.dll</HintPath>
       <Private>True</Private>
@@ -48,6 +52,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Const.cs" />
+    <Compile Include="FluentValidation\AbstractClassValidator.cs" />
     <Compile Include="GlobalSuppressions.cs" />
     <Compile Include="Handlers\Interfaces\IHandler.cs" />
     <Compile Include="Handlers\Interfaces\IMediator.cs" />
@@ -68,6 +74,13 @@
     <Compile Include="SharedStructs\ResponseParams\CollectionResult.cs" />
     <Compile Include="SharedStructs\ResponseParams\PagedCollectionResult.cs" />
     <Compile Include="SharedStructs\ResponseParams\Result.cs" />
+    <Compile Include="SharedValidators\SortPageSizeSkipValidator.cs" />
+    <Compile Include="TemplateMethods\Queries\CollectionQueryTemplateHandler.cs" />
+    <Compile Include="TemplateMethods\Queries\Interfaces\ICollectionRepository.cs" />
+    <Compile Include="TemplateMethods\Queries\Interfaces\IPagedCollectionRepository.cs" />
+    <Compile Include="TemplateMethods\Queries\Interfaces\IRepository.cs" />
+    <Compile Include="TemplateMethods\Queries\PagedCollectionQueryTemplateHandler.cs" />
+    <Compile Include="TemplateMethods\Queries\QueryTemplateHandler.cs" />
     <Compile Include="Tools\Guard.cs" />
   </ItemGroup>
   <ItemGroup>
