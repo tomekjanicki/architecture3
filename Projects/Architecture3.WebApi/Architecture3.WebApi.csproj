@@ -149,6 +149,10 @@
       <Project>{B97EFB86-FB8B-43B7-9892-D4E2AF7257B6}</Project>
       <Name>Architecture3.Common</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Architecture3.Logic\Architecture3.Logic.csproj">
+      <Project>{AC510806-42A1-4B3F-8A6C-97B96398D475}</Project>
+      <Name>Architecture3.Logic</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Architecture3.WebApi.Dtos\Architecture3.WebApi.Dtos.csproj">
       <Project>{D383FC01-3AB8-4106-98EA-543607ACE0E9}</Project>
       <Name>Architecture3.WebApi.Dtos</Name>

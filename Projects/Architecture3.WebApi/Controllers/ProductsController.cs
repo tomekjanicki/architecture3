@@ -4,6 +4,7 @@
     using System.Web.Http;
     using Architecture3.Common.Handlers.Interfaces;
     using Architecture3.Common.SharedStructs.ResponseParams;
+    using Architecture3.Logic.Product.FindPagedCollection;
     using Architecture3.WebApi.Dtos.Product.FindPagedCollection;
     using Swashbuckle.Swagger.Annotations;
 
@@ -21,7 +22,9 @@
         [HttpGet]
         public IHttpActionResult FindPaged(int pageSize, int skip, string code = null, string name = null, string sort = null)
         {
-            return null;
+            var data = _mediator.Send(new Query { PageSize = pageSize, Skip = skip, SortExp = sort, Code = code, Name = name });
+
+            return Ok(data);
         }
     }
 }
