@@ -9,6 +9,7 @@
         {
             var configuration = new HttpConfiguration();
             RegisterRoutes.Execute(configuration);
+            RegisterMiscs.Execute(configuration);
             appBuilder.UseWebApi(configuration);
             appBuilder.UseWelcomePage();
         }
