@@ -1,0 +1,2 @@
+﻿[assembly: System.Diagnostics.CodeAnalysis.SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1649:File name must match first type name", Justification = "Design", Scope = "type", Target = "~T:Architecture3.Common.Handlers.Internal.VoidRequestHandlerWrapper`1")]
+[assembly: System.Diagnostics.CodeAnalysis.SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1649:File name must match first type name", Justification = "Design", Scope = "type", Target = "~T:Architecture3.Common.Handlers.Internal.RequestHandlerWrapper`1")]

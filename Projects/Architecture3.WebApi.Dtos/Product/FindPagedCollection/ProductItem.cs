@@ -1,4 +1,4 @@
-﻿namespace Architecture3.WebApi.Dtos.Product
+﻿namespace Architecture3.WebApi.Dtos.Product.FindPagedCollection
 {
     using System;
 

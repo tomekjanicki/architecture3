@@ -13,6 +13,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Architecture3.WebApi.Dtos",
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Architecture3.Common", "Projects\Architecture3.Common\Architecture3.Common.csproj", "{B97EFB86-FB8B-43B7-9892-D4E2AF7257B6}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Architecture3.Logic", "Projects\Architecture3.Logic\Architecture3.Logic.csproj", "{AC510806-42A1-4B3F-8A6C-97B96398D475}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -31,6 +33,10 @@ Global
 		{B97EFB86-FB8B-43B7-9892-D4E2AF7257B6}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B97EFB86-FB8B-43B7-9892-D4E2AF7257B6}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B97EFB86-FB8B-43B7-9892-D4E2AF7257B6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AC510806-42A1-4B3F-8A6C-97B96398D475}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AC510806-42A1-4B3F-8A6C-97B96398D475}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AC510806-42A1-4B3F-8A6C-97B96398D475}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AC510806-42A1-4B3F-8A6C-97B96398D475}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -39,5 +45,6 @@ Global
 		{CFD858E7-4A1B-423B-8DFA-E68D0CD4E6EC} = {9252B1AE-31A9-47A2-A8F5-82489A74EAA8}
 		{D383FC01-3AB8-4106-98EA-543607ACE0E9} = {9252B1AE-31A9-47A2-A8F5-82489A74EAA8}
 		{B97EFB86-FB8B-43B7-9892-D4E2AF7257B6} = {9252B1AE-31A9-47A2-A8F5-82489A74EAA8}
+		{AC510806-42A1-4B3F-8A6C-97B96398D475} = {9252B1AE-31A9-47A2-A8F5-82489A74EAA8}
 	EndGlobalSection
 EndGlobal
