@@ -7,10 +7,12 @@
     {
         public void Configuration(IAppBuilder appBuilder)
         {
-            var configuration = new HttpConfiguration();
-            RegisterRoutes.Execute(configuration);
-            RegisterMiscs.Execute(configuration);
-            appBuilder.UseWebApi(configuration);
+            var httpConfiguration = new HttpConfiguration();
+            RegisterContainer.Execute(httpConfiguration);
+            RegisterSwagger.Execute(httpConfiguration);
+            RegisterRoutes.Execute(httpConfiguration);
+            RegisterMiscs.Execute(httpConfiguration);
+            appBuilder.UseWebApi(httpConfiguration);
             appBuilder.UseWelcomePage();
         }
     }

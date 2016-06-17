@@ -4,10 +4,10 @@
 
     public static class RegisterRoutes
     {
-        public static void Execute(HttpConfiguration config)
+        public static void Execute(HttpConfiguration configuration)
         {
-            config.MapHttpAttributeRoutes();
-            config.Routes.MapHttpRoute("DefaultApi", "{controller}/{id}", new { id = RouteParameter.Optional });
+            configuration.MapHttpAttributeRoutes();
+            configuration.Routes.MapHttpRoute("DefaultApi", "{controller}/{id}", new { id = RouteParameter.Optional });
         }
     }
 }
