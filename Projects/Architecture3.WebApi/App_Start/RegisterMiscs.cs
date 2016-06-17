@@ -3,6 +3,8 @@
     using System.Linq;
     using System.Net.Http.Formatting;
     using System.Web.Http;
+    using System.Web.Http.ExceptionHandling;
+    using Architecture3.WebApi.Infrastructure;
     using Newtonsoft.Json.Converters;
     using Newtonsoft.Json.Serialization;
 
@@ -12,6 +14,8 @@
         {
             configuration.Formatters.Clear();
             configuration.Formatters.Add(GetConfiguredJsonMediaTypeFormatter());
+            configuration.Services.Add(typeof(IExceptionLogger), new GlobalExceptionLogger());
+            configuration.Services.Replace(typeof(IExceptionHandler), new GlobalExceptionHandler());
         }
 
         private static JsonMediaTypeFormatter GetConfiguredJsonMediaTypeFormatter()
