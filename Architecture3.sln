@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
-VisualStudioVersion = 14.0.25402.0
+VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Projects", "Projects", "{9252B1AE-31A9-47A2-A8F5-82489A74EAA8}"
 EndProject
@@ -14,6 +14,8 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Architecture3.Common", "Projects\Architecture3.Common\Architecture3.Common.csproj", "{B97EFB86-FB8B-43B7-9892-D4E2AF7257B6}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Architecture3.Logic", "Projects\Architecture3.Logic\Architecture3.Logic.csproj", "{AC510806-42A1-4B3F-8A6C-97B96398D475}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Architecture3.WebApi.Client", "Projects\Architecture3.WebApi.Client\Architecture3.WebApi.Client.csproj", "{800FD538-82D0-43DF-8D2C-618C2327B15E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -37,6 +39,10 @@ Global
 		{AC510806-42A1-4B3F-8A6C-97B96398D475}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{AC510806-42A1-4B3F-8A6C-97B96398D475}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{AC510806-42A1-4B3F-8A6C-97B96398D475}.Release|Any CPU.Build.0 = Release|Any CPU
+		{800FD538-82D0-43DF-8D2C-618C2327B15E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{800FD538-82D0-43DF-8D2C-618C2327B15E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{800FD538-82D0-43DF-8D2C-618C2327B15E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{800FD538-82D0-43DF-8D2C-618C2327B15E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -46,5 +52,6 @@ Global
 		{D383FC01-3AB8-4106-98EA-543607ACE0E9} = {9252B1AE-31A9-47A2-A8F5-82489A74EAA8}
 		{B97EFB86-FB8B-43B7-9892-D4E2AF7257B6} = {9252B1AE-31A9-47A2-A8F5-82489A74EAA8}
 		{AC510806-42A1-4B3F-8A6C-97B96398D475} = {9252B1AE-31A9-47A2-A8F5-82489A74EAA8}
+		{800FD538-82D0-43DF-8D2C-618C2327B15E} = {9252B1AE-31A9-47A2-A8F5-82489A74EAA8}
 	EndGlobalSection
 EndGlobal
