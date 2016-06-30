@@ -22,10 +22,5 @@ namespace Architecture3.WebApi.Client
             client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
             return client;
         }
-
-        public static List<MediaTypeFormatter> GetMediaTypeFormatters()
-        {
-            return new List<MediaTypeFormatter> { new JsonMediaTypeFormatter() };
-        }
     }
 }

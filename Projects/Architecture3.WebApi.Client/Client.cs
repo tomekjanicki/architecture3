@@ -31,7 +31,7 @@
                 var uri = new Uri(_baseUri, $"/products/{Helper.GetEncodedParametersString(parameters)}");
                 var response = await client.GetAsync(uri).ConfigureAwait(false);
                 response.EnsureSuccessStatusCode();
-                return await response.Content.ReadAsAsync<Paged<Product>>(Helper.GetMediaTypeFormatters()).ConfigureAwait(false);
+                return await response.Content.ReadAsAsync<Paged<Product>>().ConfigureAwait(false);
             }
         }
     }
