@@ -4,7 +4,6 @@ namespace Architecture3.WebApi.Client
     using System.Collections.Generic;
     using System.Linq;
     using System.Net.Http;
-    using System.Net.Http.Formatting;
     using System.Net.Http.Headers;
 
     public static class Helper
