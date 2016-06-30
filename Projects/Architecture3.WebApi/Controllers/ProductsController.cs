@@ -4,17 +4,17 @@
     using System.Net;
     using System.Web.Http;
     using Architecture3.WebApi.Dtos;
-    using Architecture3.WebApi.Dtos.Product.FindPagedCollection;
+    using Architecture3.WebApi.Dtos.Product.FilterPaged;
     using Swashbuckle.Swagger.Annotations;
 
     [SwaggerResponseRemoveDefaults]
     public class ProductsController : ApiController
     {
-        [SwaggerResponse(HttpStatusCode.OK, null, typeof(Paged<ProductItem>))]
+        [SwaggerResponse(HttpStatusCode.OK, null, typeof(Paged<Product>))]
         [HttpGet]
-        public IHttpActionResult FindPaged(int skip, int top, string filter = null, string orderBy = null)
+        public IHttpActionResult FilterPaged(int skip, int top, string filter = null, string orderBy = null)
         {
-            var data = new Paged<ProductItem>(10, new List<ProductItem> { new ProductItem() });
+            var data = new Paged<Product>(10, new List<Product> { new Product() });
             return Ok(data);
         }
     }

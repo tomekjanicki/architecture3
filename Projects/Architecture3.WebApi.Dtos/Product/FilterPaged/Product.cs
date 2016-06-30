@@ -1,8 +1,8 @@
-﻿namespace Architecture3.WebApi.Dtos.Product.FindPagedCollection
+﻿namespace Architecture3.WebApi.Dtos.Product.FilterPaged
 {
     using System;
 
-    public class ProductItem
+    public class Product
     {
         public int Id { get; set; }
 
