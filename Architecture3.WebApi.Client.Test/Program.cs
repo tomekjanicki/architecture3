@@ -1,6 +1,7 @@
 ﻿namespace Architecture3.WebApi.Client.Test
 {
     using System;
+    using System.Linq;
     using System.Threading.Tasks;
 
     public class Program
@@ -19,7 +20,7 @@
                 Console.WriteLine("Executing ...");
                 var client = new Client(new Uri("http://localhost:2776/"));
                 var result = await client.ProductsFilterPaged(10, 5, string.Empty, string.Empty).ConfigureAwait(false);
-                Console.WriteLine("Executed with {0} {1}", result.Count, result.Items.Count);
+                Console.WriteLine("Executed with count {0} and items {1}", result.Count, result.Items.Count());
             }
             catch (Exception ex)
             {

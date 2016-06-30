@@ -4,7 +4,7 @@ namespace Architecture3.WebApi.Dtos
 
     public class Paged<T>
     {
-        public Paged(int count, List<T> items)
+        public Paged(int count, IEnumerable<T> items)
         {
             Count = count;
             Items = items;
@@ -12,6 +12,6 @@ namespace Architecture3.WebApi.Dtos
 
         public int Count { get; private set; }
 
-        public List<T> Items { get; private set; }
+        public IEnumerable<T> Items { get; private set; }
     }
 }
