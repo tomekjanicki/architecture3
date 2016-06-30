@@ -17,6 +17,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Architecture3.Logic", "Proj
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Architecture3.WebApi.Client", "Projects\Architecture3.WebApi.Client\Architecture3.WebApi.Client.csproj", "{800FD538-82D0-43DF-8D2C-618C2327B15E}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Architecture3.WebApi.Client.Test", "Architecture3.WebApi.Client.Test\Architecture3.WebApi.Client.Test.csproj", "{6407DDD8-FC03-4A60-AECF-81BBD8B4FF48}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -43,6 +45,10 @@ Global
 		{800FD538-82D0-43DF-8D2C-618C2327B15E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{800FD538-82D0-43DF-8D2C-618C2327B15E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{800FD538-82D0-43DF-8D2C-618C2327B15E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6407DDD8-FC03-4A60-AECF-81BBD8B4FF48}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6407DDD8-FC03-4A60-AECF-81BBD8B4FF48}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6407DDD8-FC03-4A60-AECF-81BBD8B4FF48}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6407DDD8-FC03-4A60-AECF-81BBD8B4FF48}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -53,5 +59,6 @@ Global
 		{B97EFB86-FB8B-43B7-9892-D4E2AF7257B6} = {9252B1AE-31A9-47A2-A8F5-82489A74EAA8}
 		{AC510806-42A1-4B3F-8A6C-97B96398D475} = {9252B1AE-31A9-47A2-A8F5-82489A74EAA8}
 		{800FD538-82D0-43DF-8D2C-618C2327B15E} = {9252B1AE-31A9-47A2-A8F5-82489A74EAA8}
+		{6407DDD8-FC03-4A60-AECF-81BBD8B4FF48} = {9252B1AE-31A9-47A2-A8F5-82489A74EAA8}
 	EndGlobalSection
 EndGlobal
