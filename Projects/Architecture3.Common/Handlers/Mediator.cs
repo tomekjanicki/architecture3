@@ -99,7 +99,7 @@
             {
                 return _instanceFactory(handlerType);
             }
-            catch (System.Exception e)
+            catch (Exception e)
             {
                 throw request != null ? BuildException(request, e) : BuildException(e);
             }

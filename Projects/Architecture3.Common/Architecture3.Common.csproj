@@ -72,19 +72,6 @@
     <Compile Include="Handlers\Mediator.cs" />
     <Compile Include="Log4Net\Extension.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="SharedStructs\Paged.cs" />
-    <Compile Include="SharedStructs\RequestParams\Sort.cs" />
-    <Compile Include="SharedStructs\RequestParams\SortPageSizeSkip.cs" />
-    <Compile Include="SharedStructs\ResponseParams\CollectionResult.cs" />
-    <Compile Include="SharedStructs\ResponseParams\PagedCollectionResult.cs" />
-    <Compile Include="SharedStructs\ResponseParams\Result.cs" />
-    <Compile Include="SharedValidators\SortPageSizeSkipValidator.cs" />
-    <Compile Include="TemplateMethods\Queries\CollectionQueryTemplateHandler.cs" />
-    <Compile Include="TemplateMethods\Queries\Interfaces\ICollectionRepository.cs" />
-    <Compile Include="TemplateMethods\Queries\Interfaces\IPagedCollectionRepository.cs" />
-    <Compile Include="TemplateMethods\Queries\Interfaces\IRepository.cs" />
-    <Compile Include="TemplateMethods\Queries\PagedCollectionQueryTemplateHandler.cs" />
-    <Compile Include="TemplateMethods\Queries\QueryTemplateHandler.cs" />
     <Compile Include="Tools\Guard.cs" />
     <Compile Include="ValueObjects\PageSizeSkip.cs" />
   </ItemGroup>

@@ -48,10 +48,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Product\FindPagedCollection\ProductItemPagedCollectionRepository.cs" />
-    <Compile Include="Product\FindPagedCollection\Query.cs" />
-    <Compile Include="Product\FindPagedCollection\QueryHandler.cs" />
-    <Compile Include="Product\FindPagedCollection\QueryValidator.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -62,7 +58,9 @@
     <Analyzer Include="..\..\packages\StyleCop.Analyzers.1.0.0\analyzers\dotnet\cs\StyleCop.Analyzers.CodeFixes.dll" />
     <Analyzer Include="..\..\packages\StyleCop.Analyzers.1.0.0\analyzers\dotnet\cs\StyleCop.Analyzers.dll" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Product\FindPagedCollection\" />
+  </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Architecture3.Common\Architecture3.Common.csproj">
       <Project>{B97EFB86-FB8B-43B7-9892-D4E2AF7257B6}</Project>
