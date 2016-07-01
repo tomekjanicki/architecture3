@@ -44,5 +44,13 @@
                 log.Error(func());
             }
         }
+
+        public static void Error(this ILog log, Func<object> func, Func<Exception> funcEx)
+        {
+            if (log.IsErrorEnabled)
+            {
+                log.Error(func(), funcEx());
+            }
+        }
     }
 }
