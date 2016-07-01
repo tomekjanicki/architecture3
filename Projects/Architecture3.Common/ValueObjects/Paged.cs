@@ -18,10 +18,10 @@
 
         public static Result<Paged<T>> Create(int count, IReadOnlyCollection<T> items)
         {
-            var r1 = NonNegativeInt.Create(count);
-            if (r1.IsFailure)
+            var countResult = NonNegativeInt.Create(count);
+            if (countResult.IsFailure)
             {
-                return Result.Fail<Paged<T>>(r1.Error);
+                return Result.Fail<Paged<T>>(countResult.Error);
             }
 
             if (items == null)
@@ -29,7 +29,7 @@
                 return Result.Fail<Paged<T>>($"{nameof(items)} can't be null");
             }
 
-            return Result.Ok(new Paged<T>(r1.Value, items));
+            return Result.Ok(new Paged<T>(countResult.Value, items));
         }
 
         protected override bool EqualsCore(Paged<T> other)

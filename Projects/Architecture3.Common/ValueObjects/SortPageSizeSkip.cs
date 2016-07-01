@@ -16,8 +16,8 @@ namespace Architecture3.Common.ValueObjects
 
         public static Result<SortPageSizeSkip> Create(string sort, int skip, int pageSize)
         {
-            var r1 = PageSizeSkip.Create(skip, pageSize);
-            return r1.IsFailure ? Result.Fail<SortPageSizeSkip>(r1.Error) : Result.Ok(new SortPageSizeSkip(sort, r1.Value));
+            var result = PageSizeSkip.Create(skip, pageSize);
+            return result.IsFailure ? Result.Fail<SortPageSizeSkip>(result.Error) : Result.Ok(new SortPageSizeSkip(sort, result.Value));
         }
 
         protected override bool EqualsCore(SortPageSizeSkip other)

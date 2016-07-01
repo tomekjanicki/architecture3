@@ -1,15 +1,21 @@
 ﻿namespace Architecture3.Logic.Product.FilterPaged
 {
-    using System.Collections.Generic;
     using Architecture3.Common.Handlers.Interfaces;
     using Architecture3.Common.ValueObjects;
+    using Architecture3.Logic.Product.FilterPaged.Interfaces;
 
     public class QueryHandler : IRequestHandler<Query, Paged<Product>>
     {
+        private readonly IRepository _repository;
+
+        public QueryHandler(IRepository repository)
+        {
+            _repository = repository;
+        }
+
         public Paged<Product> Handle(Query message)
         {
-            // todo do sth
-            return Paged<Product>.Create(10, new List<Product>()).Value;
+            return _repository.Fetch(message);
         }
     }
 }

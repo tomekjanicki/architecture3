@@ -17,19 +17,19 @@
 
         public static Result<PageSizeSkip> Create(int skip, int pageSize)
         {
-            var r1 = NonNegativeInt.Create(skip);
-            if (r1.IsFailure)
+            var skipResult = NonNegativeInt.Create(skip);
+            if (skipResult.IsFailure)
             {
-                return Result.Fail<PageSizeSkip>(r1.Error);
+                return Result.Fail<PageSizeSkip>(skipResult.Error);
             }
 
-            var r2 = GreaterThanZeroInt.Create(pageSize);
-            if (r2.IsFailure)
+            var pageSizeResult = GreaterThanZeroInt.Create(pageSize);
+            if (pageSizeResult.IsFailure)
             {
-                return Result.Fail<PageSizeSkip>(r2.Error);
+                return Result.Fail<PageSizeSkip>(pageSizeResult.Error);
             }
 
-            return Create(r1.Value, r2.Value);
+            return Create(skipResult.Value, pageSizeResult.Value);
         }
 
         public static Result<PageSizeSkip> Create(NonNegativeInt skip, GreaterThanZeroInt pageSize)

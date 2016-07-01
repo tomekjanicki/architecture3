@@ -6,6 +6,8 @@
     using System.Web.Http;
     using Architecture3.Common.Handlers;
     using Architecture3.Common.Handlers.Interfaces;
+    using Architecture3.Logic;
+    using Architecture3.Logic.Interfaces;
     using Architecture3.Logic.Product.FilterPaged;
     using Architecture3.Logic.Product.FilterPaged.Interfaces;
     using SimpleInjector;
@@ -32,6 +34,10 @@
             container.RegisterSingleton(new SingleInstanceFactory(container.GetInstance));
 
             container.Register<IResultMapper, ResultMapper>(lifeStyle);
+
+            container.Register<IRepository, Repository>(lifeStyle);
+
+            container.Register<IDbConnectionProvider, DbConnectionProvider>(lifeStyle);
 
             configuration.DependencyResolver = new SimpleInjectorWebApiDependencyResolver(container);
 
