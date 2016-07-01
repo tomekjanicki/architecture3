@@ -6,9 +6,9 @@
 
     public class Mediator : IMediator
     {
-        private readonly Func<Type, object> _instanceFactory;
+        private readonly SingleInstanceFactory _instanceFactory;
 
-        public Mediator(Func<Type, object> instanceFactory)
+        public Mediator(SingleInstanceFactory instanceFactory)
         {
             _instanceFactory = instanceFactory;
         }
