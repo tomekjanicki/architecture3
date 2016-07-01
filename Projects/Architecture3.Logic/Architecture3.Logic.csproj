@@ -53,6 +53,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Product\FilterPaged\Product.cs" />
+    <Compile Include="Product\FilterPaged\QueryHandler.cs" />
     <Compile Include="Product\FilterPaged\ResultMapper.cs" />
     <Compile Include="Product\FilterPaged\Query.cs" />
     <Compile Include="Product\FilterPaged\Interfaces\IResultMapper.cs" />
