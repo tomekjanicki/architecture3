@@ -46,6 +46,10 @@
     <CodeAnalysisRuleSet>..\..\Architecture3.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="CSharpFunctionalExtensions, Version=1.2.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\CSharpFunctionalExtensions.1.2.0\lib\net45\CSharpFunctionalExtensions.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="FluentValidation, Version=6.2.1.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\FluentValidation.6.2.1.0\lib\Net45\FluentValidation.dll</HintPath>
       <Private>True</Private>
@@ -153,6 +157,10 @@
     <ProjectReference Include="..\Architecture3.Logic\Architecture3.Logic.csproj">
       <Project>{AC510806-42A1-4B3F-8A6C-97B96398D475}</Project>
       <Name>Architecture3.Logic</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Architecture3.Types\Architecture3.Types.csproj">
+      <Project>{9033BA8A-C531-4DCD-A342-A4B57DDD11D9}</Project>
+      <Name>Architecture3.Types</Name>
     </ProjectReference>
     <ProjectReference Include="..\Architecture3.WebApi.Dtos\Architecture3.WebApi.Dtos.csproj">
       <Project>{D383FC01-3AB8-4106-98EA-543607ACE0E9}</Project>
