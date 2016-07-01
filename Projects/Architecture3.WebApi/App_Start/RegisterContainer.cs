@@ -11,6 +11,8 @@
     using Architecture3.Logic.Interfaces;
     using Architecture3.Logic.Product.FilterPaged;
     using Architecture3.Logic.Product.FilterPaged.Interfaces;
+    using Architecture3.WebApi.Dtos;
+    using AutoMapper;
     using SimpleInjector;
     using SimpleInjector.Integration.WebApi;
 
@@ -48,6 +50,8 @@
 
             container.Register<ProductsGetFacade>(lifeStyle);
 
+            container.RegisterSingleton(GetMapper);
+
             configuration.DependencyResolver = new SimpleInjectorWebApiDependencyResolver(container);
 
             container.Verify();
@@ -56,6 +60,16 @@
         private static IEnumerable<Assembly> GetAssemblies()
         {
             yield return typeof(QueryHandler).GetTypeInfo().Assembly;
+        }
+
+        private static IMapper GetMapper()
+        {
+            var configuration = new MapperConfiguration(expression =>
+            {
+                expression.CreateMap<Common.ValueObjects.Paged<Product>, Paged<WebApi.Dtos.Product.FilterPaged.Product>>();
+                expression.CreateMap<Logic.Product.Get.Product, WebApi.Dtos.Product.Get.Product>();
+            });
+            return configuration.CreateMapper();
         }
     }
 }
