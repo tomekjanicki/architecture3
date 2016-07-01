@@ -34,5 +34,16 @@
                 return await response.Content.ReadAsAsync<Paged<Product>>().ConfigureAwait(false);
             }
         }
+
+        public async Task<Dtos.Product.Get.Product> ProductsGet(int id)
+        {
+            using (var client = Helper.GetConfiguredHttpClient())
+            {
+                var uri = new Uri(_baseUri, $"/products/{id}");
+                var response = await client.GetAsync(uri).ConfigureAwait(false);
+                response.EnsureSuccessStatusCode();
+                return await response.Content.ReadAsAsync<Dtos.Product.Get.Product>().ConfigureAwait(false);
+            }
+        }
     }
 }

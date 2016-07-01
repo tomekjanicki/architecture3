@@ -7,5 +7,7 @@
     public interface IClient
     {
         Task<Paged<Product>> ProductsFilterPaged(int top, int skip, string filter, string orderBy);
+
+        Task<Dtos.Product.Get.Product> ProductsGet(int id);
     }
 }
