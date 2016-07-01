@@ -1,4 +1,4 @@
-﻿namespace Architecture3.WebApi.Facades
+﻿namespace Architecture3.Logic.Facades
 {
     using System;
     using Architecture3.Common.Handlers.Interfaces;
@@ -17,20 +17,20 @@
             _resultMapper = resultMapper;
         }
 
-        public Tuple<ResponseType, string, Paged<Dtos.Product.FilterPaged.Product>> FilterPaged(int skip, int top, string filter = null, string orderBy = null)
+        public Tuple<ResponseType, string, Paged<WebApi.Dtos.Product.FilterPaged.Product>> FilterPaged(int skip, int top, string filter = null, string orderBy = null)
         {
             var queryResult = Query.Create(orderBy, skip, top, filter);
 
             if (queryResult.IsFailure)
             {
-                return new Tuple<ResponseType, string, Paged<Dtos.Product.FilterPaged.Product>>(ResponseType.BadRequest, queryResult.Error, null);
+                return new Tuple<ResponseType, string, Paged<WebApi.Dtos.Product.FilterPaged.Product>>(ResponseType.BadRequest, queryResult.Error, null);
             }
 
             var result = _mediator.Send(queryResult.Value);
 
             var data = _resultMapper.Map(result);
 
-            return new Tuple<ResponseType, string, Paged<Dtos.Product.FilterPaged.Product>>(ResponseType.Ok, null, data);
+            return new Tuple<ResponseType, string, Paged<WebApi.Dtos.Product.FilterPaged.Product>>(ResponseType.Ok, null, data);
         }
     }
 }

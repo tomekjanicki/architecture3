@@ -1,4 +1,4 @@
-﻿namespace Architecture3.WebApi.Facades
+﻿namespace Architecture3.Logic.Facades
 {
     public enum ResponseType
     {

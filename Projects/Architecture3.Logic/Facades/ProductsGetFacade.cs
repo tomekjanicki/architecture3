@@ -1,10 +1,10 @@
-﻿namespace Architecture3.WebApi.Facades
+﻿namespace Architecture3.Logic.Facades
 {
     using System;
     using Architecture3.Common.Handlers.Interfaces;
     using Architecture3.Logic.Product.Get;
     using Architecture3.Logic.Product.Get.Interfaces;
-    using Product = Architecture3.WebApi.Dtos.Product.Get.Product;
+    using Product = WebApi.Dtos.Product.Get.Product;
 
     public class ProductsGetFacade
     {
