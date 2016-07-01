@@ -35,6 +35,8 @@
 
             container.Register<IResultMapper, ResultMapper>(lifeStyle);
 
+            container.Register<Logic.Product.Get.Interfaces.IResultMapper, Logic.Product.Get.ResultMapper>(lifeStyle);
+
             container.Register<IRepository, Repository>(lifeStyle);
 
             container.Register<IDbConnectionProvider, DbConnectionProvider>(lifeStyle);

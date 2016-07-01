@@ -12,12 +12,14 @@
     public class ProductsController : ApiController
     {
         private readonly IMediator _mediator;
-        private readonly IResultMapper _resultMapper;
+        private readonly IResultMapper _filterPagedResultMapper;
+        private readonly Logic.Product.Get.Interfaces.IResultMapper _getResultMapper;
 
-        public ProductsController(IMediator mediator, IResultMapper resultMapper)
+        public ProductsController(IMediator mediator, IResultMapper filterPagedResultMapper, Logic.Product.Get.Interfaces.IResultMapper getResultMapper)
         {
             _mediator = mediator;
-            _resultMapper = resultMapper;
+            _filterPagedResultMapper = filterPagedResultMapper;
+            _getResultMapper = getResultMapper;
         }
 
         [SwaggerResponse(HttpStatusCode.OK, null, typeof(Paged<Dtos.Product.FilterPaged.Product>))]
@@ -34,7 +36,25 @@
 
             var result = _mediator.Send(queryResult.Value);
 
-            var data = _resultMapper.Map(result);
+            var data = _filterPagedResultMapper.Map(result);
+
+            return Ok(data);
+        }
+
+        [SwaggerResponse(HttpStatusCode.OK, null, typeof(Dtos.Product.Get.Product))]
+        [SwaggerResponse(HttpStatusCode.BadRequest)]
+        public IHttpActionResult Get(int id)
+        {
+            var queryResult = Logic.Product.Get.Query.Create(id);
+
+            if (queryResult.IsFailure)
+            {
+                return BadRequest(queryResult.Error);
+            }
+
+            var result = _mediator.Send(queryResult.Value);
+
+            var data = _getResultMapper.Map(result);
 
             return Ok(data);
         }

@@ -46,6 +46,7 @@
   <ItemGroup>
     <Compile Include="Paged.cs" />
     <Compile Include="Product\FilterPaged\Product.cs" />
+    <Compile Include="Product\Get\Product.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

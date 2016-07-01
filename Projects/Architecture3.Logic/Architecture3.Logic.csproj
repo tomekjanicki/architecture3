@@ -65,6 +65,10 @@
     <Compile Include="Product\FilterPaged\ResultMapper.cs" />
     <Compile Include="Product\FilterPaged\Query.cs" />
     <Compile Include="Product\FilterPaged\Interfaces\IResultMapper.cs" />
+    <Compile Include="Product\Get\Interfaces\IResultMapper.cs" />
+    <Compile Include="Product\Get\Product.cs" />
+    <Compile Include="Product\Get\Query.cs" />
+    <Compile Include="Product\Get\ResultMapper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
