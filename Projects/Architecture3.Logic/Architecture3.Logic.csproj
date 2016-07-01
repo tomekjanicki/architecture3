@@ -60,6 +60,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AutoMapperConfiguration.cs" />
     <Compile Include="DbConnectionProvider.cs" />
     <Compile Include="Facades\FilterPagedFacade.cs" />
     <Compile Include="Facades\ProductsGetFacade.cs" />
