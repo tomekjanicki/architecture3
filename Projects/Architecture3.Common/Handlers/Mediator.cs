@@ -38,12 +38,12 @@
             return result;
         }
 
-        private static InvalidOperationException BuildException(System.Exception inner)
+        private static InvalidOperationException BuildException(Exception inner)
         {
             return new InvalidOperationException("Container or service locator not configured properly or handlers not registered with your container.", inner);
         }
 
-        private static InvalidOperationException BuildException(object message, System.Exception inner)
+        private static InvalidOperationException BuildException(object message, Exception inner)
         {
             return new InvalidOperationException($"Handler was not found for request of type {message.GetType()}.\r\nContainer or service locator not configured properly or handlers not registered with your container.", inner);
         }
