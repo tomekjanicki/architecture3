@@ -13,6 +13,7 @@ namespace Architecture3.WebApi
         private static void Configure(SwaggerDocsConfig config)
         {
             config.SingleApiVersion("v1", "Architecture3.WebApi");
+            config.UseFullTypeNameInSchemaIds();
         }
 
         private static void ConfigureUi(SwaggerUiConfig config)
