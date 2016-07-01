@@ -3,6 +3,7 @@
     using System.Linq;
     using Architecture3.Logic.Interfaces;
     using Architecture3.Logic.Product.Get.Interfaces;
+    using CSharpFunctionalExtensions;
     using Dapper;
 
     public class Repository : IRepository
@@ -16,7 +17,7 @@
             _dbConnectionProvider = dbConnectionProvider;
         }
 
-        public Product Fetch(Query query)
+        public Maybe<Product> Fetch(Query query)
         {
             using (var connection = _dbConnectionProvider.GetOpenDbConnection())
             {

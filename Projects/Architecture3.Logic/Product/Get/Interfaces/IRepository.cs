@@ -1,7 +1,9 @@
 ﻿namespace Architecture3.Logic.Product.Get.Interfaces
 {
+    using CSharpFunctionalExtensions;
+
     public interface IRepository
     {
-        Product Fetch(Query query);
+        Maybe<Product> Fetch(Query query);
     }
 }

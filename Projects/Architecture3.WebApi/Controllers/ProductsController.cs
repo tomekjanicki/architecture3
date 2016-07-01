@@ -2,24 +2,20 @@
 {
     using System.Net;
     using System.Web.Http;
-    using Architecture3.Common.Handlers.Interfaces;
-    using Architecture3.Logic.Product.FilterPaged;
-    using Architecture3.Logic.Product.FilterPaged.Interfaces;
     using Architecture3.WebApi.Dtos;
+    using Architecture3.WebApi.Facades;
     using Swashbuckle.Swagger.Annotations;
 
     [SwaggerResponseRemoveDefaults]
     public class ProductsController : ApiController
     {
-        private readonly IMediator _mediator;
-        private readonly IResultMapper _filterPagedResultMapper;
-        private readonly Logic.Product.Get.Interfaces.IResultMapper _getResultMapper;
+        private readonly FilterPagedFacade _filterPagedFacade;
+        private readonly ProductsGetFacade _productsGetFacade;
 
-        public ProductsController(IMediator mediator, IResultMapper filterPagedResultMapper, Logic.Product.Get.Interfaces.IResultMapper getResultMapper)
+        public ProductsController(FilterPagedFacade filterPagedFacade, ProductsGetFacade productsGetFacade)
         {
-            _mediator = mediator;
-            _filterPagedResultMapper = filterPagedResultMapper;
-            _getResultMapper = getResultMapper;
+            _filterPagedFacade = filterPagedFacade;
+            _productsGetFacade = productsGetFacade;
         }
 
         [SwaggerResponse(HttpStatusCode.OK, null, typeof(Paged<Dtos.Product.FilterPaged.Product>))]
@@ -27,18 +23,14 @@
         [HttpGet]
         public IHttpActionResult FilterPaged(int skip, int top, string filter = null, string orderBy = null)
         {
-            var queryResult = Query.Create(orderBy, skip, top, filter);
+            var result = _filterPagedFacade.FilterPaged(skip, top, filter, orderBy);
 
-            if (queryResult.IsFailure)
+            if (result.Item1 == ResponseType.BadRequest)
             {
-                return BadRequest(queryResult.Error);
+                return BadRequest(result.Item2);
             }
 
-            var result = _mediator.Send(queryResult.Value);
-
-            var data = _filterPagedResultMapper.Map(result);
-
-            return Ok(data);
+            return Ok(result.Item3);
         }
 
         [SwaggerResponse(HttpStatusCode.OK, null, typeof(Dtos.Product.Get.Product))]
@@ -46,23 +38,19 @@
         [SwaggerResponse(HttpStatusCode.NotFound)]
         public IHttpActionResult Get(int id)
         {
-            var queryResult = Logic.Product.Get.Query.Create(id);
+            var result = _productsGetFacade.Get(id);
 
-            if (queryResult.IsFailure)
+            if (result.Item1 == ResponseType.BadRequest)
             {
-                return BadRequest(queryResult.Error);
+                return BadRequest(result.Item2);
             }
 
-            var result = _mediator.Send(queryResult.Value);
-
-            if (result == null)
+            if (result.Item1 == ResponseType.NotFound)
             {
                 return NotFound();
             }
 
-            var data = _getResultMapper.Map(result);
-
-            return Ok(data);
+            return Ok(result.Item3);
         }
     }
 }

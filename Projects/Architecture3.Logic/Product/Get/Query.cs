@@ -4,7 +4,7 @@
     using Architecture3.Types;
     using CSharpFunctionalExtensions;
 
-    public class Query : ValueObject<Query>, IRequest<Product>
+    public class Query : ValueObject<Query>, IRequest<Maybe<Product>>
     {
         private Query(NonNegativeInt id)
         {

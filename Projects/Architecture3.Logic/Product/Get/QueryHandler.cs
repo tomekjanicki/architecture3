@@ -2,8 +2,9 @@
 {
     using Architecture3.Common.Handlers.Interfaces;
     using Architecture3.Logic.Product.Get.Interfaces;
+    using CSharpFunctionalExtensions;
 
-    public class QueryHandler : IRequestHandler<Query, Product>
+    public class QueryHandler : IRequestHandler<Query, Maybe<Product>>
     {
         private readonly IRepository _repository;
 
@@ -12,7 +13,7 @@
             _repository = repository;
         }
 
-        public Product Handle(Query message)
+        public Maybe<Product> Handle(Query message)
         {
             return _repository.Fetch(message);
         }
