@@ -43,6 +43,7 @@
 
         [SwaggerResponse(HttpStatusCode.OK, null, typeof(Dtos.Product.Get.Product))]
         [SwaggerResponse(HttpStatusCode.BadRequest)]
+        [SwaggerResponse(HttpStatusCode.NotFound)]
         public IHttpActionResult Get(int id)
         {
             var queryResult = Logic.Product.Get.Query.Create(id);
@@ -53,6 +54,11 @@
             }
 
             var result = _mediator.Send(queryResult.Value);
+
+            if (result == null)
+            {
+                return NotFound();
+            }
 
             var data = _getResultMapper.Map(result);
 
