@@ -3,18 +3,18 @@
     using System;
     using Architecture3.Common.Handlers.Interfaces;
     using Architecture3.Logic.Product.Get;
-    using Architecture3.Logic.Product.Get.Interfaces;
+    using AutoMapper;
     using Product = WebApi.Dtos.Product.Get.Product;
 
     public class ProductsGetFacade
     {
         private readonly IMediator _mediator;
-        private readonly IResultMapper _resultMapper;
+        private readonly IMapper _mapper;
 
-        public ProductsGetFacade(IMediator mediator, IResultMapper resultMapper)
+        public ProductsGetFacade(IMediator mediator, IMapper mapper)
         {
             _mediator = mediator;
-            _resultMapper = resultMapper;
+            _mapper = mapper;
         }
 
         public Tuple<ResponseType, string, Product> Get(int id)
@@ -33,7 +33,7 @@
                 return new Tuple<ResponseType, string, Product>(ResponseType.NotFound, null, null);
             }
 
-            var data = _resultMapper.Map(result.Value);
+            var data = _mapper.Map<WebApi.Dtos.Product.Get.Product>(result.Value);
 
             return new Tuple<ResponseType, string, Product>(ResponseType.Ok, null, data);
         }

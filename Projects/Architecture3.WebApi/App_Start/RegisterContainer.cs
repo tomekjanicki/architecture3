@@ -36,10 +36,6 @@
 
             container.RegisterSingleton(new SingleInstanceFactory(container.GetInstance));
 
-            container.Register<IResultMapper, ResultMapper>(lifeStyle);
-
-            container.Register<Logic.Product.Get.Interfaces.IResultMapper, Logic.Product.Get.ResultMapper>(lifeStyle);
-
             container.Register<IRepository, Repository>(lifeStyle);
 
             container.Register<Logic.Product.Get.Interfaces.IRepository, Logic.Product.Get.Repository>(lifeStyle);
