@@ -29,12 +29,12 @@
                 return Result.Fail<PageSizeSkip>(r2.Error);
             }
 
-            if (r2.Value > Const.MaxPageSize)
-            {
-                return Result.Fail<PageSizeSkip>($"PageSize can't be greater than {Const.MaxPageSize}");
-            }
+            return Create(r1.Value, r2.Value);
+        }
 
-            return Result.Ok(new PageSizeSkip(r1.Value, r2.Value));
+        public static Result<PageSizeSkip> Create(NonNegativeInt skip, GreaterThanZeroInt pageSize)
+        {
+            return pageSize.Value > Const.MaxPageSize ? Result.Fail<PageSizeSkip>($"PageSize can't be greater than {Const.MaxPageSize}") : Result.Ok(new PageSizeSkip(skip, pageSize));
         }
 
         protected override bool EqualsCore(PageSizeSkip other)
@@ -44,7 +44,10 @@
 
         protected override int GetHashCodeCore()
         {
-            throw new System.NotImplementedException();
+            var hash = 13;
+            hash = hash * 7 + Skip.GetHashCode();
+            hash = hash * 7 + PageSize.GetHashCode();
+            return hash;
         }
     }
 }
