@@ -39,6 +39,8 @@
 
             container.Register<IRepository, Repository>(lifeStyle);
 
+            container.Register<Logic.Product.Get.Interfaces.IRepository, Logic.Product.Get.Repository>(lifeStyle);
+
             container.Register<IDbConnectionProvider, DbConnectionProvider>(lifeStyle);
 
             configuration.DependencyResolver = new SimpleInjectorWebApiDependencyResolver(container);
