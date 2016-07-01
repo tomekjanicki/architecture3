@@ -21,6 +21,7 @@
         }
 
         [SwaggerResponse(HttpStatusCode.OK, null, typeof(Paged<Dtos.Product.FilterPaged.Product>))]
+        [SwaggerResponse(HttpStatusCode.BadRequest)]
         [HttpGet]
         public IHttpActionResult FilterPaged(int skip, int top, string filter = null, string orderBy = null)
         {
