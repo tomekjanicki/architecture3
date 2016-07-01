@@ -7,6 +7,7 @@
     using Architecture3.Common.Handlers;
     using Architecture3.Common.Handlers.Interfaces;
     using Architecture3.Logic;
+    using Architecture3.Logic.Facades;
     using Architecture3.Logic.Interfaces;
     using Architecture3.Logic.Product.FilterPaged;
     using Architecture3.Logic.Product.FilterPaged.Interfaces;
@@ -42,6 +43,10 @@
             container.Register<Logic.Product.Get.Interfaces.IRepository, Logic.Product.Get.Repository>(lifeStyle);
 
             container.Register<IDbConnectionProvider, DbConnectionProvider>(lifeStyle);
+
+            container.Register<FilterPagedFacade>(lifeStyle);
+
+            container.Register<ProductsGetFacade>(lifeStyle);
 
             configuration.DependencyResolver = new SimpleInjectorWebApiDependencyResolver(container);
 
