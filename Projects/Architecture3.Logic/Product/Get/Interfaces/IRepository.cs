@@ -1,6 +1,6 @@
 ﻿namespace Architecture3.Logic.Product.Get.Interfaces
 {
-    using CSharpFunctionalExtensions;
+    using Architecture3.Types.FunctionalExtensions;
 
     public interface IRepository
     {

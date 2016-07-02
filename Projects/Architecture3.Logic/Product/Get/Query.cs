@@ -2,7 +2,7 @@
 {
     using Architecture3.Common.Handlers.Interfaces;
     using Architecture3.Types;
-    using CSharpFunctionalExtensions;
+    using Architecture3.Types.FunctionalExtensions;
 
     public class Query : ValueObject<Query>, IRequest<Maybe<Product>>
     {
@@ -13,10 +13,10 @@
 
         public NonNegativeInt Id { get; }
 
-        public static Result<Query> Create(int id)
+        public static ResultX<Query, string> Create(int id)
         {
             var r1 = NonNegativeInt.Create(id);
-            return r1.IsFailure ? Result.Fail<Query>(r1.Error) : Result.Ok(new Query(r1.Value));
+            return r1.IsFailure ? ResultX<Query, string>.Fail(r1.Error) : ResultX<Query, string>.Ok(new Query(r1.Value));
         }
 
         protected override bool EqualsCore(Query other)

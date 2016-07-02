@@ -3,7 +3,7 @@
     using System.Linq;
     using Architecture3.Logic.Interfaces;
     using Architecture3.Logic.Product.Get.Interfaces;
-    using CSharpFunctionalExtensions;
+    using Architecture3.Types.FunctionalExtensions;
     using Dapper;
 
     public class Repository : IRepository

@@ -1,6 +1,6 @@
 namespace Architecture3.Common.ValueObjects
 {
-    using CSharpFunctionalExtensions;
+    using Architecture3.Types.FunctionalExtensions;
 
     public class SortPageSizeSkip : ValueObject<SortPageSizeSkip>
     {
@@ -14,10 +14,10 @@ namespace Architecture3.Common.ValueObjects
 
         public PageSizeSkip PageSizeSkip { get; }
 
-        public static Result<SortPageSizeSkip> Create(string sort, int skip, int pageSize)
+        public static ResultX<SortPageSizeSkip, string> Create(string sort, int skip, int pageSize)
         {
             var result = PageSizeSkip.Create(skip, pageSize);
-            return result.IsFailure ? Result.Fail<SortPageSizeSkip>(result.Error) : Result.Ok(new SortPageSizeSkip(sort, result.Value));
+            return result.IsFailure ? ResultX<SortPageSizeSkip, string>.Fail(result.Error) : ResultX<SortPageSizeSkip, string>.Ok(new SortPageSizeSkip(sort, result.Value));
         }
 
         protected override bool EqualsCore(SortPageSizeSkip other)

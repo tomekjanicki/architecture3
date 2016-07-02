@@ -1,6 +1,6 @@
 ﻿namespace Architecture3.Types
 {
-    using CSharpFunctionalExtensions;
+    using Architecture3.Types.FunctionalExtensions;
 
     public class GreaterThanZeroInt : ValueObject<GreaterThanZeroInt>
     {
@@ -21,9 +21,9 @@
             return greaterThanZeroInt.Value;
         }
 
-        public static Result<GreaterThanZeroInt> Create(int value)
+        public static ResultX<GreaterThanZeroInt, string> Create(int value)
         {
-            return value <= 0 ? Result.Fail<GreaterThanZeroInt>("Value can't be lower or equal to zero") : Result.Ok(new GreaterThanZeroInt(value));
+            return value <= 0 ? ResultX<GreaterThanZeroInt, string>.Fail("Value can't be lower or equal to zero") : ResultX<GreaterThanZeroInt, string>.Ok(new GreaterThanZeroInt(value));
         }
 
         protected override bool EqualsCore(GreaterThanZeroInt other)

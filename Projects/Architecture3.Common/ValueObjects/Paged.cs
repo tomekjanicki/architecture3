@@ -2,7 +2,7 @@
 {
     using System.Collections.Generic;
     using Architecture3.Types;
-    using CSharpFunctionalExtensions;
+    using Architecture3.Types.FunctionalExtensions;
 
     public class Paged<T> : ValueObject<Paged<T>>
     {
@@ -16,20 +16,20 @@
 
         public IReadOnlyCollection<T> Items { get; }
 
-        public static Result<Paged<T>> Create(int count, IReadOnlyCollection<T> items)
+        public static ResultX<Paged<T>, string> Create(int count, IReadOnlyCollection<T> items)
         {
             var countResult = NonNegativeInt.Create(count);
             if (countResult.IsFailure)
             {
-                return Result.Fail<Paged<T>>(countResult.Error);
+                return ResultX<Paged<T>, string>.Fail(countResult.Error);
             }
 
             if (items == null)
             {
-                return Result.Fail<Paged<T>>($"{nameof(items)} can't be null");
+                return ResultX<Paged<T>, string>.Fail($"{nameof(items)} can't be null");
             }
 
-            return Result.Ok(new Paged<T>(countResult.Value, items));
+            return ResultX<Paged<T>, string>.Ok(new Paged<T>(countResult.Value, items));
         }
 
         protected override bool EqualsCore(Paged<T> other)

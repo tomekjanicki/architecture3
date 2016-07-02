@@ -1,6 +1,6 @@
 ﻿namespace Architecture3.Types
 {
-    using CSharpFunctionalExtensions;
+    using Architecture3.Types.FunctionalExtensions;
 
     public class NonNegativeInt : ValueObject<NonNegativeInt>
     {
@@ -21,9 +21,9 @@
             return nonNegativeInt.Value;
         }
 
-        public static Result<NonNegativeInt> Create(int value)
+        public static ResultX<NonNegativeInt, string> Create(int value)
         {
-            return value < 0 ? Result.Fail<NonNegativeInt>("Value can't be lower than zero") : Result.Ok(new NonNegativeInt(value));
+            return value < 0 ? ResultX<NonNegativeInt, string>.Fail("Value can't be lower than zero") : ResultX<NonNegativeInt, string>.Ok(new NonNegativeInt(value));
         }
 
         protected override bool EqualsCore(NonNegativeInt other)
