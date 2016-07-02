@@ -1,6 +1,8 @@
 ﻿namespace Architecture3.Logic.Facades
 {
-    public struct Error
+    using Architecture3.Types.FunctionalExtensions;
+
+    public class Error : ValueObject<Error>
     {
         private Error(ErrorType errorType, string message)
         {
@@ -20,6 +22,19 @@
         public static Error CreateNotFound()
         {
             return new Error(ErrorType.NotFound, null);
+        }
+
+        protected override bool EqualsCore(Error other)
+        {
+            return ErrorType == other.ErrorType && Message == other.Message;
+        }
+
+        protected override int GetHashCodeCore()
+        {
+            var hash = 13;
+            hash = hash * 7 + ErrorType.GetHashCode();
+            hash = hash * 7 + Message.GetHashCode();
+            return hash;
         }
     }
 }

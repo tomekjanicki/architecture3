@@ -2,19 +2,20 @@
 {
     using System.Web.Http;
     using Architecture3.Logic.Facades;
+    using Architecture3.Types.FunctionalExtensions;
 
     public abstract class BaseApiController : ApiController
     {
-        protected IHttpActionResult GetHttpActionResult<T>(R<T, Error?> result)
+        protected IHttpActionResult GetHttpActionResult<T>(Result<T, Error> result)
         {
-            if (!result.ErrorResult.HasValue)
+            if (result.IsSuccess)
             {
                 return Ok(result.Value);
             }
 
-            if (result.ErrorResult.Value.ErrorType == ErrorType.BadRequest)
+            if (result.Error.ErrorType == ErrorType.BadRequest)
             {
-                return BadRequest(result.ErrorResult.Value.Message);
+                return BadRequest(result.Error.Message);
             }
 
             return NotFound();

@@ -2,6 +2,7 @@
 {
     using Architecture3.Common.Handlers.Interfaces;
     using Architecture3.Logic.Product.Get;
+    using Architecture3.Types.FunctionalExtensions;
     using AutoMapper;
 
     public class ProductsGetFacade
@@ -15,25 +16,25 @@
             _mapper = mapper;
         }
 
-        public R<Product, Error?> Get(int id)
+        public Result<Product, Error> Get(int id)
         {
             var queryResult = Query.Create(id);
 
             if (queryResult.IsFailure)
             {
-                return R<Product, Error?>.Fail(Error.CreateBadRequest(queryResult.Error));
+                return Result<Product, Error>.Fail(Error.CreateBadRequest(queryResult.Error));
             }
 
             var result = _mediator.Send(queryResult.Value);
 
             if (result.HasNoValue)
             {
-                return R<Product, Error?>.Fail(Error.CreateNotFound());
+                return Result<Product, Error>.Fail(Error.CreateNotFound());
             }
 
             var data = _mapper.Map<Product>(result.Value);
 
-            return R<Product, Error?>.Ok(data);
+            return Result<Product, Error>.Ok(data);
         }
     }
 }

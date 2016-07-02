@@ -62,7 +62,6 @@
     <Compile Include="Facades\FilterPagedFacade.cs" />
     <Compile Include="Facades\ProductsGetFacade.cs" />
     <Compile Include="Facades\ErrorType.cs" />
-    <Compile Include="Facades\R.cs" />
     <Compile Include="Interfaces\IDbConnectionProvider.cs" />
     <Compile Include="Product\FilterPaged\Interfaces\IRepository.cs" />
     <Compile Include="Product\FilterPaged\Product.cs" />
