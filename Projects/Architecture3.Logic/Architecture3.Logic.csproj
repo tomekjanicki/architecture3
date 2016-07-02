@@ -62,9 +62,11 @@
   <ItemGroup>
     <Compile Include="AutoMapperConfiguration.cs" />
     <Compile Include="DbConnectionProvider.cs" />
+    <Compile Include="Facades\Error.cs" />
     <Compile Include="Facades\FilterPagedFacade.cs" />
     <Compile Include="Facades\ProductsGetFacade.cs" />
-    <Compile Include="Facades\ResponseType.cs" />
+    <Compile Include="Facades\ErrorType.cs" />
+    <Compile Include="Facades\R.cs" />
     <Compile Include="Interfaces\IDbConnectionProvider.cs" />
     <Compile Include="Product\FilterPaged\Interfaces\IRepository.cs" />
     <Compile Include="Product\FilterPaged\Product.cs" />

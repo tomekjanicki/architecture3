@@ -1,8 +1,7 @@
 ﻿namespace Architecture3.Logic.Facades
 {
-    public enum ResponseType
+    public enum ErrorType
     {
-        Ok,
         NotFound,
         BadRequest
     }
