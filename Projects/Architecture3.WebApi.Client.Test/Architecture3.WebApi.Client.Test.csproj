@@ -23,7 +23,7 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
-    <CodeAnalysisRuleSet>..\Architecture3.ruleset</CodeAnalysisRuleSet>
+    <CodeAnalysisRuleSet>..\..\Architecture3.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -33,7 +33,7 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <CodeAnalysisRuleSet>..\Architecture3.ruleset</CodeAnalysisRuleSet>
+    <CodeAnalysisRuleSet>..\..\Architecture3.ruleset</CodeAnalysisRuleSet>
     <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
   </PropertyGroup>
   <PropertyGroup>
@@ -58,16 +58,16 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <Analyzer Include="..\packages\StyleCop.Analyzers.1.0.0\analyzers\dotnet\cs\Newtonsoft.Json.dll" />
-    <Analyzer Include="..\packages\StyleCop.Analyzers.1.0.0\analyzers\dotnet\cs\StyleCop.Analyzers.CodeFixes.dll" />
-    <Analyzer Include="..\packages\StyleCop.Analyzers.1.0.0\analyzers\dotnet\cs\StyleCop.Analyzers.dll" />
+    <Analyzer Include="..\..\packages\StyleCop.Analyzers.1.0.0\analyzers\dotnet\cs\Newtonsoft.Json.dll" />
+    <Analyzer Include="..\..\packages\StyleCop.Analyzers.1.0.0\analyzers\dotnet\cs\StyleCop.Analyzers.CodeFixes.dll" />
+    <Analyzer Include="..\..\packages\StyleCop.Analyzers.1.0.0\analyzers\dotnet\cs\StyleCop.Analyzers.dll" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Projects\Architecture3.WebApi.Client\Architecture3.WebApi.Client.csproj">
+    <ProjectReference Include="..\Architecture3.WebApi.Client\Architecture3.WebApi.Client.csproj">
       <Project>{800fd538-82d0-43df-8d2c-618c2327b15e}</Project>
       <Name>Architecture3.WebApi.Client</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Projects\Architecture3.WebApi.Dtos\Architecture3.WebApi.Dtos.csproj">
+    <ProjectReference Include="..\Architecture3.WebApi.Dtos\Architecture3.WebApi.Dtos.csproj">
       <Project>{D383FC01-3AB8-4106-98EA-543607ACE0E9}</Project>
       <Name>Architecture3.WebApi.Dtos</Name>
     </ProjectReference>

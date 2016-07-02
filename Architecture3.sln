@@ -17,7 +17,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Architecture3.Logic", "Proj
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Architecture3.WebApi.Client", "Projects\Architecture3.WebApi.Client\Architecture3.WebApi.Client.csproj", "{800FD538-82D0-43DF-8D2C-618C2327B15E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Architecture3.WebApi.Client.Test", "Architecture3.WebApi.Client.Test\Architecture3.WebApi.Client.Test.csproj", "{6407DDD8-FC03-4A60-AECF-81BBD8B4FF48}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Architecture3.WebApi.Client.Test", "Projects\Architecture3.WebApi.Client.Test\Architecture3.WebApi.Client.Test.csproj", "{6407DDD8-FC03-4A60-AECF-81BBD8B4FF48}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Architecture3.Types", "Projects\Architecture3.Types\Architecture3.Types.csproj", "{9033BA8A-C531-4DCD-A342-A4B57DDD11D9}"
 EndProject
