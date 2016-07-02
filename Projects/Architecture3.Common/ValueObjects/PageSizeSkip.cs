@@ -15,26 +15,26 @@
 
         public GreaterThanZeroInt PageSize { get; }
 
-        public static ResultX<PageSizeSkip, string> Create(int skip, int pageSize)
+        public static Result<PageSizeSkip, string> Create(int skip, int pageSize)
         {
             var skipResult = NonNegativeInt.Create(skip);
             if (skipResult.IsFailure)
             {
-                return ResultX<PageSizeSkip, string>.Fail(skipResult.Error);
+                return Result<PageSizeSkip, string>.Fail(skipResult.Error);
             }
 
             var pageSizeResult = GreaterThanZeroInt.Create(pageSize);
             if (pageSizeResult.IsFailure)
             {
-                return ResultX<PageSizeSkip, string>.Fail(pageSizeResult.Error);
+                return Result<PageSizeSkip, string>.Fail(pageSizeResult.Error);
             }
 
             return Create(skipResult.Value, pageSizeResult.Value);
         }
 
-        public static ResultX<PageSizeSkip, string> Create(NonNegativeInt skip, GreaterThanZeroInt pageSize)
+        public static Result<PageSizeSkip, string> Create(NonNegativeInt skip, GreaterThanZeroInt pageSize)
         {
-            return pageSize.Value > Const.MaxPageSize ? ResultX<PageSizeSkip, string>.Fail($"PageSize can't be greater than {Const.MaxPageSize}") : ResultX<PageSizeSkip, string>.Ok(new PageSizeSkip(skip, pageSize));
+            return pageSize.Value > Const.MaxPageSize ? Result<PageSizeSkip, string>.Fail($"PageSize can't be greater than {Const.MaxPageSize}") : Result<PageSizeSkip, string>.Ok(new PageSizeSkip(skip, pageSize));
         }
 
         protected override bool EqualsCore(PageSizeSkip other)

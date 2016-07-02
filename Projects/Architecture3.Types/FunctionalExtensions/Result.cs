@@ -2,14 +2,14 @@
 {
     using System;
 
-    public struct ResultX<TError> : IResultX<TError>
+    public struct Result<TError> : IResultX<TError>
         where TError : class
     {
-        private readonly ResultCommonLogicX<TError> _logic;
+        private readonly ResultCommonLogic<TError> _logic;
 
-        private ResultX(bool isFailure, TError error)
+        private Result(bool isFailure, TError error)
         {
-            _logic = new ResultCommonLogicX<TError>(isFailure, error);
+            _logic = new ResultCommonLogic<TError>(isFailure, error);
         }
 
         public bool IsFailure => _logic.IsFailure;
@@ -18,31 +18,31 @@
 
         public TError Error => _logic.Error;
 
-        public static ResultX<TError> Ok()
+        public static Result<TError> Ok()
         {
-            return new ResultX<TError>(false, null);
+            return new Result<TError>(false, null);
         }
 
-        public static ResultX<TError> Fail(TError error)
+        public static Result<TError> Fail(TError error)
         {
-            return new ResultX<TError>(true, error);
+            return new Result<TError>(true, error);
         }
     }
 
-    public struct ResultX<TResult, TError> : IResultX<TResult, TError>
+    public struct Result<TResult, TError> : IResult<TResult, TError>
         where TError : class
     {
-        private readonly ResultCommonLogicX<TError> _logic;
+        private readonly ResultCommonLogic<TError> _logic;
         private readonly TResult _value;
 
-        internal ResultX(bool isFailure, TResult value, TError error)
+        internal Result(bool isFailure, TResult value, TError error)
         {
             if (!isFailure && value == null)
             {
                 throw new ArgumentNullException(nameof(value));
             }
 
-            _logic = new ResultCommonLogicX<TError>(isFailure, error);
+            _logic = new ResultCommonLogic<TError>(isFailure, error);
             _value = value;
         }
 
@@ -65,14 +65,14 @@
             }
         }
 
-        public static ResultX<TResult, TError> Ok(TResult value)
+        public static Result<TResult, TError> Ok(TResult value)
         {
-            return new ResultX<TResult, TError>(false, value, null);
+            return new Result<TResult, TError>(false, value, null);
         }
 
-        public static ResultX<TResult, TError> Fail(TError error)
+        public static Result<TResult, TError> Fail(TError error)
         {
-            return new ResultX<TResult, TError>(true, default(TResult), error);
+            return new Result<TResult, TError>(true, default(TResult), error);
         }
     }
 }

@@ -13,10 +13,10 @@
 
         public NonNegativeInt Id { get; }
 
-        public static ResultX<Query, string> Create(int id)
+        public static Result<Query, string> Create(int id)
         {
             var r1 = NonNegativeInt.Create(id);
-            return r1.IsFailure ? ResultX<Query, string>.Fail(r1.Error) : ResultX<Query, string>.Ok(new Query(r1.Value));
+            return r1.IsFailure ? Result<Query, string>.Fail(r1.Error) : Result<Query, string>.Ok(new Query(r1.Value));
         }
 
         protected override bool EqualsCore(Query other)

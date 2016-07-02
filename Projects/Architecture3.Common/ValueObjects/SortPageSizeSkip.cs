@@ -14,10 +14,10 @@ namespace Architecture3.Common.ValueObjects
 
         public PageSizeSkip PageSizeSkip { get; }
 
-        public static ResultX<SortPageSizeSkip, string> Create(string sort, int skip, int pageSize)
+        public static Result<SortPageSizeSkip, string> Create(string sort, int skip, int pageSize)
         {
             var result = PageSizeSkip.Create(skip, pageSize);
-            return result.IsFailure ? ResultX<SortPageSizeSkip, string>.Fail(result.Error) : ResultX<SortPageSizeSkip, string>.Ok(new SortPageSizeSkip(sort, result.Value));
+            return result.IsFailure ? Result<SortPageSizeSkip, string>.Fail(result.Error) : Result<SortPageSizeSkip, string>.Ok(new SortPageSizeSkip(sort, result.Value));
         }
 
         protected override bool EqualsCore(SortPageSizeSkip other)

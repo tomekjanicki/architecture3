@@ -2,12 +2,12 @@
 {
     using System;
 
-    internal sealed class ResultCommonLogicX<TError>
+    internal sealed class ResultCommonLogic<TError>
         where TError : class
     {
         private readonly TError _error;
 
-        public ResultCommonLogicX(bool isFailure, TError error)
+        public ResultCommonLogic(bool isFailure, TError error)
         {
             if (isFailure)
             {

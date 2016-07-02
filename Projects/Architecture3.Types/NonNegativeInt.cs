@@ -21,9 +21,9 @@
             return nonNegativeInt.Value;
         }
 
-        public static ResultX<NonNegativeInt, string> Create(int value)
+        public static Result<NonNegativeInt, string> Create(int value)
         {
-            return value < 0 ? ResultX<NonNegativeInt, string>.Fail("Value can't be lower than zero") : ResultX<NonNegativeInt, string>.Ok(new NonNegativeInt(value));
+            return value < 0 ? Result<NonNegativeInt, string>.Fail("Value can't be lower than zero") : Result<NonNegativeInt, string>.Ok(new NonNegativeInt(value));
         }
 
         protected override bool EqualsCore(NonNegativeInt other)

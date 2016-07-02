@@ -21,9 +21,9 @@
             return greaterThanZeroInt.Value;
         }
 
-        public static ResultX<GreaterThanZeroInt, string> Create(int value)
+        public static Result<GreaterThanZeroInt, string> Create(int value)
         {
-            return value <= 0 ? ResultX<GreaterThanZeroInt, string>.Fail("Value can't be lower or equal to zero") : ResultX<GreaterThanZeroInt, string>.Ok(new GreaterThanZeroInt(value));
+            return value <= 0 ? Result<GreaterThanZeroInt, string>.Fail("Value can't be lower or equal to zero") : Result<GreaterThanZeroInt, string>.Ok(new GreaterThanZeroInt(value));
         }
 
         protected override bool EqualsCore(GreaterThanZeroInt other)

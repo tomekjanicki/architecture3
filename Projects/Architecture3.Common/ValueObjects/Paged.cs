@@ -16,20 +16,20 @@
 
         public IReadOnlyCollection<T> Items { get; }
 
-        public static ResultX<Paged<T>, string> Create(int count, IReadOnlyCollection<T> items)
+        public static Result<Paged<T>, string> Create(int count, IReadOnlyCollection<T> items)
         {
             var countResult = NonNegativeInt.Create(count);
             if (countResult.IsFailure)
             {
-                return ResultX<Paged<T>, string>.Fail(countResult.Error);
+                return Result<Paged<T>, string>.Fail(countResult.Error);
             }
 
             if (items == null)
             {
-                return ResultX<Paged<T>, string>.Fail($"{nameof(items)} can't be null");
+                return Result<Paged<T>, string>.Fail($"{nameof(items)} can't be null");
             }
 
-            return ResultX<Paged<T>, string>.Ok(new Paged<T>(countResult.Value, items));
+            return Result<Paged<T>, string>.Ok(new Paged<T>(countResult.Value, items));
         }
 
         protected override bool EqualsCore(Paged<T> other)

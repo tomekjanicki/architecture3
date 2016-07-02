@@ -1,6 +1,6 @@
 ﻿namespace Architecture3.Types.FunctionalExtensions
 {
-    public interface IResultX<out TResult, out TError> : IResultX<TError>
+    public interface IResult<out TResult, out TError> : IResultX<TError>
         where TError : class
     {
         TResult Value { get; }
