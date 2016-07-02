@@ -2,7 +2,7 @@
 {
     using System;
 
-    public struct Result<TError> : IResultX<TError>
+    public struct Result<TError> : IResult<TError>
         where TError : class
     {
         private readonly ResultCommonLogic<TError> _logic;
