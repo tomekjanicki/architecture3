@@ -14,7 +14,7 @@
 
         public string Handle(Query message)
         {
-            return _assemblyVersionProvider.Get(message.Assembly).ToString().Trim('"');
+            return _assemblyVersionProvider.Get(message.Assembly).ToString();
         }
     }
 }
