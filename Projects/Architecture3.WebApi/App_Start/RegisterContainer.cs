@@ -66,6 +66,7 @@
         private static IMapper GetMapper()
         {
             var configuration = new MapperConfiguration(AutoMapperConfiguration.Configure);
+            configuration.AssertConfigurationIsValid();
             return configuration.CreateMapper();
         }
     }
