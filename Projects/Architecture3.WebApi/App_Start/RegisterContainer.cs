@@ -10,7 +10,6 @@
     using Architecture3.Common.Tools.Interfaces;
     using Architecture3.Logic;
     using Architecture3.Logic.CQ.Product.FilterPaged;
-    using Architecture3.Logic.CQ.Product.FilterPaged.Interfaces;
     using Architecture3.Logic.Database;
     using Architecture3.Logic.Database.Interfaces;
     using Architecture3.Logic.Facades;
@@ -51,8 +50,6 @@
             var assemblies = GetAssemblies().ToArray();
             var lifeStyle = Lifestyle.Scoped;
             container.Register(typeof(IRequestHandler<,>), assemblies, lifeStyle);
-            container.Register<IRepository, Repository>(lifeStyle);
-            container.Register<Logic.CQ.Product.Get.Interfaces.IRepository, Logic.CQ.Product.Get.Repository>(lifeStyle);
             container.Register<FilterPagedFacade>(lifeStyle);
             container.Register<ProductsGetFacade>(lifeStyle);
             container.Register<VersionGetFacade>(lifeStyle);
