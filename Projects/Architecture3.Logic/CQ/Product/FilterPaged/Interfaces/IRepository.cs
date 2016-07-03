@@ -4,6 +4,6 @@
 
     public interface IRepository
     {
-        Paged<CQ.Product.FilterPaged.Product> Fetch(Query query);
+        Paged<Product> Fetch(Query query);
     }
 }

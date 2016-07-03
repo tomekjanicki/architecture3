@@ -4,6 +4,6 @@
 
     public interface IRepository
     {
-        Maybe<CQ.Product.Get.Product> Fetch(Query query);
+        Maybe<Product> Fetch(Query query);
     }
 }
