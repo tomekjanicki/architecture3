@@ -9,8 +9,9 @@
     using Architecture3.Common.Tools;
     using Architecture3.Common.Tools.Interfaces;
     using Architecture3.Logic;
+    using Architecture3.Logic.Database;
+    using Architecture3.Logic.Database.Interfaces;
     using Architecture3.Logic.Facades;
-    using Architecture3.Logic.Interfaces;
     using Architecture3.Logic.Product.FilterPaged;
     using Architecture3.Logic.Product.FilterPaged.Interfaces;
     using AutoMapper;

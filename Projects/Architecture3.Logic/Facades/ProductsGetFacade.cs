@@ -1,6 +1,7 @@
 ﻿namespace Architecture3.Logic.Facades
 {
     using Architecture3.Common.Handlers.Interfaces;
+    using Architecture3.Logic.Facades.Shared;
     using Architecture3.Logic.Product.Get;
     using Architecture3.Types.FunctionalExtensions;
     using AutoMapper;

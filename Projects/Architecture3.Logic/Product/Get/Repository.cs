@@ -1,7 +1,7 @@
 ﻿namespace Architecture3.Logic.Product.Get
 {
     using System.Linq;
-    using Architecture3.Logic.Interfaces;
+    using Architecture3.Logic.Database.Interfaces;
     using Architecture3.Logic.Product.Get.Interfaces;
     using Architecture3.Types.FunctionalExtensions;
     using Dapper;

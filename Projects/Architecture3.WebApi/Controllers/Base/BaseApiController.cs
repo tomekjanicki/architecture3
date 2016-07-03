@@ -1,7 +1,7 @@
 ﻿namespace Architecture3.WebApi.Controllers.Base
 {
     using System.Web.Http;
-    using Architecture3.Logic.Facades;
+    using Architecture3.Logic.Facades.Shared;
     using Architecture3.Types.FunctionalExtensions;
 
     public abstract class BaseApiController : ApiController

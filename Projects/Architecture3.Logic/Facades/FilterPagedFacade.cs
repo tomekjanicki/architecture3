@@ -1,6 +1,7 @@
 ﻿namespace Architecture3.Logic.Facades
 {
     using Architecture3.Common.Handlers.Interfaces;
+    using Architecture3.Logic.Facades.Shared;
     using Architecture3.Logic.Product.FilterPaged;
     using Architecture3.Types.FunctionalExtensions;
     using Architecture3.WebApi.Dtos;

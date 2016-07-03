@@ -1,4 +1,4 @@
-﻿namespace Architecture3.Logic.Facades
+﻿namespace Architecture3.Logic.Facades.Shared
 {
     public enum ErrorType
     {

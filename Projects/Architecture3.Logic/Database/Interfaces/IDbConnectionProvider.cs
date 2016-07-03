@@ -1,4 +1,4 @@
-﻿namespace Architecture3.Logic.Interfaces
+﻿namespace Architecture3.Logic.Database.Interfaces
 {
     using System.Data;
 
