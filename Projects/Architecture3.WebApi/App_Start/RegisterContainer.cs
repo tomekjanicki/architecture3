@@ -9,6 +9,8 @@
     using Architecture3.Common.Tools;
     using Architecture3.Common.Tools.Interfaces;
     using Architecture3.Logic;
+    using Architecture3.Logic.CQ.Product.Delete;
+    using Architecture3.Logic.CQ.Product.Delete.Interfaces;
     using Architecture3.Logic.CQ.Product.FilterPaged;
     using Architecture3.Logic.Database;
     using Architecture3.Logic.Database.Interfaces;
@@ -54,6 +56,7 @@
             container.Register<ProductsGetFacade>(lifeStyle);
             container.Register<VersionGetFacade>(lifeStyle);
             container.Register<ProductsDeleteFacade>(lifeStyle);
+            container.Register<IRepository, Repository>(lifeStyle);
         }
 
         private static IEnumerable<Assembly> GetAssemblies()

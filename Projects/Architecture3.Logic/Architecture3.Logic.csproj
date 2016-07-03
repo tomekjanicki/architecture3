@@ -59,6 +59,8 @@
     <Compile Include="AutoMapperConfiguration.cs" />
     <Compile Include="CQ\Product\Delete\Command.cs" />
     <Compile Include="CQ\Product\Delete\CommandHandler.cs" />
+    <Compile Include="CQ\Product\Delete\Interfaces\IRepository.cs" />
+    <Compile Include="CQ\Product\Delete\Repository.cs" />
     <Compile Include="Database\DbConnectionProvider.cs" />
     <Compile Include="Facades\ProductsDeleteFacade.cs" />
     <Compile Include="Facades\Shared\Error.cs" />
