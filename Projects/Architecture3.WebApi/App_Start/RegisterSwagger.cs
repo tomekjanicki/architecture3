@@ -1,18 +1,22 @@
 namespace Architecture3.WebApi
 {
     using System.Web.Http;
+    using Architecture3.Common.Tools.Interfaces;
     using Swashbuckle.Application;
 
     public static class RegisterSwagger
     {
         public static void Execute(HttpConfiguration configuration)
         {
-            configuration.EnableSwagger(Configure).EnableSwaggerUi(ConfigureUi);
+            var provider = (IAssemblyVersionProvider)configuration.DependencyResolver.GetService(typeof(IAssemblyVersionProvider));
+            var version = provider.Get(typeof(RegisterSwagger).Assembly);
+            var versionString = $"{version.Major}_{version.Minor}";
+            configuration.EnableSwagger(config => Configure(versionString, config)).EnableSwaggerUi(ConfigureUi);
         }
 
-        private static void Configure(SwaggerDocsConfig config)
+        private static void Configure(string version, SwaggerDocsConfig config)
         {
-            config.SingleApiVersion("v1", "Architecture3.WebApi");
+            config.SingleApiVersion(version, "Architecture3.WebApi");
             config.UseFullTypeNameInSchemaIds();
         }
 
