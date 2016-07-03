@@ -19,6 +19,8 @@
             {
                 Console.WriteLine("Executing ...");
                 var client = new Client(new Uri("http://localhost:2776/"));
+                var versionResult = await client.VersionGet().ConfigureAwait(false);
+                Console.WriteLine("Version {0}", versionResult);
                 var result = await client.ProductsFilterPaged(10, 5, string.Empty, string.Empty).ConfigureAwait(false);
                 Console.WriteLine("Executed with count {0} and items {1}", result.Count, result.Items.Count());
             }

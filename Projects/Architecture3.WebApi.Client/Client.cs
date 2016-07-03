@@ -45,5 +45,16 @@
                 return await response.Content.ReadAsAsync<Dtos.Product.Get.Product>().ConfigureAwait(false);
             }
         }
+
+        public async Task<string> VersionGet()
+        {
+            using (var client = Helper.GetConfiguredHttpClient())
+            {
+                var uri = new Uri(_baseUri, "/version");
+                var response = await client.GetAsync(uri).ConfigureAwait(false);
+                response.EnsureSuccessStatusCode();
+                return await response.Content.ReadAsStringAsync().ConfigureAwait(false);
+            }
+        }
     }
 }
