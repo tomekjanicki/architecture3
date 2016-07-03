@@ -76,7 +76,9 @@
     <Compile Include="Handlers\SingleInstanceFactory.cs" />
     <Compile Include="Log4Net\Extension.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Tools\AssemblyVersionProvider.cs" />
     <Compile Include="Tools\Guard.cs" />
+    <Compile Include="Tools\Interfaces\IAssemblyVersionProvider.cs" />
     <Compile Include="ValueObjects\Paged.cs" />
     <Compile Include="ValueObjects\PageSizeSkip.cs" />
     <Compile Include="ValueObjects\SortPageSizeSkip.cs" />
