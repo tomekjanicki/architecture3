@@ -1,8 +1,8 @@
-﻿namespace Architecture3.Logic.Product.Get
+﻿namespace Architecture3.Logic.CQ.Product.Get
 {
     using System.Linq;
+    using Architecture3.Logic.CQ.Product.Get.Interfaces;
     using Architecture3.Logic.Database.Interfaces;
-    using Architecture3.Logic.Product.Get.Interfaces;
     using Architecture3.Types.FunctionalExtensions;
     using Dapper;
 

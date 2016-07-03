@@ -9,11 +9,11 @@
     using Architecture3.Common.Tools;
     using Architecture3.Common.Tools.Interfaces;
     using Architecture3.Logic;
+    using Architecture3.Logic.CQ.Product.FilterPaged;
+    using Architecture3.Logic.CQ.Product.FilterPaged.Interfaces;
     using Architecture3.Logic.Database;
     using Architecture3.Logic.Database.Interfaces;
     using Architecture3.Logic.Facades;
-    using Architecture3.Logic.Product.FilterPaged;
-    using Architecture3.Logic.Product.FilterPaged.Interfaces;
     using AutoMapper;
     using SimpleInjector;
     using SimpleInjector.Integration.WebApi;
@@ -52,7 +52,7 @@
             var lifeStyle = Lifestyle.Scoped;
             container.Register(typeof(IRequestHandler<,>), assemblies, lifeStyle);
             container.Register<IRepository, Repository>(lifeStyle);
-            container.Register<Logic.Product.Get.Interfaces.IRepository, Logic.Product.Get.Repository>(lifeStyle);
+            container.Register<Logic.CQ.Product.Get.Interfaces.IRepository, Logic.CQ.Product.Get.Repository>(lifeStyle);
             container.Register<FilterPagedFacade>(lifeStyle);
             container.Register<ProductsGetFacade>(lifeStyle);
             container.Register<VersionGetFacade>(lifeStyle);

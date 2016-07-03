@@ -1,7 +1,7 @@
-﻿namespace Architecture3.Logic.Product.Get
+﻿namespace Architecture3.Logic.CQ.Product.Get
 {
     using Architecture3.Common.Handlers.Interfaces;
-    using Architecture3.Logic.Product.Get.Interfaces;
+    using Architecture3.Logic.CQ.Product.Get.Interfaces;
     using Architecture3.Types.FunctionalExtensions;
 
     public class QueryHandler : IRequestHandler<Query, Maybe<Product>>

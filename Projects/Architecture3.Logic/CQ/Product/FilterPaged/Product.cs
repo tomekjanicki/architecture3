@@ -1,4 +1,4 @@
-﻿namespace Architecture3.Logic.Product.Get
+﻿namespace Architecture3.Logic.CQ.Product.FilterPaged
 {
     using System;
 

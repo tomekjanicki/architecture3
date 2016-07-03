@@ -1,11 +1,11 @@
-﻿namespace Architecture3.Logic.Product.FilterPaged
+﻿namespace Architecture3.Logic.CQ.Product.FilterPaged
 {
     using System.Collections.Generic;
     using System.Linq;
     using Architecture3.Common.Database;
     using Architecture3.Common.ValueObjects;
+    using Architecture3.Logic.CQ.Product.FilterPaged.Interfaces;
     using Architecture3.Logic.Database.Interfaces;
-    using Architecture3.Logic.Product.FilterPaged.Interfaces;
     using Dapper;
 
     public class Repository : IRepository

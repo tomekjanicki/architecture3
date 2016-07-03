@@ -1,4 +1,4 @@
-﻿namespace Architecture3.Logic.Product.FilterPaged
+﻿namespace Architecture3.Logic.CQ.Product.FilterPaged
 {
     using Architecture3.Common.Handlers.Interfaces;
     using Architecture3.Common.ValueObjects;
