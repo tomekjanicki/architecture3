@@ -33,6 +33,8 @@
                 var select = connection.Query<Product>(selectQuery, whereFragment.Parameters);
 
                 // todo  handle faliure
+                // todo sql VERSION should be returend as string probably base64
+                // todo probably remove repository
                 var result = Paged<Product>.Create(count, select.ToList()).Value;
                 return result;
             }

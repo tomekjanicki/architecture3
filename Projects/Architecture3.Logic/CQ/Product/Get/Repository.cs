@@ -21,6 +21,8 @@
         {
             using (var connection = _dbConnectionProvider.GetOpenDbConnection())
             {
+                // todo sql VERSION should be returend as string probably base64
+                // todo probably remove repository
                 var select = connection.Query<Product>(SelectQuery, new { ID = query.Id });
                 return select.SingleOrDefault();
             }

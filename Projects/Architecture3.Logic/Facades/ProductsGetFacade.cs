@@ -17,25 +17,25 @@
             _mapper = mapper;
         }
 
-        public Result<CQ.Product.Get.Product, Error> Get(int id)
+        public Result<Product, Error> Get(int id)
         {
             var queryResult = Query.Create(id);
 
             if (queryResult.IsFailure)
             {
-                return Result<CQ.Product.Get.Product, Error>.Fail(Error.CreateBadRequest(queryResult.Error));
+                return Result<Product, Error>.Fail(Error.CreateBadRequest(queryResult.Error));
             }
 
             var result = _mediator.Send(queryResult.Value);
 
             if (result.HasNoValue)
             {
-                return Result<CQ.Product.Get.Product, Error>.Fail(Error.CreateNotFound());
+                return Result<Product, Error>.Fail(Error.CreateNotFound());
             }
 
-            var data = _mapper.Map<CQ.Product.Get.Product>(result.Value);
+            var data = _mapper.Map<Product>(result.Value);
 
-            return Result<CQ.Product.Get.Product, Error>.Ok(data);
+            return Result<Product, Error>.Ok(data);
         }
     }
 }

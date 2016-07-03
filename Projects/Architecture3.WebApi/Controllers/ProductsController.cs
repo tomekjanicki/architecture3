@@ -12,11 +12,13 @@
     {
         private readonly FilterPagedFacade _filterPagedFacade;
         private readonly ProductsGetFacade _productsGetFacade;
+        private readonly ProductsDeleteFacade _productsDeleteFacade;
 
-        public ProductsController(FilterPagedFacade filterPagedFacade, ProductsGetFacade productsGetFacade)
+        public ProductsController(FilterPagedFacade filterPagedFacade, ProductsGetFacade productsGetFacade, ProductsDeleteFacade productsDeleteFacade)
         {
             _filterPagedFacade = filterPagedFacade;
             _productsGetFacade = productsGetFacade;
+            _productsDeleteFacade = productsDeleteFacade;
         }
 
         [SwaggerResponse(HttpStatusCode.OK, null, typeof(Paged<Dtos.Product.FilterPaged.Product>))]
@@ -37,6 +39,16 @@
             var result = _productsGetFacade.Get(id);
 
             return GetHttpActionResult(result);
+        }
+
+        [SwaggerResponse(HttpStatusCode.NoContent)]
+        [SwaggerResponse(HttpStatusCode.BadRequest)]
+        [SwaggerResponse(HttpStatusCode.NotFound)]
+        public IHttpActionResult Delete(int id, string version)
+        {
+            var result = _productsDeleteFacade.Delete(id, version);
+
+            return GetHttpActionResultForDelete(result);
         }
     }
 }

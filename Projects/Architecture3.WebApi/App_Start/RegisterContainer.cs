@@ -56,6 +56,7 @@
             container.Register<FilterPagedFacade>(lifeStyle);
             container.Register<ProductsGetFacade>(lifeStyle);
             container.Register<VersionGetFacade>(lifeStyle);
+            container.Register<ProductsDeleteFacade>(lifeStyle);
         }
 
         private static IEnumerable<Assembly> GetAssemblies()

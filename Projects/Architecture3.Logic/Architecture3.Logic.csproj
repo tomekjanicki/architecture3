@@ -57,7 +57,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AutoMapperConfiguration.cs" />
+    <Compile Include="CQ\Product\Delete\Command.cs" />
+    <Compile Include="CQ\Product\Delete\CommandHandler.cs" />
     <Compile Include="Database\DbConnectionProvider.cs" />
+    <Compile Include="Facades\ProductsDeleteFacade.cs" />
     <Compile Include="Facades\Shared\Error.cs" />
     <Compile Include="Facades\FilterPagedFacade.cs" />
     <Compile Include="Facades\ProductsGetFacade.cs" />
