@@ -7,7 +7,7 @@
 
     public static class DatabaseExtension
     {
-        public static IDbConnection GetConnection(string key)
+        public static IDbConnection GetOpenConnection(string key)
         {
             var connectionString = ConfigurationManager.ConnectionStrings[key];
             var factory = DbProviderFactories.GetFactory(connectionString.ProviderName);

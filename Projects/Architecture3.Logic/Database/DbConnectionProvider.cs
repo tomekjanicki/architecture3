@@ -8,7 +8,7 @@ namespace Architecture3.Logic.Database
     {
         public IDbConnection GetOpenDbConnection()
         {
-            return DatabaseExtension.GetConnection("Main");
+            return DatabaseExtension.GetOpenConnection("Main");
         }
     }
 }
