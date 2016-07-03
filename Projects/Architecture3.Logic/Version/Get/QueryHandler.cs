@@ -1,4 +1,4 @@
-﻿namespace Architecture3.Logic.Version
+﻿namespace Architecture3.Logic.Version.Get
 {
     using Architecture3.Common.Handlers.Interfaces;
     using Architecture3.Common.Tools.Interfaces;

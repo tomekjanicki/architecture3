@@ -75,8 +75,8 @@
     <Compile Include="Product\Get\QueryHandler.cs" />
     <Compile Include="Product\Get\Repository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Version\QueryHandler.cs" />
-    <Compile Include="Version\Query.cs" />
+    <Compile Include="Version\Get\QueryHandler.cs" />
+    <Compile Include="Version\Get\Query.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
