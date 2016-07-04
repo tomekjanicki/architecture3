@@ -2,8 +2,19 @@
 {
     using Architecture3.Common.Handlers.Interfaces;
 
-    internal abstract class VoidRequestHandlerWrapper
+    internal sealed class VoidRequestHandlerWrapper<TCommand> : AbstractVoidRequestHandlerWrapper
+        where TCommand : IRequest
     {
-        public abstract void Handle(IRequest message);
+        private readonly IVoidRequestHandler<TCommand> _inner;
+
+        public VoidRequestHandlerWrapper(IVoidRequestHandler<TCommand> inner)
+        {
+            _inner = inner;
+        }
+
+        public override void Handle(IRequest message)
+        {
+            _inner.Handle((TCommand)message);
+        }
     }
 }

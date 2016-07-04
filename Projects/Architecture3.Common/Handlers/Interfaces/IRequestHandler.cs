@@ -1,9 +1,8 @@
 namespace Architecture3.Common.Handlers.Interfaces
 {
-    public interface IRequestHandler<in TRequest>
-        where TRequest : IRequest
+    public interface IRequestHandler<out TResponse>
     {
-        void Handle(TRequest message);
+        TResponse Handle();
     }
 
     public interface IRequestHandler<in TRequest, out TResponse>

@@ -50,17 +50,17 @@
 
         private AbstractHandlerWrapper<TResponse> GetHandler<TResponse>()
         {
-            return GetWrapper<AbstractHandlerWrapper<TResponse>, TResponse>(typeof(IHandler<>), typeof(HandlerWrapper<>));
+            return GetWrapper<AbstractHandlerWrapper<TResponse>, TResponse>(typeof(IRequestHandler<>), typeof(HandlerWrapper<>));
         }
 
-        private VoidRequestHandlerWrapper GetHandler(IRequest request)
+        private AbstractVoidRequestHandlerWrapper GetHandler(IRequest request)
         {
-            return GetWrapper<VoidRequestHandlerWrapper>(request, typeof(IRequestHandler<>), typeof(VoidRequestHandlerWrapper<>));
+            return GetWrapper<AbstractVoidRequestHandlerWrapper>(request, typeof(IVoidRequestHandler<>), typeof(VoidRequestHandlerWrapper<>));
         }
 
-        private RequestHandlerWrapper<TResponse> GetHandler<TResponse>(IRequest<TResponse> request)
+        private AbstractRequestHandlerWrapper<TResponse> GetHandler<TResponse>(IRequest<TResponse> request)
         {
-            return GetWrapper<RequestHandlerWrapper<TResponse>, TResponse>(request, typeof(IRequestHandler<,>), typeof(RequestHandlerWrapper<,>));
+            return GetWrapper<AbstractRequestHandlerWrapper<TResponse>, TResponse>(request, typeof(IRequestHandler<,>), typeof(RequestHandlerWrapper<,>));
         }
 
         private TWrapper GetWrapper<TWrapper, TResponse>(Type handlerType, Type wrapperType)

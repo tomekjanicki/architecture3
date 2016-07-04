@@ -4,9 +4,9 @@
 
     internal sealed class HandlerWrapper<TResult> : AbstractHandlerWrapper<TResult>
     {
-        private readonly IHandler<TResult> _inner;
+        private readonly IRequestHandler<TResult> _inner;
 
-        public HandlerWrapper(IHandler<TResult> inner)
+        public HandlerWrapper(IRequestHandler<TResult> inner)
         {
             _inner = inner;
         }
