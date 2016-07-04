@@ -67,6 +67,7 @@
     <Compile Include="CQ\Product\Put\Interfaces\IRepository.cs" />
     <Compile Include="CQ\Product\Put\Repository.cs" />
     <Compile Include="CQ\Product\SharedQueries.cs" />
+    <Compile Include="CQ\Product\ValueObjects\Code.cs" />
     <Compile Include="CQ\Product\ValueObjects\Name.cs" />
     <Compile Include="CQ\TemplateMethods\Commands\DeleteCommandHandlerTemplate.cs" />
     <Compile Include="CQ\TemplateMethods\Commands\Interfaces\IIdVersion.cs" />

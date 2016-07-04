@@ -1,6 +1,7 @@
 namespace Architecture3.Logic.Facades
 {
     using Architecture3.Common.Handlers.Interfaces;
+    using Architecture3.Logic.CQ.Product.Post;
     using Architecture3.Logic.Facades.Shared;
     using Architecture3.Types.FunctionalExtensions;
     using Architecture3.WebApi.Dtos.Product.Post;
@@ -16,7 +17,16 @@ namespace Architecture3.Logic.Facades
 
         public Result<int, Error> Post(Product product)
         {
-            return Result<int, Error>.Fail(Error.CreateBadRequest("bla"));
+            var commandResult = Command.Create(product.Name, product.Code, product.Price);
+
+            if (commandResult.IsFailure)
+            {
+                return Result<int, Error>.Fail(Error.CreateBadRequest(commandResult.Error));
+            }
+
+            var result = _mediator.Send(commandResult.Value);
+
+            return result;
         }
     }
 }
