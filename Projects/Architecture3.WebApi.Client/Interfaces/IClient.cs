@@ -13,5 +13,7 @@
         Task ProductsDelete(int id, string version);
 
         Task<string> VersionGet();
+
+        Task ProductsPut(int id, Dtos.Product.Put.Product product);
     }
 }

@@ -70,5 +70,15 @@
                 return await response.Content.ReadAsStringAsync().ConfigureAwait(false);
             }
         }
+
+        public async Task ProductsPut(int id, Dtos.Product.Put.Product product)
+        {
+            using (var client = Helper.GetConfiguredHttpClient())
+            {
+                var uri = new Uri(_baseUri, $"/products/{id}");
+                var response = await client.PutAsJsonAsync(uri, product).ConfigureAwait(false);
+                response.EnsureSuccessStatusCode();
+            }
+        }
     }
 }
