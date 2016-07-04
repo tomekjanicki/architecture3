@@ -10,6 +10,8 @@
 
         Task<Dtos.Product.Get.Product> ProductsGet(int id);
 
+        Task ProductsDelete(int id, string version);
+
         Task<string> VersionGet();
     }
 }

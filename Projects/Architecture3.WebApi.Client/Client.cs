@@ -46,6 +46,20 @@
             }
         }
 
+        public async Task ProductsDelete(int id, string version)
+        {
+            using (var client = Helper.GetConfiguredHttpClient())
+            {
+                var parameters = new List<Tuple<string, string>>
+                {
+                    new Tuple<string, string>("version", version)
+                };
+                var uri = new Uri(_baseUri, $"/products/{id}{Helper.GetEncodedParametersString(parameters)}");
+                var response = await client.DeleteAsync(uri).ConfigureAwait(false);
+                response.EnsureSuccessStatusCode();
+            }
+        }
+
         public async Task<string> VersionGet()
         {
             using (var client = Helper.GetConfiguredHttpClient())
