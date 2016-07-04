@@ -6,7 +6,7 @@
     using Architecture3.Logic.Facades.Shared;
     using Architecture3.Types.FunctionalExtensions;
 
-    public sealed class Command : ValueObject<Command>, IRequest<Result<Error>>, IDeleteCommand
+    public sealed class Command : ValueObject<Command>, IRequest<Result<Error>>, IIdVersion
     {
         private Command(IdVersion idVersion)
         {

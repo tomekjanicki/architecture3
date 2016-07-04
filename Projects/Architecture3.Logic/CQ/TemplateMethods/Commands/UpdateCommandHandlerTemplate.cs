@@ -5,30 +5,30 @@
     using Architecture3.Logic.Facades.Shared;
     using Architecture3.Types.FunctionalExtensions;
 
-    public abstract class DeleteCommandHandler<TCommand, TDeleteRepository> : IRequestHandler<TCommand, Result<Error>>
-        where TCommand : IDeleteCommand, IRequest<Result<Error>>
-        where TDeleteRepository : class, IDeleteRepository
+    public abstract class UpdateCommandHandlerTemplate<TCommand, TUpdateRepository> : IRequestHandler<TCommand, Result<Error>>
+        where TCommand : IIdVersion, IRequest<Result<Error>>
+        where TUpdateRepository : class, IUpdateRepository<TCommand>
     {
-        protected DeleteCommandHandler(TDeleteRepository deleteRepository)
+        protected UpdateCommandHandlerTemplate(TUpdateRepository updateRepository)
         {
-            DeleteRepository = deleteRepository;
+            UpdateRepository = updateRepository;
         }
 
-        protected TDeleteRepository DeleteRepository { get; }
+        protected TUpdateRepository UpdateRepository { get; }
 
         public Result<Error> Handle(TCommand message)
         {
             var id = message.IdVersion.Id;
             var version = message.IdVersion.Version;
 
-            var exists = DeleteRepository.ExistsById(id);
+            var exists = UpdateRepository.ExistsById(id);
 
             if (!exists)
             {
                 return Result<Error>.Fail(Error.CreateNotFound());
             }
 
-            var versionFromRepository = DeleteRepository.GetRowVersionById(id);
+            var versionFromRepository = UpdateRepository.GetRowVersionById(id);
 
             if (versionFromRepository.HasValue)
             {
@@ -42,19 +42,19 @@
                 return Result<Error>.Fail(Error.CreateBadRequest("GetRowVersionById returned no rows"));
             }
 
-            var result = BeforeDelete(message);
+            var result = BeforeUpdate(message);
 
             if (result.IsFailure)
             {
                 return Result<Error>.Fail(Error.CreateBadRequest(result.Error.Message));
             }
 
-            DeleteRepository.Delete(id);
+            UpdateRepository.Update(message);
 
             return Result<Error>.Ok();
         }
 
-        protected virtual Result<Error> BeforeDelete(TCommand message)
+        protected virtual Result<Error> BeforeUpdate(TCommand message)
         {
             return Result<Error>.Ok();
         }

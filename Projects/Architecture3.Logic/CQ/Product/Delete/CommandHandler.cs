@@ -5,7 +5,7 @@
     using Architecture3.Logic.Facades.Shared;
     using Architecture3.Types.FunctionalExtensions;
 
-    public sealed class CommandHandler : DeleteCommandHandler<Command, IRepository>
+    public sealed class CommandHandler : DeleteCommandHandlerTemplate<Command, IRepository>
     {
         public CommandHandler(IRepository repository)
             : base(repository)
