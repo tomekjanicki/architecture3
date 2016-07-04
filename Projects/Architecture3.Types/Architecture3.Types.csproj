@@ -49,6 +49,7 @@
     <Compile Include="FunctionalExtensions\ValueObject.cs" />
     <Compile Include="GreaterThanZeroInt.cs" />
     <Compile Include="FunctionalExtensions\IResult.cs" />
+    <Compile Include="NonNegativeDecimal.cs" />
     <Compile Include="NonNegativeInt.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="FunctionalExtensions\ResultCommonLogic.cs" />

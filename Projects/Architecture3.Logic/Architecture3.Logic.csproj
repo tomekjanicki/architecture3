@@ -61,11 +61,16 @@
     <Compile Include="CQ\Product\Delete\CommandHandler.cs" />
     <Compile Include="CQ\Product\Delete\Interfaces\IRepository.cs" />
     <Compile Include="CQ\Product\Delete\Repository.cs" />
+    <Compile Include="CQ\Product\Put\Command.cs" />
+    <Compile Include="CQ\Product\Put\CommandHandler.cs" />
+    <Compile Include="CQ\Product\Put\Interfaces\IRepository.cs" />
+    <Compile Include="CQ\Product\Put\Repository.cs" />
     <Compile Include="CQ\TemplateMethods\Commands\DeleteCommandHandler.cs" />
     <Compile Include="CQ\TemplateMethods\Commands\Interfaces\IDeleteCommand.cs" />
     <Compile Include="CQ\TemplateMethods\Commands\Interfaces\IDeleteRepository.cs" />
     <Compile Include="Database\DbConnectionProvider.cs" />
     <Compile Include="Facades\ProductsDeleteFacade.cs" />
+    <Compile Include="Facades\ProductsPutFacade.cs" />
     <Compile Include="Facades\Shared\Error.cs" />
     <Compile Include="Facades\FilterPagedFacade.cs" />
     <Compile Include="Facades\ProductsGetFacade.cs" />

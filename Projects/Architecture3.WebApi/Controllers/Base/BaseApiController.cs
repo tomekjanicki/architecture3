@@ -8,7 +8,7 @@
 
     public abstract class BaseApiController : ApiController
     {
-        protected IHttpActionResult GetHttpActionResult<T>(Result<T, Error> result)
+        protected IHttpActionResult GetHttpActionResultForGet<T>(Result<T, Error> result)
         {
             return result.IsSuccess ? Ok(result.Value) : GetErrorHttpActionResult(result);
         }
@@ -16,6 +16,11 @@
         protected IHttpActionResult GetHttpActionResultForDelete(Result<Error> result)
         {
             return result.IsSuccess ? new StatusCodeResult(HttpStatusCode.NoContent, this) : GetErrorHttpActionResult(result);
+        }
+
+        protected IHttpActionResult GetHttpActionResultForPut(Result<Error> result)
+        {
+            return result.IsSuccess ? Ok() : GetErrorHttpActionResult(result);
         }
 
         private IHttpActionResult GetErrorHttpActionResult(IResult<Error> result)

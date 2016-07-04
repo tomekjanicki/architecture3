@@ -5,6 +5,7 @@
     using Architecture3.Logic.Facades;
     using Architecture3.WebApi.Controllers.Base;
     using Architecture3.WebApi.Dtos;
+    using Architecture3.WebApi.Dtos.Product.Put;
     using Swashbuckle.Swagger.Annotations;
 
     [SwaggerResponseRemoveDefaults]
@@ -13,12 +14,14 @@
         private readonly FilterPagedFacade _filterPagedFacade;
         private readonly ProductsGetFacade _productsGetFacade;
         private readonly ProductsDeleteFacade _productsDeleteFacade;
+        private readonly ProductsPutFacade _productsPutFacade;
 
-        public ProductsController(FilterPagedFacade filterPagedFacade, ProductsGetFacade productsGetFacade, ProductsDeleteFacade productsDeleteFacade)
+        public ProductsController(FilterPagedFacade filterPagedFacade, ProductsGetFacade productsGetFacade, ProductsDeleteFacade productsDeleteFacade, ProductsPutFacade productsPutFacade)
         {
             _filterPagedFacade = filterPagedFacade;
             _productsGetFacade = productsGetFacade;
             _productsDeleteFacade = productsDeleteFacade;
+            _productsPutFacade = productsPutFacade;
         }
 
         [SwaggerResponse(HttpStatusCode.OK, null, typeof(Paged<Dtos.Product.FilterPaged.Product>))]
@@ -28,7 +31,17 @@
         {
             var result = _filterPagedFacade.FilterPaged(skip, top, filter, orderBy);
 
-            return GetHttpActionResult(result);
+            return GetHttpActionResultForGet(result);
+        }
+
+        [SwaggerResponse(HttpStatusCode.OK)]
+        [SwaggerResponse(HttpStatusCode.BadRequest)]
+        [SwaggerResponse(HttpStatusCode.NotFound)]
+        public IHttpActionResult Put(int id, Product product)
+        {
+            var result = _productsPutFacade.Put(id, product);
+
+            return GetHttpActionResultForPut(result);
         }
 
         [SwaggerResponse(HttpStatusCode.OK, null, typeof(Dtos.Product.Get.Product))]
@@ -38,7 +51,7 @@
         {
             var result = _productsGetFacade.Get(id);
 
-            return GetHttpActionResult(result);
+            return GetHttpActionResultForGet(result);
         }
 
         [SwaggerResponse(HttpStatusCode.NoContent)]
