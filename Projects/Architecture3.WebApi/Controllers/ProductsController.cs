@@ -15,13 +15,15 @@
         private readonly ProductsGetFacade _productsGetFacade;
         private readonly ProductsDeleteFacade _productsDeleteFacade;
         private readonly ProductsPutFacade _productsPutFacade;
+        private readonly ProductsPostFacade _productsPostFacade;
 
-        public ProductsController(FilterPagedFacade filterPagedFacade, ProductsGetFacade productsGetFacade, ProductsDeleteFacade productsDeleteFacade, ProductsPutFacade productsPutFacade)
+        public ProductsController(FilterPagedFacade filterPagedFacade, ProductsGetFacade productsGetFacade, ProductsDeleteFacade productsDeleteFacade, ProductsPutFacade productsPutFacade, ProductsPostFacade productsPostFacade)
         {
             _filterPagedFacade = filterPagedFacade;
             _productsGetFacade = productsGetFacade;
             _productsDeleteFacade = productsDeleteFacade;
             _productsPutFacade = productsPutFacade;
+            _productsPostFacade = productsPostFacade;
         }
 
         [SwaggerResponse(HttpStatusCode.OK, null, typeof(Paged<Dtos.Product.FilterPaged.Product>))]
@@ -31,7 +33,7 @@
         {
             var result = _filterPagedFacade.FilterPaged(skip, top, filter, orderBy);
 
-            return GetHttpActionResultForGet(result);
+            return GetHttpActionResult(result);
         }
 
         [SwaggerResponse(HttpStatusCode.OK)]
@@ -44,6 +46,15 @@
             return GetHttpActionResultForPut(result);
         }
 
+        [SwaggerResponse(HttpStatusCode.OK, null, typeof(int))]
+        [SwaggerResponse(HttpStatusCode.BadRequest)]
+        public IHttpActionResult Post(WebApi.Dtos.Product.Post.Product product)
+        {
+            var result = _productsPostFacade.Post(product);
+
+            return GetHttpActionResult(result);
+        }
+
         [SwaggerResponse(HttpStatusCode.OK, null, typeof(Dtos.Product.Get.Product))]
         [SwaggerResponse(HttpStatusCode.BadRequest)]
         [SwaggerResponse(HttpStatusCode.NotFound)]
@@ -51,7 +62,7 @@
         {
             var result = _productsGetFacade.Get(id);
 
-            return GetHttpActionResultForGet(result);
+            return GetHttpActionResult(result);
         }
 
         [SwaggerResponse(HttpStatusCode.NoContent)]

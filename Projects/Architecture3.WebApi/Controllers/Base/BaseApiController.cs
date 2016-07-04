@@ -8,7 +8,7 @@
 
     public abstract class BaseApiController : ApiController
     {
-        protected IHttpActionResult GetHttpActionResultForGet<T>(Result<T, Error> result)
+        protected IHttpActionResult GetHttpActionResult<T>(Result<T, Error> result)
         {
             return result.IsSuccess ? Ok(result.Value) : GetErrorHttpActionResult(result);
         }

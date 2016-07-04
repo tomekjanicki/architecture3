@@ -21,7 +21,7 @@
         {
             var result = _versionGetFacade.Get(GetType().Assembly);
 
-            return GetHttpActionResultForGet(result);
+            return GetHttpActionResult(result);
         }
     }
 }
