@@ -16,21 +16,31 @@
 
         public Result<Error> Handle(Command message)
         {
-            var exists = _repository.ExistsById(message.IdVersion.Id);
+            var id = message.IdVersion.Id;
+            var version = message.IdVersion.Version;
+
+            var exists = _repository.ExistsById(id);
 
             if (!exists)
             {
                 return Result<Error>.Fail(Error.CreateNotFound());
             }
 
-            var version = _repository.GetRowVersionById(message.IdVersion.Id);
+            var versionFromRepository = _repository.GetRowVersionById(id);
 
-            if (version != message.IdVersion.Version)
+            if (versionFromRepository != version)
             {
                 return Result<Error>.Fail(Error.CreateBadRequest("Versions are not equal"));
             }
 
-            _repository.Delete(message.IdVersion.Id);
+            var canBeDeleted = _repository.CanBeDeleted(id);
+
+            if (!canBeDeleted)
+            {
+                return Result<Error>.Fail(Error.CreateBadRequest("Can't delete because ther are rows dependent on that item"));
+            }
+
+            _repository.Delete(id);
 
             return Result<Error>.Ok();
         }

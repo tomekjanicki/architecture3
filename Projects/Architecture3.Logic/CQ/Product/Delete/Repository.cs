@@ -31,6 +31,14 @@
             }
         }
 
+        public bool CanBeDeleted(NonNegativeInt id)
+        {
+            using (var connection = _dbConnectionProvider.GetOpenDbConnection())
+            {
+                return connection.Query<bool>("x", new { id }).Single();
+            }
+        }
+
         public void Delete(NonNegativeInt id)
         {
             using (var connection = _dbConnectionProvider.GetOpenDbConnection())

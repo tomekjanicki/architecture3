@@ -8,6 +8,8 @@
 
         string GetRowVersionById(NonNegativeInt id);
 
+        bool CanBeDeleted(NonNegativeInt id);
+
         void Delete(NonNegativeInt id);
     }
 }
