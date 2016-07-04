@@ -1,21 +1,24 @@
-﻿namespace Architecture3.Logic.CQ.Product.Get
+﻿// ReSharper disable UnassignedGetOnlyAutoProperty
+namespace Architecture3.Logic.CQ.Product.Get
 {
     using System;
 
     public sealed class Product
     {
-        public int Id { get; set; }
+        public int Id { get;  }
 
-        public string Code { get; set; }
+        public string Code { get;  }
 
-        public string Name { get; set; }
+        public string Name { get;  }
 
-        public decimal Price { get; set; }
+        public decimal Price { get;  }
 
-        public DateTime? Date { get; set; }
+        public DateTime? Date { get;  }
 
-        public bool CanDelete { get; set; }
+        public bool CanDelete { get;  }
 
-        public string Version { get; set; }
+        public string Version => Convert.ToBase64String(VersionPrivate);
+
+        private byte[] VersionPrivate { get; }
     }
 }

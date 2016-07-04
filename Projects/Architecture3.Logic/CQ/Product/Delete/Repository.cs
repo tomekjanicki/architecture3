@@ -1,5 +1,6 @@
 ﻿namespace Architecture3.Logic.CQ.Product.Delete
 {
+    using System;
     using System.Linq;
     using Architecture3.Logic.CQ.Product.Delete.Interfaces;
     using Architecture3.Logic.Database.Interfaces;
@@ -25,10 +26,10 @@
 
         public string GetRowVersionById(NonNegativeInt id)
         {
-            // todo sql VERSION should be returend as string probably base64
             using (var connection = _dbConnectionProvider.GetOpenDbConnection())
             {
-                return connection.Query<string>("x", new { id }).SingleOrDefault();
+                var result = connection.Query<byte[]>("SELECT VERSION FROM DBO.PRODUCTS WHERE ID = @ID", new { id }).SingleOrDefault();
+                return Convert.ToBase64String(result);
             }
         }
 
@@ -44,7 +45,7 @@
         {
             using (var connection = _dbConnectionProvider.GetOpenDbConnection())
             {
-                connection.Execute("x", new { id });
+                connection.Execute("DELETE FROM DBO.PRODUCTS WHERE ID = @ID", new { id });
             }
         }
     }

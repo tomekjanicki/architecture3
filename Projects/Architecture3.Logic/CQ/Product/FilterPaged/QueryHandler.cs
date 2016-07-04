@@ -11,7 +11,7 @@
 
     public sealed class QueryHandler : IRequestHandler<Query, Paged<Product>>
     {
-        private const string SelectQuery = @"SELECT ID, CODE, NAME, PRICE, VERSION, CASE WHEN ID < 20 THEN GETDATE() ELSE NULL END DATE, CASE WHEN O.PRODUCTID IS NULL THEN 1 ELSE 0 END CANDELETE FROM DBO.PRODUCTS P LEFT JOIN (SELECT DISTINCT PRODUCTID FROM DBO.ORDERSDETAILS) O ON P.ID = O.PRODUCTID {0} {1}";
+        private const string SelectQuery = @"SELECT ID, CODE, NAME, PRICE, VERSION VERSIONPRIVATE, CASE WHEN ID < 20 THEN GETDATE() ELSE NULL END DATE, CASE WHEN O.PRODUCTID IS NULL THEN 1 ELSE 0 END CANDELETE FROM DBO.PRODUCTS P LEFT JOIN (SELECT DISTINCT PRODUCTID FROM DBO.ORDERSDETAILS) O ON P.ID = O.PRODUCTID {0} {1}";
         private const string CountQuery = @"SELECT COUNT(*) FROM DBO.PRODUCTS {0}";
 
         private readonly IDbConnectionProvider _dbConnectionProvider;
@@ -23,7 +23,6 @@
 
         public Paged<Product> Handle(Query query)
         {
-            // todo sql VERSION should be returend as string probably base64
             var whereFragment = GetWhereFragment(query.Code, query.Name);
             var pagedFragment = CommandHelper.GetPagedFragment(query.OrderByTopSkip.TopSkip, GetTranslatedSort(query.OrderByTopSkip.OrderBy));
             var countQuery = string.Format(CountQuery, whereFragment.Query);
