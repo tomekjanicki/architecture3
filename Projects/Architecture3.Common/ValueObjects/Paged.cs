@@ -4,7 +4,7 @@
     using Architecture3.Types;
     using Architecture3.Types.FunctionalExtensions;
 
-    public class Paged<T> : ValueObject<Paged<T>>
+    public sealed class Paged<T> : ValueObject<Paged<T>>
     {
         private Paged(NonNegativeInt count, IReadOnlyCollection<T> items)
         {

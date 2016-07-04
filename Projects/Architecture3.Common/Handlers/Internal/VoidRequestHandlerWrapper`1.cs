@@ -2,7 +2,7 @@
 {
     using Architecture3.Common.Handlers.Interfaces;
 
-    internal class VoidRequestHandlerWrapper<TCommand> : VoidRequestHandlerWrapper
+    internal sealed class VoidRequestHandlerWrapper<TCommand> : VoidRequestHandlerWrapper
         where TCommand : IRequest
     {
         private readonly IRequestHandler<TCommand> _inner;

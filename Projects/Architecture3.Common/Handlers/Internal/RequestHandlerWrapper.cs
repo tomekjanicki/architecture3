@@ -2,7 +2,7 @@
 {
     using Architecture3.Common.Handlers.Interfaces;
 
-    internal class RequestHandlerWrapper<TCommand, TResult> : RequestHandlerWrapper<TResult>
+    internal sealed class RequestHandlerWrapper<TCommand, TResult> : RequestHandlerWrapper<TResult>
         where TCommand : IRequest<TResult>
     {
         private readonly IRequestHandler<TCommand, TResult> _inner;

@@ -3,7 +3,7 @@
     using Architecture3.Common.Handlers.Interfaces;
     using Architecture3.Common.Tools.Interfaces;
 
-    public class QueryHandler : IRequestHandler<Query, string>
+    public sealed class QueryHandler : IRequestHandler<Query, string>
     {
         private readonly IAssemblyVersionProvider _assemblyVersionProvider;
 

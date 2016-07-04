@@ -4,7 +4,7 @@
     using Architecture3.Common.Log4Net;
     using log4net;
 
-    public class GlobalExceptionLogger : ExceptionLogger
+    public sealed class GlobalExceptionLogger : ExceptionLogger
     {
         private static readonly ILog Logger = LogManager.GetLogger(typeof(GlobalExceptionLogger));
 

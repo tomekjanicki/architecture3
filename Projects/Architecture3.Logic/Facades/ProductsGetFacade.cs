@@ -6,7 +6,7 @@
     using Architecture3.Types.FunctionalExtensions;
     using AutoMapper;
 
-    public class ProductsGetFacade
+    public sealed class ProductsGetFacade
     {
         private readonly IMediator _mediator;
         private readonly IMapper _mapper;

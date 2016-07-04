@@ -6,7 +6,7 @@
     using Architecture3.Logic.Facades.Shared;
     using Architecture3.Types.FunctionalExtensions;
 
-    public class VersionGetFacade
+    public sealed class VersionGetFacade
     {
         private readonly IMediator _mediator;
 

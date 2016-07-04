@@ -2,7 +2,7 @@
 {
     using Architecture3.Common.Handlers.Interfaces;
 
-    internal class HandlerWrapper<TResult> : AbstractHandlerWrapper<TResult>
+    internal sealed class HandlerWrapper<TResult> : AbstractHandlerWrapper<TResult>
     {
         private readonly IHandler<TResult> _inner;
 

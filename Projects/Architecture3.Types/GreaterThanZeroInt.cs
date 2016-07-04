@@ -2,7 +2,7 @@
 {
     using Architecture3.Types.FunctionalExtensions;
 
-    public class GreaterThanZeroInt : ValueObject<GreaterThanZeroInt>
+    public sealed class GreaterThanZeroInt : ValueObject<GreaterThanZeroInt>
     {
         private GreaterThanZeroInt(int value)
         {

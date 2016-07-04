@@ -5,7 +5,7 @@
     using Architecture3.Logic.Facades.Shared;
     using Architecture3.Types.FunctionalExtensions;
 
-    public class ProductsDeleteFacade
+    public sealed class ProductsDeleteFacade
     {
         private readonly IMediator _mediator;
 

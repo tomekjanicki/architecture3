@@ -6,7 +6,7 @@
     using Architecture3.Types.FunctionalExtensions;
     using Dapper;
 
-    public class QueryHandler : IRequestHandler<Query, Maybe<Product>>
+    public sealed class QueryHandler : IRequestHandler<Query, Maybe<Product>>
     {
         private const string SelectQuery = @"SELECT ID, CODE, NAME, PRICE, VERSION, CASE WHEN ID < 20 THEN GETDATE() ELSE NULL END DATE, CASE WHEN O.PRODUCTID IS NULL THEN 1 ELSE 0 END CANDELETE FROM DBO.PRODUCTS P LEFT JOIN (SELECT DISTINCT PRODUCTID FROM DBO.ORDERSDETAILS) O ON P.ID = O.PRODUCTID WHERE P.ID = @ID";
 

@@ -6,7 +6,7 @@
     using Architecture3.Types;
     using Dapper;
 
-    public class Repository : IRepository
+    public sealed class Repository : IRepository
     {
         private readonly IDbConnectionProvider _dbConnectionProvider;
 

@@ -4,7 +4,7 @@
     using Architecture3.Common.Handlers.Interfaces;
     using Architecture3.Common.Handlers.Internal;
 
-    public class Mediator : IMediator
+    public sealed class Mediator : IMediator
     {
         private readonly SingleInstanceFactory _instanceFactory;
 

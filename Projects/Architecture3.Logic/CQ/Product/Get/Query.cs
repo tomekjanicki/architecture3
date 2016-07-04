@@ -4,7 +4,7 @@
     using Architecture3.Types;
     using Architecture3.Types.FunctionalExtensions;
 
-    public class Query : ValueObject<Query>, IRequest<Maybe<Product>>
+    public sealed class Query : ValueObject<Query>, IRequest<Maybe<Product>>
     {
         private Query(NonNegativeInt id)
         {

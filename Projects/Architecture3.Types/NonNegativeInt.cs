@@ -2,7 +2,7 @@
 {
     using Architecture3.Types.FunctionalExtensions;
 
-    public class NonNegativeInt : ValueObject<NonNegativeInt>
+    public sealed class NonNegativeInt : ValueObject<NonNegativeInt>
     {
         private NonNegativeInt(int value)
         {

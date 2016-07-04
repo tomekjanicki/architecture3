@@ -4,7 +4,7 @@
     using Architecture3.Common.ValueObjects;
     using Architecture3.Types.FunctionalExtensions;
 
-    public class Query : ValueObject<Query>, IRequest<Paged<Product>>
+    public sealed class Query : ValueObject<Query>, IRequest<Paged<Product>>
     {
         private Query(string name, string code, SortPageSizeSkip sortPageSizeSkip)
         {

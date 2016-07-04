@@ -3,7 +3,7 @@
     using Architecture3.Types;
     using Architecture3.Types.FunctionalExtensions;
 
-    public class PageSizeSkip : ValueObject<PageSizeSkip>
+    public sealed class PageSizeSkip : ValueObject<PageSizeSkip>
     {
         private PageSizeSkip(NonNegativeInt skip, GreaterThanZeroInt pageSize)
         {

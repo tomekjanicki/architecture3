@@ -4,7 +4,7 @@
     using System.Reflection;
     using Architecture3.Common.Tools.Interfaces;
 
-    public class AssemblyVersionProvider : IAssemblyVersionProvider
+    public sealed class AssemblyVersionProvider : IAssemblyVersionProvider
     {
         public Version Get(Assembly assembly)
         {

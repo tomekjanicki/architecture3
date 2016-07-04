@@ -8,7 +8,7 @@
     using Architecture3.Logic.Database.Interfaces;
     using Dapper;
 
-    public class QueryHandler : IRequestHandler<Query, Paged<Product>>
+    public sealed class QueryHandler : IRequestHandler<Query, Paged<Product>>
     {
         private const string SelectQuery = @"SELECT ID, CODE, NAME, PRICE, VERSION, CASE WHEN ID < 20 THEN GETDATE() ELSE NULL END DATE, CASE WHEN O.PRODUCTID IS NULL THEN 1 ELSE 0 END CANDELETE FROM DBO.PRODUCTS P LEFT JOIN (SELECT DISTINCT PRODUCTID FROM DBO.ORDERSDETAILS) O ON P.ID = O.PRODUCTID {0} {1}";
         private const string CountQuery = @"SELECT COUNT(*) FROM DBO.PRODUCTS {0}";

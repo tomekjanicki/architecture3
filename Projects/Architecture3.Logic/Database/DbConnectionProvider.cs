@@ -4,7 +4,7 @@ namespace Architecture3.Logic.Database
     using Architecture3.Common.Database;
     using Architecture3.Logic.Database.Interfaces;
 
-    public class DbConnectionProvider : IDbConnectionProvider
+    public sealed class DbConnectionProvider : IDbConnectionProvider
     {
         public IDbConnection GetOpenDbConnection()
         {

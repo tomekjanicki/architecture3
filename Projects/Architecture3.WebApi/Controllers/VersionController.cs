@@ -7,7 +7,7 @@
     using Swashbuckle.Swagger.Annotations;
 
     [SwaggerResponseRemoveDefaults]
-    public class VersionController : BaseApiController
+    public sealed class VersionController : BaseApiController
     {
         private readonly VersionGetFacade _versionGetFacade;
 

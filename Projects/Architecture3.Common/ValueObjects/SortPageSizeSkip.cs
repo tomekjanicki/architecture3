@@ -2,7 +2,7 @@ namespace Architecture3.Common.ValueObjects
 {
     using Architecture3.Types.FunctionalExtensions;
 
-    public class SortPageSizeSkip : ValueObject<SortPageSizeSkip>
+    public sealed class SortPageSizeSkip : ValueObject<SortPageSizeSkip>
     {
         private SortPageSizeSkip(string sort, PageSizeSkip pageSizeSkip)
         {

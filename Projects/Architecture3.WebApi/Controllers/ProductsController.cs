@@ -8,7 +8,7 @@
     using Swashbuckle.Swagger.Annotations;
 
     [SwaggerResponseRemoveDefaults]
-    public class ProductsController : BaseApiController
+    public sealed class ProductsController : BaseApiController
     {
         private readonly FilterPagedFacade _filterPagedFacade;
         private readonly ProductsGetFacade _productsGetFacade;

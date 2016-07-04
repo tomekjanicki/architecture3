@@ -5,7 +5,7 @@
     using Architecture3.Logic.Facades.Shared;
     using Architecture3.Types.FunctionalExtensions;
 
-    public class CommandHandler : IRequestHandler<Command, Result<Error>>
+    public sealed class CommandHandler : IRequestHandler<Command, Result<Error>>
     {
         private readonly IRepository _repository;
 
