@@ -62,6 +62,7 @@
             container.Register<IRepository, Repository>(lifeStyle);
             container.Register<SharedQueries>(lifeStyle);
             container.Register<Logic.CQ.Product.Put.Interfaces.IRepository, Logic.CQ.Product.Put.Repository>(lifeStyle);
+            container.Register<Logic.CQ.Product.Post.Interfaces.IRepository, Logic.CQ.Product.Post.Repository>(lifeStyle);
         }
 
         private static IEnumerable<Assembly> GetAssemblies()
