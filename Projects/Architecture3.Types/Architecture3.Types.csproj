@@ -45,6 +45,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="FunctionalExtensions\Maybe.cs" />
+    <Compile Include="FunctionalExtensions\ResultExtensions.cs" />
     <Compile Include="FunctionalExtensions\ValueObject.cs" />
     <Compile Include="GreaterThanZeroInt.cs" />
     <Compile Include="FunctionalExtensions\IResult.cs" />

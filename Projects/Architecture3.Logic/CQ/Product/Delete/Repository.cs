@@ -25,6 +25,7 @@
 
         public string GetRowVersionById(NonNegativeInt id)
         {
+            // todo sql VERSION should be returend as string probably base64
             using (var connection = _dbConnectionProvider.GetOpenDbConnection())
             {
                 return connection.Query<string>("x", new { id }).SingleOrDefault();
