@@ -1,15 +1,10 @@
 ﻿namespace Architecture3.Logic.CQ.Product.Delete.Interfaces
 {
+    using Architecture3.Logic.CQ.TemplateMethods.Commands.Interfaces;
     using Architecture3.Types;
 
-    public interface IRepository
+    public interface IRepository : IDeleteRepository
     {
-        bool ExistsById(NonNegativeInt id);
-
-        string GetRowVersionById(NonNegativeInt id);
-
         bool CanBeDeleted(NonNegativeInt id);
-
-        void Delete(NonNegativeInt id);
     }
 }
