@@ -37,7 +37,7 @@
 
             if (!canBeDeleted)
             {
-                return Result<Error>.Fail(Error.CreateBadRequest("Can't delete because ther are rows dependent on that item"));
+                return Result<Error>.Fail(Error.CreateBadRequest("Can't delete because there are rows dependent on that item"));
             }
 
             _repository.Delete(id);
