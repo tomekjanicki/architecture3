@@ -5,6 +5,7 @@
     using Architecture3.Logic.CQ.Product.Delete.Interfaces;
     using Architecture3.Logic.Database.Interfaces;
     using Architecture3.Types;
+    using Architecture3.Types.FunctionalExtensions;
     using Dapper;
 
     public sealed class Repository : IRepository
@@ -24,12 +25,12 @@
             }
         }
 
-        public string GetRowVersionById(NonNegativeInt id)
+        public Maybe<string> GetRowVersionById(NonNegativeInt id)
         {
             using (var connection = _dbConnectionProvider.GetOpenDbConnection())
             {
                 var result = connection.Query<byte[]>("SELECT VERSION FROM DBO.PRODUCTS WHERE ID = @ID", new { id }).SingleOrDefault();
-                return Convert.ToBase64String(result);
+                return result != null ? Convert.ToBase64String(result) : null;
             }
         }
 

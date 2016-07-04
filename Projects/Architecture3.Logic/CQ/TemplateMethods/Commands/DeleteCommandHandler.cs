@@ -30,9 +30,16 @@
 
             var versionFromRepository = DeleteRepository.GetRowVersionById(id);
 
-            if (versionFromRepository != version)
+            if (versionFromRepository.HasValue)
             {
-                return Result<Error>.Fail(Error.CreatePreconditionFailed());
+                if (versionFromRepository.Value != version)
+                {
+                    return Result<Error>.Fail(Error.CreatePreconditionFailed());
+                }
+            }
+            else
+            {
+                return Result<Error>.Fail(Error.CreateBadRequest("GetRowVersionById returned no rows"));
             }
 
             var result = BeforeDelete(message);
