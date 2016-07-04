@@ -19,7 +19,7 @@
 
         protected override int GetHashCodeCore()
         {
-            throw new System.NotImplementedException();
+            return GetCalculatedHashCode(new object[] { Name });
         }
     }
 }
