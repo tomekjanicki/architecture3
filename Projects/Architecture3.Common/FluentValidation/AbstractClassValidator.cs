@@ -4,6 +4,7 @@
     using global::FluentValidation;
     using global::FluentValidation.Results;
 
+    // todo probalby delete
     public abstract class AbstractClassValidator<T> : AbstractValidator<T>
         where T : class
     {
