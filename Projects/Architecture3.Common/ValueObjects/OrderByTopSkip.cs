@@ -27,10 +27,7 @@ namespace Architecture3.Common.ValueObjects
 
         protected override int GetHashCodeCore()
         {
-            var hash = 13;
-            hash = hash * 7 + TopSkip.GetHashCode();
-            hash = hash * 7 + OrderBy.GetHashCode();
-            return hash;
+            return GetCalculatedHashCode(new object[] { TopSkip, OrderBy });
         }
     }
 }

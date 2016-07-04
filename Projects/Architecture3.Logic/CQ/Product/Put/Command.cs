@@ -2,6 +2,7 @@
 {
     using Architecture3.Common.Handlers.Interfaces;
     using Architecture3.Common.ValueObjects;
+    using Architecture3.Logic.CQ.Product.ValueObjects;
     using Architecture3.Logic.CQ.TemplateMethods.Commands.Interfaces;
     using Architecture3.Logic.Facades.Shared;
     using Architecture3.Types;
@@ -9,7 +10,7 @@
 
     public sealed class Command : ValueObject<Command>, IRequest<Result<Error>>, IIdVersion
     {
-        private Command(IdVersion idVersion, NonNegativeDecimal price, string name)
+        private Command(IdVersion idVersion, NonNegativeDecimal price, Name name)
         {
             IdVersion = idVersion;
             Price = price;
@@ -20,7 +21,7 @@
 
         public NonNegativeDecimal Price { get; }
 
-        public string Name { get; }
+        public Name Name { get; }
 
         public static Result<Command, string> Create(int id, string version, decimal price, string name)
         {
@@ -36,7 +37,13 @@
                 return Result<Command, string>.Fail(priceResult.Error);
             }
 
-            return Result<Command, string>.Ok(new Command(idVersionResult.Value, priceResult.Value, name));
+            var nameResult = Name.Create(name);
+            if (nameResult.IsFailure)
+            {
+                return Result<Command, string>.Fail(priceResult.Error);
+            }
+
+            return Result<Command, string>.Ok(new Command(idVersionResult.Value, priceResult.Value, nameResult.Value));
         }
 
         protected override bool EqualsCore(Command other)
@@ -46,11 +53,7 @@
 
         protected override int GetHashCodeCore()
         {
-            var hash = 13;
-            hash = hash * 7 + IdVersion.GetHashCode();
-            hash = hash * 7 + Price.GetHashCode();
-            hash = hash * 7 + Name.GetHashCode();
-            return hash;
+            return GetCalculatedHashCode(new object[] { IdVersion, Price, Name });
         }
     }
 }

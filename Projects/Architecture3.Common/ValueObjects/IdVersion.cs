@@ -33,10 +33,7 @@
 
         protected override int GetHashCodeCore()
         {
-            var hash = 13;
-            hash = hash * 7 + Id.GetHashCode();
-            hash = hash * 7 + Version.GetHashCode();
-            return hash;
+            return GetCalculatedHashCode(new object[] { Id, Version });
         }
     }
 }

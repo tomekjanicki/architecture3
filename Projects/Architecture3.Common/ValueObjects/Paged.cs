@@ -39,10 +39,7 @@
 
         protected override int GetHashCodeCore()
         {
-            var hash = 13;
-            hash = hash * 7 + Count.GetHashCode();
-            hash = hash * 7 + Items.GetHashCode();
-            return hash;
+            return GetCalculatedHashCode(new object[] { Count, Items });
         }
     }
 }

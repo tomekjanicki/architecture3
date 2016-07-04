@@ -1,5 +1,8 @@
 ﻿namespace Architecture3.Types.FunctionalExtensions
 {
+    using System.Collections.Generic;
+    using System.Linq;
+
     public abstract class ValueObject<T>
         where T : ValueObject<T>
     {
@@ -33,5 +36,10 @@
         protected abstract bool EqualsCore(T other);
 
         protected abstract int GetHashCodeCore();
+
+        protected int GetCalculatedHashCode(IEnumerable<object> list)
+        {
+            return list.Aggregate(13, (current, i) => current * 7 + i.GetHashCode());
+        }
     }
 }

@@ -40,10 +40,7 @@
 
         protected override int GetHashCodeCore()
         {
-            var hash = 13;
-            hash = hash * 7 + Skip.GetHashCode();
-            hash = hash * 7 + Top.GetHashCode();
-            return hash;
+            return GetCalculatedHashCode(new object[] { Skip, Top });
         }
     }
 }

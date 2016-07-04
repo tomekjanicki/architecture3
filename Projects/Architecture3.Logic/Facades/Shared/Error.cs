@@ -36,10 +36,7 @@
 
         protected override int GetHashCodeCore()
         {
-            var hash = 13;
-            hash = hash * 7 + ErrorType.GetHashCode();
-            hash = hash * 7 + Message.GetHashCode();
-            return hash;
+            return GetCalculatedHashCode(new object[] { ErrorType, Message });
         }
     }
 }

@@ -34,11 +34,7 @@
 
         protected override int GetHashCodeCore()
         {
-            var hash = 13;
-            hash = hash * 7 + OrderByTopSkip.GetHashCode();
-            hash = hash * 7 + Name.GetHashCode();
-            hash = hash * 7 + Code.GetHashCode();
-            return hash;
+            return GetCalculatedHashCode(new object[] { OrderByTopSkip, Name, Code });
         }
     }
 }
