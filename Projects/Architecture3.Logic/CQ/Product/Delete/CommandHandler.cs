@@ -30,7 +30,7 @@
 
             if (versionFromRepository != version)
             {
-                return Result<Error>.Fail(Error.CreateBadRequest("Versions are not equal"));
+                return Result<Error>.Fail(Error.CreatePreconditionFailed());
             }
 
             var canBeDeleted = _repository.CanBeDeleted(id);

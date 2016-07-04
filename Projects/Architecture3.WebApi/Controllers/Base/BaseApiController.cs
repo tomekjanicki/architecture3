@@ -20,7 +20,17 @@
 
         private IHttpActionResult GetErrorHttpActionResult(IResult<Error> result)
         {
-            return result.Error.ErrorType == ErrorType.BadRequest ? (IHttpActionResult)BadRequest(result.Error.Message) : NotFound();
+            if (result.Error.ErrorType == ErrorType.BadRequest)
+            {
+                return BadRequest(result.Error.Message);
+            }
+
+            if (result.Error.ErrorType == ErrorType.PreconditionFailed)
+            {
+                return new StatusCodeResult(HttpStatusCode.PreconditionFailed, this);
+            }
+
+            return NotFound();
         }
     }
 }

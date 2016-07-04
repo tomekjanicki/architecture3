@@ -24,6 +24,11 @@
             return new Error(ErrorType.NotFound, null);
         }
 
+        public static Error CreatePreconditionFailed()
+        {
+            return new Error(ErrorType.PreconditionFailed, null);
+        }
+
         protected override bool EqualsCore(Error other)
         {
             return ErrorType == other.ErrorType && Message == other.Message;
