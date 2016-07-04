@@ -18,14 +18,12 @@
         public static Result<TopSkip, string> Create(int skip, int pageSize)
         {
             var skipResult = NonNegativeInt.Create(skip);
-            if (skipResult.IsFailure)
-            {
-                return Result<TopSkip, string>.Fail(skipResult.Error);
-            }
 
             var pageSizeResult = GreaterThanZeroInt.Create(pageSize);
 
-            return pageSizeResult.IsFailure ? Result<TopSkip, string>.Fail(pageSizeResult.Error) : Create(skipResult.Value, pageSizeResult.Value);
+            var result = ResultExtensions.CombineFailed(new IResult<string>[] { skipResult, pageSizeResult });
+
+            return result.IsFailure ? Result<TopSkip, string>.Fail(result.Error) : Create(skipResult.Value, pageSizeResult.Value);
         }
 
         public static Result<TopSkip, string> Create(NonNegativeInt skip, GreaterThanZeroInt pageSize)

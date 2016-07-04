@@ -1,6 +1,7 @@
 ﻿namespace Architecture3.Types.FunctionalExtensions
 {
     using System;
+    using System.Linq;
 
     public static class ResultExtensions
     {
@@ -27,6 +28,18 @@
             {
                 throw new InvalidOperationException(messageFunc());
             }
+        }
+
+        public static IResult<string> CombineFailed(IResult<string>[] results)
+        {
+            var failedResults = results.Where(x => x.IsFailure).ToList();
+            if (!failedResults.Any())
+            {
+                return Result<string>.Ok();
+            }
+
+            var errorMessage = string.Join(", ", failedResults.Select(x => x.Error).ToArray());
+            return Result<string>.Fail(errorMessage);
         }
     }
 }
