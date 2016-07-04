@@ -5,7 +5,7 @@
     using Architecture3.Types;
     using Architecture3.Types.FunctionalExtensions;
 
-    public class Repository : IRepository
+    public sealed class Repository : IRepository
     {
         private readonly IDbConnectionProvider _dbConnectionProvider;
 
