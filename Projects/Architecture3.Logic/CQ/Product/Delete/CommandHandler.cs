@@ -18,12 +18,7 @@
 
             var canBeDeleted = DeleteRepository.CanBeDeleted(id);
 
-            if (!canBeDeleted)
-            {
-                return Result<Error>.Fail(Error.CreateBadRequest("Can't delete because there are rows dependent on that item"));
-            }
-
-            return base.BeforeDelete(message);
+            return !canBeDeleted ? Result<Error>.Fail(Error.CreateBadRequest("Can't delete because there are rows dependent on that item")) : base.BeforeDelete(message);
         }
     }
 }
