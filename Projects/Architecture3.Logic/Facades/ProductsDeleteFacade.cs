@@ -25,12 +25,7 @@
 
             var result = _mediator.Send(commandResult.Value);
 
-            if (result.IsFailure)
-            {
-                return Result<Error>.Fail(result.Error.ErrorType == ErrorType.BadRequest ? Error.CreateBadRequest(result.Error.Message) : Error.CreateNotFound());
-            }
-
-            return Result<Error>.Ok();
+            return result;
         }
     }
 }
