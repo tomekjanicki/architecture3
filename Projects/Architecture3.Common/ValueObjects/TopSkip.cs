@@ -21,7 +21,7 @@
 
             var pageSizeResult = GreaterThanZeroInt.Create(pageSize);
 
-            var result = ResultExtensions.CombineFailed(new IResult<string>[] { skipResult, pageSizeResult });
+            var result = ResultExtensions.CombineFaliures(new IResult<string>[] { skipResult, pageSizeResult });
 
             return result.IsFailure ? Result<TopSkip, string>.Fail(result.Error) : Create(skipResult.Value, pageSizeResult.Value);
         }

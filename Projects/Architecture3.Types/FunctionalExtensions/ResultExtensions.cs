@@ -30,7 +30,7 @@
             }
         }
 
-        public static IResult<string> CombineFailed(IResult<string>[] results)
+        public static IResult<string> CombineFaliures(IResult<string>[] results)
         {
             var failedResults = results.Where(x => x.IsFailure).ToList();
             if (!failedResults.Any())
