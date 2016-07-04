@@ -1,44 +1,33 @@
 ﻿namespace Architecture3.Logic.CQ.Product.Delete
 {
     using Architecture3.Common.Handlers.Interfaces;
+    using Architecture3.Common.ValueObjects;
     using Architecture3.Logic.Facades.Shared;
-    using Architecture3.Types;
     using Architecture3.Types.FunctionalExtensions;
 
     public sealed class Command : ValueObject<Command>, IRequest<Result<Error>>
     {
-        private Command(NonNegativeInt id, string version)
+        private Command(IdVersion idVersion)
         {
-            Id = id;
-            Version = version;
+            IdVersion = idVersion;
         }
 
-        public NonNegativeInt Id { get; }
-
-        public string Version { get; }
+        public IdVersion IdVersion { get; }
 
         public static Result<Command, string> Create(int id, string version)
         {
-            var idResult = NonNegativeInt.Create(id);
-            if (idResult.IsFailure)
-            {
-                return Result<Command, string>.Fail(idResult.Error);
-            }
-
-            return string.IsNullOrEmpty(version) ? Result<Command, string>.Fail("Version can't be empty string") : Result<Command, string>.Ok(new Command(idResult.Value, version));
+            var result = IdVersion.Create(id, version);
+            return result.IsFailure ? Result<Command, string>.Fail(result.Error) : Result<Command, string>.Ok(new Command(result.Value));
         }
 
         protected override bool EqualsCore(Command other)
         {
-            return Id == other.Id && Version == other.Version;
+            return IdVersion == other.IdVersion;
         }
 
         protected override int GetHashCodeCore()
         {
-            var hash = 13;
-            hash = hash * 7 + Id.GetHashCode();
-            hash = hash * 7 + Version.GetHashCode();
-            return hash;
+            return IdVersion.GetHashCode();
         }
     }
 }

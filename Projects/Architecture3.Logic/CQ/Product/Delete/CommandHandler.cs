@@ -16,21 +16,21 @@
 
         public Result<Error> Handle(Command message)
         {
-            var exists = _repository.ExistsById(message.Id);
+            var exists = _repository.ExistsById(message.IdVersion.Id);
 
             if (!exists)
             {
                 return Result<Error>.Fail(Error.CreateNotFound());
             }
 
-            var version = _repository.GetRowVersionById(message.Id);
+            var version = _repository.GetRowVersionById(message.IdVersion.Id);
 
-            if (version != message.Version)
+            if (version != message.IdVersion.Version)
             {
                 return Result<Error>.Fail(Error.CreateBadRequest("Versions are not equal"));
             }
 
-            _repository.Delete(message.Id);
+            _repository.Delete(message.IdVersion.Id);
 
             return Result<Error>.Ok();
         }

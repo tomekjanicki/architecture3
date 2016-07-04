@@ -79,6 +79,7 @@
     <Compile Include="Tools\AssemblyVersionProvider.cs" />
     <Compile Include="Tools\Guard.cs" />
     <Compile Include="Tools\Interfaces\IAssemblyVersionProvider.cs" />
+    <Compile Include="ValueObjects\IdVersion.cs" />
     <Compile Include="ValueObjects\Paged.cs" />
     <Compile Include="ValueObjects\PageSizeSkip.cs" />
     <Compile Include="ValueObjects\SortPageSizeSkip.cs" />
