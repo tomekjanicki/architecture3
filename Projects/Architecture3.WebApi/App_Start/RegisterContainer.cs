@@ -9,6 +9,7 @@
     using Architecture3.Common.Tools;
     using Architecture3.Common.Tools.Interfaces;
     using Architecture3.Logic;
+    using Architecture3.Logic.CQ.Product;
     using Architecture3.Logic.CQ.Product.Delete;
     using Architecture3.Logic.CQ.Product.Delete.Interfaces;
     using Architecture3.Logic.CQ.Product.FilterPaged;
@@ -58,6 +59,7 @@
             container.Register<ProductsDeleteFacade>(lifeStyle);
             container.Register<ProductsPutFacade>(lifeStyle);
             container.Register<IRepository, Repository>(lifeStyle);
+            container.Register<SharedQueries>(lifeStyle);
             container.Register<Logic.CQ.Product.Put.Interfaces.IRepository, Logic.CQ.Product.Put.Repository>(lifeStyle);
         }
 

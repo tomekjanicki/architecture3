@@ -1,6 +1,5 @@
 ﻿namespace Architecture3.Logic.CQ.Product.Delete
 {
-    using System;
     using System.Linq;
     using Architecture3.Logic.CQ.Product.Delete.Interfaces;
     using Architecture3.Logic.Database.Interfaces;
@@ -11,27 +10,22 @@
     public sealed class Repository : IRepository
     {
         private readonly IDbConnectionProvider _dbConnectionProvider;
+        private readonly SharedQueries _sharedQueries;
 
-        public Repository(IDbConnectionProvider dbConnectionProvider)
+        public Repository(IDbConnectionProvider dbConnectionProvider, SharedQueries sharedQueries)
         {
             _dbConnectionProvider = dbConnectionProvider;
+            _sharedQueries = sharedQueries;
         }
 
         public bool ExistsById(NonNegativeInt id)
         {
-            using (var connection = _dbConnectionProvider.GetOpenDbConnection())
-            {
-                return connection.Query<bool>("x", new { id }).Single();
-            }
+            return _sharedQueries.ExistsById(id);
         }
 
         public Maybe<string> GetRowVersionById(NonNegativeInt id)
         {
-            using (var connection = _dbConnectionProvider.GetOpenDbConnection())
-            {
-                var result = connection.Query<byte[]>("SELECT VERSION FROM DBO.PRODUCTS WHERE ID = @ID", new { id }).SingleOrDefault();
-                return result != null ? Convert.ToBase64String(result) : null;
-            }
+            return _sharedQueries.GetRowVersionById(id);
         }
 
         public bool CanBeDeleted(NonNegativeInt id)
