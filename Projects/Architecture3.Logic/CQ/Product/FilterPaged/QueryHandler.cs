@@ -23,7 +23,7 @@
         public Paged<Product> Handle(Query query)
         {
             var whereFragment = GetWhereFragment(query.Code, query.Name);
-            var pagedFragment = CommandHelper.GetPagedFragment(query.SortPageSizeSkip.PageSizeSkip, GetTranslatedSort(query.SortPageSizeSkip.Sort));
+            var pagedFragment = CommandHelper.GetPagedFragment(query.OrderByTopSkip.TopSkip, GetTranslatedSort(query.OrderByTopSkip.OrderBy));
             var countQuery = string.Format(CountQuery, whereFragment.Query);
             var selectQuery = string.Format(SelectQuery, whereFragment.Query, pagedFragment.Query);
             using (var connection = _dbConnectionProvider.GetOpenDbConnection())

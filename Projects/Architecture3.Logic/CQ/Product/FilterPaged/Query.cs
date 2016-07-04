@@ -6,14 +6,14 @@
 
     public sealed class Query : ValueObject<Query>, IRequest<Paged<Product>>
     {
-        private Query(string name, string code, SortPageSizeSkip sortPageSizeSkip)
+        private Query(string name, string code, OrderByTopSkip orderByTopSkip)
         {
             Name = name;
             Code = code;
-            SortPageSizeSkip = sortPageSizeSkip;
+            OrderByTopSkip = orderByTopSkip;
         }
 
-        public SortPageSizeSkip SortPageSizeSkip { get; }
+        public OrderByTopSkip OrderByTopSkip { get; }
 
         public string Name { get; }
 
@@ -23,19 +23,19 @@
         {
             // todo filter parser
             // todo orderBy parser
-            var r1 = SortPageSizeSkip.Create(string.Empty, skip, pageSize);
+            var r1 = OrderByTopSkip.Create(string.Empty, skip, pageSize);
             return r1.IsFailure ? Result<Query, string>.Fail(r1.Error) : Result<Query, string>.Ok(new Query(string.Empty, string.Empty, r1.Value));
         }
 
         protected override bool EqualsCore(Query other)
         {
-            return SortPageSizeSkip == other.SortPageSizeSkip && Name == other.Name && Code == other.Code;
+            return OrderByTopSkip == other.OrderByTopSkip && Name == other.Name && Code == other.Code;
         }
 
         protected override int GetHashCodeCore()
         {
             var hash = 13;
-            hash = hash * 7 + SortPageSizeSkip.GetHashCode();
+            hash = hash * 7 + OrderByTopSkip.GetHashCode();
             hash = hash * 7 + Name.GetHashCode();
             hash = hash * 7 + Code.GetHashCode();
             return hash;

@@ -14,12 +14,12 @@ namespace Architecture3.Common.Database
             Right
         }
 
-        public static Result GetPagedFragment(PageSizeSkip pageSizeSkip, string sort)
+        public static Result GetPagedFragment(TopSkip topSkip, string sort)
         {
             var dp = new DynamicParameters();
-            dp.Add("SKIP", pageSizeSkip.Skip);
-            dp.Add("PAGESIZE", pageSizeSkip.PageSize);
-            return new Result($@"{GetSort(sort)} OFFSET @SKIP ROWS FETCH NEXT @PAGESIZE ROWS ONLY", dp);
+            dp.Add("SKIP", topSkip.Skip);
+            dp.Add("TOP", topSkip.Top);
+            return new Result($@"{GetSort(sort)} OFFSET @SKIP ROWS FETCH NEXT @TOP ROWS ONLY", dp);
         }
 
         public static string GetSort(string sort)
