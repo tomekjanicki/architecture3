@@ -16,10 +16,10 @@
 
         public IReadOnlyCollection<T> Items { get; }
 
-        public static Result<Paged<T>, string> Create(int count, IReadOnlyCollection<T> items)
+        public static Result<Paged<T>, NonEmptyString> Create(int count, IReadOnlyCollection<T> items)
         {
             var countResult = NonNegativeInt.Create(count, (NonEmptyString)nameof(Count));
-            return countResult.IsFailure ? GetFailResult((NonEmptyString)countResult.Error) : GetOkResult(new Paged<T>(countResult.Value, items));
+            return countResult.IsFailure ? GetFailResult(countResult.Error) : GetOkResult(new Paged<T>(countResult.Value, items));
         }
 
         public static Paged<T> CreateAndEnsureIsNotFaliure(int count, IReadOnlyCollection<T> items)

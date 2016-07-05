@@ -21,20 +21,20 @@
 
         public NonNegativeDecimal Price { get; }
 
-        public static Result<Command, string> Create(string name, string code, decimal? price)
+        public static Result<Command, NonEmptyString> Create(string name, string code, decimal? price)
         {
             var nameResult = Name.Create(name, (NonEmptyString)nameof(Name));
             var codeResult = Code.Create(name, (NonEmptyString)nameof(Code));
             var priceResult = NonNegativeDecimal.Create(price, (NonEmptyString)nameof(Price));
 
-            var result = ResultExtensions.CombineFailures(new IResult<string>[]
+            var result = ResultExtensions.CombineFailures(new IResult<NonEmptyString>[]
             {
                 codeResult,
                 priceResult,
                 nameResult
             });
 
-            return result.IsFailure ? GetFailResult((NonEmptyString)result.Error) : GetOkResult(new Command(nameResult.Value, codeResult.Value, priceResult.Value));
+            return result.IsFailure ? GetFailResult(result.Error) : GetOkResult(new Command(nameResult.Value, codeResult.Value, priceResult.Value));
         }
 
         protected override bool EqualsCore(Command other)

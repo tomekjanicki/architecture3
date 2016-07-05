@@ -23,20 +23,20 @@
 
         public Name Name { get; }
 
-        public static Result<Command, string> Create(int id, string version, decimal? price, string name)
+        public static Result<Command, NonEmptyString> Create(int id, string version, decimal? price, string name)
         {
             var idVersionResult = IdVersion.Create(id, version, (NonEmptyString)nameof(Common.ValueObjects.IdVersion.Id), (NonEmptyString)nameof(Common.ValueObjects.IdVersion.Version));
             var priceResult = NonNegativeDecimal.Create(price, (NonEmptyString)nameof(Price));
             var nameResult = Name.Create(name, (NonEmptyString)nameof(Name));
 
-            var result = ResultExtensions.CombineFailures(new IResult<string>[]
+            var result = ResultExtensions.CombineFailures(new IResult<NonEmptyString>[]
             {
                 idVersionResult,
                 priceResult,
                 nameResult
             });
 
-            return result.IsFailure ? GetFailResult((NonEmptyString)result.Error) : GetOkResult(new Command(idVersionResult.Value, priceResult.Value, nameResult.Value));
+            return result.IsFailure ? GetFailResult(result.Error) : GetOkResult(new Command(idVersionResult.Value, priceResult.Value, nameResult.Value));
         }
 
         protected override bool EqualsCore(Command other)

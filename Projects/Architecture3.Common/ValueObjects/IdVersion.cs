@@ -15,18 +15,18 @@
 
         public NonEmptyString Version { get; }
 
-        public static Result<IdVersion, string> Create(int id, string version, NonEmptyString idField, NonEmptyString versionField)
+        public static Result<IdVersion, NonEmptyString> Create(int id, string version, NonEmptyString idField, NonEmptyString versionField)
         {
             var idResult = NonNegativeInt.Create(id, idField);
             var versionResult = NonEmptyString.Create(version, versionField);
 
-            var result = ResultExtensions.CombineFailures(new IResult<string>[]
+            var result = ResultExtensions.CombineFailures(new IResult<NonEmptyString>[]
             {
                 idResult,
                 versionResult
             });
 
-            return result.IsFailure ? GetFailResult((NonEmptyString)result.Error) : GetOkResult(new IdVersion(idResult.Value, versionResult.Value));
+            return result.IsFailure ? GetFailResult(result.Error) : GetOkResult(new IdVersion(idResult.Value, versionResult.Value));
         }
 
         protected override bool EqualsCore(IdVersion other)

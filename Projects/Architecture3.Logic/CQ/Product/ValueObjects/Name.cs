@@ -22,7 +22,7 @@
             return name.Value;
         }
 
-        public static Result<Name, string> Create(string name, NonEmptyString field)
+        public static Result<Name, NonEmptyString> Create(string name, NonEmptyString field)
         {
             if (name == string.Empty)
             {

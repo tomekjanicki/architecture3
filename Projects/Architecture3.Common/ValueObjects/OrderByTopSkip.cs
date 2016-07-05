@@ -15,11 +15,11 @@ namespace Architecture3.Common.ValueObjects
 
         public TopSkip TopSkip { get; }
 
-        public static Result<OrderByTopSkip, string> Create(string orderBy, int skip, int top, NonEmptyString skipField, NonEmptyString topField)
+        public static Result<OrderByTopSkip, NonEmptyString> Create(string orderBy, int skip, int top, NonEmptyString skipField, NonEmptyString topField)
         {
             var topSkipResult = TopSkip.Create(skip, top, skipField, topField);
 
-            return topSkipResult.IsFailure ? GetFailResult((NonEmptyString)topSkipResult.Error) : GetOkResult(new OrderByTopSkip(orderBy, topSkipResult.Value));
+            return topSkipResult.IsFailure ? GetFailResult(topSkipResult.Error) : GetOkResult(new OrderByTopSkip(orderBy, topSkipResult.Value));
         }
 
         protected override bool EqualsCore(OrderByTopSkip other)

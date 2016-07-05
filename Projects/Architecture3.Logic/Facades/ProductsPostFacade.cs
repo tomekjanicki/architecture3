@@ -4,7 +4,6 @@ namespace Architecture3.Logic.Facades
     using Architecture3.Common.Handlers.Interfaces;
     using Architecture3.Logic.CQ.Product.Post;
     using Architecture3.Logic.Shared;
-    using Architecture3.Types;
     using Architecture3.Types.FunctionalExtensions;
     using Architecture3.WebApi.Dtos.Product.Post;
 
@@ -23,7 +22,7 @@ namespace Architecture3.Logic.Facades
 
             if (commandResult.IsFailure)
             {
-                return ((NonEmptyString)commandResult.Error).ToBadRequest<int>();
+                return commandResult.Error.ToBadRequest<int>();
             }
 
             var result = _mediator.Send(commandResult.Value);

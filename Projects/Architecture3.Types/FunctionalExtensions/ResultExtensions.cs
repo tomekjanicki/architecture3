@@ -5,9 +5,9 @@
 
     public static class ResultExtensions
     {
-        public static void EnsureIsNotFaliure<TResult>(this IResult<TResult, string> result)
+        public static void EnsureIsNotFaliure<TResult>(this IResult<TResult, NonEmptyString> result)
         {
-            EnsureIsNotFaliure((IResult<string>)result);
+            EnsureIsNotFaliure((IResult<NonEmptyString>)result);
         }
 
         public static void EnsureIsNotFaliure<TResult, TError>(this IResult<TResult, TError> result, Func<string> messageFunc)
@@ -16,9 +16,9 @@
             EnsureIsNotFaliure((IResult<TError>)result, messageFunc);
         }
 
-        public static void EnsureIsNotFaliure(this IResult<string> result)
+        public static void EnsureIsNotFaliure(this IResult<NonEmptyString> result)
         {
-            EnsureIsNotFaliure(result, () => result.Error);
+            EnsureIsNotFaliure(result, () => result.Error.Value);
         }
 
         public static void EnsureIsNotFaliure<TError>(this IResult<TError> result, Func<string> messageFunc)
@@ -30,18 +30,18 @@
             }
         }
 
-        public static IResult<string> CombineFailures(IResult<string>[] results)
+        public static IResult<NonEmptyString> CombineFailures(IResult<NonEmptyString>[] results)
         {
-            var failedResults = results.Where(result => result != null && result.IsFailure).ToList();
+            var failedResults = results.Where(result => result.IsFailure).ToList();
 
             if (!failedResults.Any())
             {
-                return Result<string>.Ok();
+                return Result<NonEmptyString>.Ok();
             }
 
-            var errorMessage = string.Join("; ", failedResults.Select(x => x.Error).ToArray());
+            var errorMessage = (NonEmptyString)string.Join("; ", failedResults.Select(result => result.Error.Value).ToArray());
 
-            return Result<string>.Fail(errorMessage);
+            return Result<NonEmptyString>.Fail(errorMessage);
         }
     }
 }

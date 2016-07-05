@@ -47,7 +47,7 @@
 
             if (result.IsFailure)
             {
-                return ((NonEmptyString)result.Error).ToBadRequest();
+                return result.Error.ToBadRequest();
             }
 
             UpdateRepository.Update(message);
@@ -55,9 +55,9 @@
             return Result<Error>.Ok();
         }
 
-        protected virtual Result<string> BeforeUpdate(TCommand message)
+        protected virtual Result<NonEmptyString> BeforeUpdate(TCommand message)
         {
-            return Result<string>.Ok();
+            return Result<NonEmptyString>.Ok();
         }
     }
 }

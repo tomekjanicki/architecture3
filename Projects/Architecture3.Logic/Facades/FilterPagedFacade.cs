@@ -3,7 +3,6 @@
     using Architecture3.Common.Handlers.Interfaces;
     using Architecture3.Logic.CQ.Product.FilterPaged;
     using Architecture3.Logic.Shared;
-    using Architecture3.Types;
     using Architecture3.Types.FunctionalExtensions;
     using Architecture3.WebApi.Dtos;
     using AutoMapper;
@@ -25,7 +24,7 @@
 
             if (queryResult.IsFailure)
             {
-                return ((NonEmptyString)queryResult.Error).ToBadRequest<Paged<Product>>();
+                return queryResult.Error.ToBadRequest<Paged<Product>>();
             }
 
             var result = _mediator.Send(queryResult.Value);

@@ -14,7 +14,7 @@
 
         public Assembly Assembly { get; }
 
-        public static Result<Query, string> Create(Assembly assembly)
+        public static Result<Query, NonEmptyString> Create(Assembly assembly)
         {
             return GetOkResult(new Query(assembly));
         }

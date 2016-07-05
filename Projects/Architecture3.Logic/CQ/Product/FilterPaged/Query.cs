@@ -20,12 +20,12 @@
 
         public string Code { get; }
 
-        public static Result<Query, string> Create(string orderBy, int skip, int top, string filter)
+        public static Result<Query, NonEmptyString> Create(string orderBy, int skip, int top, string filter)
         {
             // todo filter parser
             // todo orderBy parser
             var result = OrderByTopSkip.Create(string.Empty, skip, top, (NonEmptyString)nameof(TopSkip.Top), (NonEmptyString)nameof(TopSkip.Skip));
-            return result.IsFailure ? GetFailResult((NonEmptyString)result.Error) : GetOkResult(new Query(string.Empty, string.Empty, result.Value));
+            return result.IsFailure ? GetFailResult(result.Error) : GetOkResult(new Query(string.Empty, string.Empty, result.Value));
         }
 
         protected override bool EqualsCore(Query other)

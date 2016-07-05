@@ -1,6 +1,7 @@
 ﻿namespace Architecture3.Types.FunctionalExtensions
 {
     using System;
+    using NullGuard;
 
     public struct Result<TError> : IResult<TError>
         where TError : class
@@ -35,7 +36,7 @@
         private readonly ResultCommonLogic<TError> _logic;
         private readonly TResult _value;
 
-        private Result(TResult value, Maybe<TError> error)
+        private Result([AllowNull]TResult value, Maybe<TError> error)
         {
             _logic = new ResultCommonLogic<TError>(error);
             _value = value;

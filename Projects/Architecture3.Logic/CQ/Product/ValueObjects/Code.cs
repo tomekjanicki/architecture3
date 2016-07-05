@@ -22,7 +22,7 @@
             return code.Value;
         }
 
-        public static Result<Code, string> Create(string code, NonEmptyString field)
+        public static Result<Code, NonEmptyString> Create(string code, NonEmptyString field)
         {
             if (code == string.Empty)
             {
