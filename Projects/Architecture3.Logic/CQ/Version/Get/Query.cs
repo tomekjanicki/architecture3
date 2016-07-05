@@ -2,9 +2,10 @@
 {
     using System.Reflection;
     using Architecture3.Common.Handlers.Interfaces;
+    using Architecture3.Types;
     using Architecture3.Types.FunctionalExtensions;
 
-    public sealed class Query : ValueObject<Query>, IRequest<string>
+    public sealed class Query : ValueObject<Query>, IRequest<NonEmptyString>
     {
         private Query(Assembly assembly)
         {

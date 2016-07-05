@@ -2,8 +2,9 @@
 {
     using Architecture3.Common.Handlers.Interfaces;
     using Architecture3.Common.Tools.Interfaces;
+    using Architecture3.Types;
 
-    public sealed class QueryHandler : IRequestHandler<Query, string>
+    public sealed class QueryHandler : IRequestHandler<Query, NonEmptyString>
     {
         private readonly IAssemblyVersionProvider _assemblyVersionProvider;
 
@@ -12,9 +13,9 @@
             _assemblyVersionProvider = assemblyVersionProvider;
         }
 
-        public string Handle(Query message)
+        public NonEmptyString Handle(Query message)
         {
-            return _assemblyVersionProvider.Get(message.Assembly).ToString();
+            return (NonEmptyString)_assemblyVersionProvider.Get(message.Assembly).ToString();
         }
     }
 }
