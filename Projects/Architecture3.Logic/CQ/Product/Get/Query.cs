@@ -1,11 +1,12 @@
 ﻿namespace Architecture3.Logic.CQ.Product.Get
 {
     using Architecture3.Common.Handlers.Interfaces;
+    using Architecture3.Logic.CQ.TemplateMethods.Queries.Interfaces;
     using Architecture3.Logic.Shared;
     using Architecture3.Types;
     using Architecture3.Types.FunctionalExtensions;
 
-    public sealed class Query : ValueObject<Query>, IRequest<Result<Product, Error>>
+    public sealed class Query : ValueObject<Query>, IRequest<Result<Product, Error>>, IId
     {
         private Query(NonNegativeInt id)
         {

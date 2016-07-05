@@ -1,9 +1,8 @@
 ﻿namespace Architecture3.Logic.CQ.Product.Get.Interfaces
 {
-    using Architecture3.Types.FunctionalExtensions;
+    using Architecture3.Logic.CQ.TemplateMethods.Queries.Interfaces;
 
-    public interface IRepository
+    public interface IRepository : IGetRepository<Product>
     {
-        Maybe<Product> Get(Query message);
     }
 }

@@ -3,6 +3,7 @@
     using System.Linq;
     using Architecture3.Logic.CQ.Product.Get.Interfaces;
     using Architecture3.Logic.Database.Interfaces;
+    using Architecture3.Types;
     using Architecture3.Types.FunctionalExtensions;
     using Dapper;
 
@@ -17,11 +18,11 @@
             _dbConnectionProvider = dbConnectionProvider;
         }
 
-        public Maybe<Product> Get(Query message)
+        public Maybe<Product> Get(NonNegativeInt id)
         {
             using (var connection = _dbConnectionProvider.GetOpenDbConnection())
             {
-                var select = connection.Query<Product>(SelectQuery, new { ID = message.Id });
+                var select = connection.Query<Product>(SelectQuery, new { id });
                 return select.SingleOrDefault();
             }
         }

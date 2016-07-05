@@ -79,6 +79,9 @@
     <Compile Include="CQ\TemplateMethods\Commands\Interfaces\IDeleteRepository.cs" />
     <Compile Include="CQ\TemplateMethods\Commands\Interfaces\IUpdateRepository.cs" />
     <Compile Include="CQ\TemplateMethods\Commands\UpdateCommandHandlerTemplate.cs" />
+    <Compile Include="CQ\TemplateMethods\Queries\GetCommandHandlerTemplate.cs" />
+    <Compile Include="CQ\TemplateMethods\Queries\Interfaces\IGetRepository.cs" />
+    <Compile Include="CQ\TemplateMethods\Queries\Interfaces\IId.cs" />
     <Compile Include="Database\DbConnectionProvider.cs" />
     <Compile Include="Facades\ProductsDeleteFacade.cs" />
     <Compile Include="Facades\ProductsPostFacade.cs" />
