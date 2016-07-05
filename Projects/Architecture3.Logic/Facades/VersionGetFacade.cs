@@ -21,7 +21,7 @@
 
             if (queryResult.IsFailure)
             {
-                return Result<string, Error>.Fail(Error.CreateBadRequest(queryResult.Error));
+                return queryResult.Error.ToBadRequest<string>();
             }
 
             var result = _mediator.Send(queryResult.Value);

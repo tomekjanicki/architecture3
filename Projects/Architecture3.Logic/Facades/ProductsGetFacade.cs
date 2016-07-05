@@ -23,14 +23,14 @@
 
             if (queryResult.IsFailure)
             {
-                return Result<Product, Error>.Fail(Error.CreateBadRequest(queryResult.Error));
+                return queryResult.Error.ToBadRequest<Product>();
             }
 
             var result = _mediator.Send(queryResult.Value);
 
             if (result.HasNoValue)
             {
-                return Result<Product, Error>.Fail(Error.CreateNotFound());
+                return ErrorResultExtensions.ToNotFound<Product>();
             }
 
             var data = _mapper.Map<Product>(result.Value);

@@ -19,7 +19,7 @@
             var codeExists = _repository.CodeExists(message.Code);
             if (codeExists)
             {
-                return Result<int, Error>.Fail(Error.CreateBadRequest("Code already defined"));
+                return "Code already defined".ToBadRequest<int>();
             }
 
             var id = _repository.Insert(message);

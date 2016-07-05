@@ -20,7 +20,7 @@
 
             if (commandResult.IsFailure)
             {
-                return Result<Error>.Fail(Error.CreateBadRequest(commandResult.Error));
+                return commandResult.Error.ToBadRequest();
             }
 
             var result = _mediator.Send(commandResult.Value);

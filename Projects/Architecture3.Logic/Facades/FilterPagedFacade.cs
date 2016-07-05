@@ -24,7 +24,7 @@
 
             if (queryResult.IsFailure)
             {
-                return Result<Paged<Product>, Error>.Fail(Error.CreateBadRequest(queryResult.Error));
+                return queryResult.Error.ToBadRequest<Paged<Product>>();
             }
 
             var result = _mediator.Send(queryResult.Value);

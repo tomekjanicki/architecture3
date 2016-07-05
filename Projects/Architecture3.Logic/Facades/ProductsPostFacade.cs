@@ -21,7 +21,7 @@ namespace Architecture3.Logic.Facades
 
             if (commandResult.IsFailure)
             {
-                return Result<int, Error>.Fail(Error.CreateBadRequest(commandResult.Error));
+                return commandResult.Error.ToBadRequest<int>();
             }
 
             var result = _mediator.Send(commandResult.Value);

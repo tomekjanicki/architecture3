@@ -25,7 +25,7 @@
 
             if (!exists)
             {
-                return Result<Error>.Fail(Error.CreateNotFound());
+                return ErrorResultExtensions.ToNotFound();
             }
 
             var versionFromRepository = UpdateRepository.GetRowVersionById(id);
@@ -34,19 +34,19 @@
             {
                 if (versionFromRepository.Value != version)
                 {
-                    return Result<Error>.Fail(Error.CreatePreconditionFailed());
+                    return ErrorResultExtensions.ToPreconditionFailed();
                 }
             }
             else
             {
-                return Result<Error>.Fail(Error.CreateBadRequest("GetRowVersionById returned no rows"));
+                return "GetRowVersionById returned no rows".ToBadRequest();
             }
 
             var result = BeforeUpdate(message);
 
             if (result.IsFailure)
             {
-                return Result<Error>.Fail(Error.CreateBadRequest(result.Error.Message));
+                return result.Error.ToBadRequest();
             }
 
             UpdateRepository.Update(message);
@@ -54,9 +54,9 @@
             return Result<Error>.Ok();
         }
 
-        protected virtual Result<Error> BeforeUpdate(TCommand message)
+        protected virtual Result<string> BeforeUpdate(TCommand message)
         {
-            return Result<Error>.Ok();
+            return Result<string>.Ok();
         }
     }
 }
