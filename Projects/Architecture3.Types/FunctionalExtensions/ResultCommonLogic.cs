@@ -1,32 +1,16 @@
 ﻿namespace Architecture3.Types.FunctionalExtensions
 {
     using System;
-    using NullGuard;
 
     internal sealed class ResultCommonLogic<TError>
         where TError : class
     {
-        private readonly TError _error;
+        private readonly Maybe<TError> _error;
 
-        public ResultCommonLogic(bool isFailure, [AllowNull]TError error)
+        public ResultCommonLogic(Maybe<TError> error)
         {
-            if (isFailure)
-            {
-                if (error == null)
-                {
-                    throw new ArgumentNullException(nameof(error), "There must be error for failure.");
-                }
-            }
-            else
-            {
-                if (error != null)
-                {
-                    throw new ArgumentException("There should be no error for success.", nameof(error));
-                }
-            }
-
-            IsFailure = isFailure;
             _error = error;
+            IsFailure = error.HasValue;
         }
 
         public bool IsFailure { get; }
@@ -42,7 +26,7 @@
                     throw new InvalidOperationException("There is no error for success.");
                 }
 
-                return _error;
+                return _error.Value;
             }
         }
     }

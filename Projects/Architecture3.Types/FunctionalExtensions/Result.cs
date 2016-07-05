@@ -1,16 +1,15 @@
 ﻿namespace Architecture3.Types.FunctionalExtensions
 {
     using System;
-    using NullGuard;
 
     public struct Result<TError> : IResult<TError>
         where TError : class
     {
         private readonly ResultCommonLogic<TError> _logic;
 
-        private Result(bool isFailure, [AllowNull]TError error)
+        private Result(Maybe<TError> error)
         {
-            _logic = new ResultCommonLogic<TError>(isFailure, error);
+            _logic = new ResultCommonLogic<TError>(error);
         }
 
         public bool IsFailure => _logic.IsFailure;
@@ -21,12 +20,12 @@
 
         public static Result<TError> Ok()
         {
-            return new Result<TError>(false, null);
+            return new Result<TError>(null);
         }
 
         public static Result<TError> Fail(TError error)
         {
-            return new Result<TError>(true, error);
+            return new Result<TError>(error);
         }
     }
 
@@ -36,14 +35,9 @@
         private readonly ResultCommonLogic<TError> _logic;
         private readonly TResult _value;
 
-        internal Result(bool isFailure, TResult value, [AllowNull]TError error)
+        private Result(TResult value, Maybe<TError> error)
         {
-            if (!isFailure && value == null)
-            {
-                throw new ArgumentNullException(nameof(value));
-            }
-
-            _logic = new ResultCommonLogic<TError>(isFailure, error);
+            _logic = new ResultCommonLogic<TError>(error);
             _value = value;
         }
 
@@ -57,7 +51,7 @@
         {
             get
             {
-                if (!IsSuccess)
+                if (IsFailure)
                 {
                     throw new InvalidOperationException("There is no value for failure.");
                 }
@@ -68,12 +62,12 @@
 
         public static Result<TResult, TError> Ok(TResult value)
         {
-            return new Result<TResult, TError>(false, value, null);
+            return new Result<TResult, TError>(value, null);
         }
 
         public static Result<TResult, TError> Fail(TError error)
         {
-            return new Result<TResult, TError>(true, default(TResult), error);
+            return new Result<TResult, TError>(default(TResult), error);
         }
     }
 }
