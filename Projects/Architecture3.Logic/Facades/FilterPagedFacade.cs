@@ -18,20 +18,20 @@
             _mapper = mapper;
         }
 
-        public Result<Paged<Product>, Error> FilterPaged(int skip, int top, string filter, string orderBy)
+        public Result<Paged<WebApi.Dtos.Product.FilterPaged.Product>, Error> FilterPaged(int skip, int top, string filter, string orderBy)
         {
             var queryResult = Query.Create(orderBy, skip, top, filter);
 
             if (queryResult.IsFailure)
             {
-                return queryResult.Error.ToBadRequest<Paged<Product>>();
+                return queryResult.Error.ToBadRequest<Paged<WebApi.Dtos.Product.FilterPaged.Product>>();
             }
 
             var result = _mediator.Send(queryResult.Value);
 
-            var data = _mapper.Map<Paged<Product>>(result);
+            var data = _mapper.Map<Paged<WebApi.Dtos.Product.FilterPaged.Product>>(result);
 
-            return Result<Paged<Product>, Error>.Ok(data);
+            return Result<Paged<WebApi.Dtos.Product.FilterPaged.Product>, Error>.Ok(data);
         }
     }
 }

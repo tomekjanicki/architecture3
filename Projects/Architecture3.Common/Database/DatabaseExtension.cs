@@ -4,10 +4,11 @@
     using System.Data;
     using System.Data.Common;
     using System.Diagnostics;
+    using Architecture3.Types;
 
     public static class DatabaseExtension
     {
-        public static IDbConnection GetOpenConnection(string key)
+        public static IDbConnection GetOpenConnection(NonEmptyString key)
         {
             var connectionString = ConfigurationManager.ConnectionStrings[key];
             var factory = DbProviderFactories.GetFactory(connectionString.ProviderName);
