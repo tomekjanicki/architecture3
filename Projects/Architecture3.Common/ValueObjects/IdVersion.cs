@@ -5,7 +5,7 @@
 
     public sealed class IdVersion : ValueObject<IdVersion>
     {
-        private IdVersion(NonNegativeInt id, string version)
+        private IdVersion(NonNegativeInt id, NonEmptyString version)
         {
             Id = id;
             Version = version;
@@ -13,19 +13,20 @@
 
         public NonNegativeInt Id { get; }
 
-        public string Version { get; }
+        public NonEmptyString Version { get; }
 
         public static Result<IdVersion, string> Create(int id, string version, NonEmptyString idField, NonEmptyString versionField)
         {
             var idResult = NonNegativeInt.Create(id, idField);
+            var versionResult = NonEmptyString.Create(version, versionField);
 
-            var result = ResultExtensions.CombineFailures(new[]
+            var result = ResultExtensions.CombineFailures(new IResult<string>[]
             {
                 idResult,
-                version == string.Empty ? GetFailResult((NonEmptyString)"{0} can't be null or empty", versionField) : (IResult<string>)null
+                versionResult
             });
 
-            return result.IsFailure ? GetFailResult((NonEmptyString)result.Error) : GetOkResult(new IdVersion(idResult.Value, version));
+            return result.IsFailure ? GetFailResult((NonEmptyString)result.Error) : GetOkResult(new IdVersion(idResult.Value, versionResult.Value));
         }
 
         protected override bool EqualsCore(IdVersion other)

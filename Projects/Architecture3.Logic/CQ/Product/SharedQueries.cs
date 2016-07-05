@@ -24,12 +24,12 @@
             }
         }
 
-        public Maybe<string> GetRowVersionById(NonNegativeInt id)
+        public Maybe<NonEmptyString> GetRowVersionById(NonNegativeInt id)
         {
             using (var connection = _dbConnectionProvider.GetOpenDbConnection())
             {
                 var result = connection.Query<byte[]>("SELECT VERSION FROM DBO.PRODUCTS WHERE ID = @ID", new { id }).SingleOrDefault();
-                return result != null ? Convert.ToBase64String(result) : null;
+                return result != null ? (NonEmptyString)Convert.ToBase64String(result) : null;
             }
         }
     }

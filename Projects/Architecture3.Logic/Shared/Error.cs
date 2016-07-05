@@ -19,7 +19,7 @@
         {
             if (message == string.Empty)
             {
-                throw new ArgumentException($"{nameof(Message)} can't be null or empty");
+                throw new ArgumentException($"{nameof(Message)} can't be empty");
             }
 
             return new Error(ErrorType.BadRequest, message);

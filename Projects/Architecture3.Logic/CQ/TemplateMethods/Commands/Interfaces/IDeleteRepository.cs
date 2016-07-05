@@ -7,7 +7,7 @@
     {
         bool ExistsById(NonNegativeInt id);
 
-        Maybe<string> GetRowVersionById(NonNegativeInt id);
+        Maybe<NonEmptyString> GetRowVersionById(NonNegativeInt id);
 
         void Delete(NonNegativeInt id);
     }

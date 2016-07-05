@@ -22,7 +22,7 @@
             return _sharedQueries.ExistsById(id);
         }
 
-        public Maybe<string> GetRowVersionById(NonNegativeInt id)
+        public Maybe<NonEmptyString> GetRowVersionById(NonNegativeInt id)
         {
             return _sharedQueries.GetRowVersionById(id);
         }
