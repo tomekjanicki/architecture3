@@ -39,7 +39,7 @@
                 return Result<string>.Ok();
             }
 
-            var errorMessage = string.Join(", ", failedResults.Select(x => x.Error).ToArray());
+            var errorMessage = string.Join("; ", failedResults.Select(x => x.Error).ToArray());
 
             return Result<string>.Fail(errorMessage);
         }
