@@ -24,7 +24,7 @@ namespace Architecture3.Common.Database
 
         public static string GetSort(string sort)
         {
-            return $@"ORDER BY {sort}";
+            return sort != string.Empty ? $@"ORDER BY {sort}" : string.Empty;
         }
 
         public static void SetValues(ICollection<string> criteria, DynamicParameters dp, Result like)
