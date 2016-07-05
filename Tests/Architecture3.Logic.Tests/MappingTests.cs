@@ -23,13 +23,13 @@
             const int id = 1;
             const string code = "code";
             const string name = "name";
-            var source = new WebApi.Dtos.Product.Get.Product
+            var source = new Product
             {
                 Id = id,
                 Code = code,
                 Name = name
             };
-            var result = _mapper.Map<Product>(source);
+            var result = _mapper.Map<WebApi.Dtos.Product.Get.Product>(source);
             result.Id.ShouldBe(id);
             result.Code.ShouldBe(code);
             result.Name.ShouldBe(name);

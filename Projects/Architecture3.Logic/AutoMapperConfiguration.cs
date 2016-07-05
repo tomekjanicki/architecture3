@@ -7,8 +7,8 @@
     {
         public static void Configure(IMapperConfigurationExpression expression)
         {
-            expression.CreateMap<Paged<WebApi.Dtos.Product.FilterPaged.Product>, Common.ValueObjects.Paged<CQ.Product.FilterPaged.Product>>();
-            expression.CreateMap<WebApi.Dtos.Product.Get.Product, CQ.Product.Get.Product>();
+            expression.CreateMap<Common.ValueObjects.Paged<CQ.Product.FilterPaged.Product>, Paged<WebApi.Dtos.Product.FilterPaged.Product>>();
+            expression.CreateMap<CQ.Product.Get.Product, WebApi.Dtos.Product.Get.Product>();
         }
     }
 }

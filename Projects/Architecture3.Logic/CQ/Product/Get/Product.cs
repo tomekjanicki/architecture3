@@ -4,6 +4,11 @@
 
     public sealed class Product
     {
+        public Product()
+        {
+            VersionPrivate = new byte[0];
+        }
+
         public int Id { get; set; }
 
         public string Code { get; set; }
@@ -18,7 +23,6 @@
 
         public string Version => Convert.ToBase64String(VersionPrivate);
 
-        // ReSharper disable once UnusedAutoPropertyAccessor.Local
-        private byte[] VersionPrivate { get; set; }
+        private byte[] VersionPrivate { get; }
     }
 }
