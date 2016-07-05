@@ -1,5 +1,6 @@
 namespace Architecture3.Logic.Facades
 {
+    using Architecture3.Common;
     using Architecture3.Common.Handlers.Interfaces;
     using Architecture3.Logic.CQ.Product.Post;
     using Architecture3.Logic.Shared;
@@ -17,7 +18,7 @@ namespace Architecture3.Logic.Facades
 
         public Result<int, Error> Post(Product product)
         {
-            var commandResult = Command.Create(product.Name, product.Code, product.Price);
+            var commandResult = Command.Create(product.Name.ToEmptyString(), product.Code.ToEmptyString(), product.Price);
 
             if (commandResult.IsFailure)
             {

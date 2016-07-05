@@ -23,7 +23,7 @@
 
         public static Result<Code, string> Create(string code, string field)
         {
-            if (string.IsNullOrEmpty(code))
+            if (code == string.Empty)
             {
                 return GetFailResult("{0} can't be null or empty", field);
             }

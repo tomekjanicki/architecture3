@@ -3,7 +3,7 @@
     using System;
     using Architecture3.Common.Handlers.Interfaces;
     using Architecture3.Common.Handlers.Internal;
-    using NullGuard;
+    using Architecture3.Types.FunctionalExtensions;
 
     public sealed class Mediator : IMediator
     {
@@ -87,14 +87,14 @@
             return GetWrapperInstance<TWrapper>(request, genericHandlerType, genericWrapperType);
         }
 
-        private TWrapper GetWrapperInstance<TWrapper>([AllowNull]object request, Type genericHandlerType, Type genericWrapperType)
+        private TWrapper GetWrapperInstance<TWrapper>(Maybe<object> request, Type genericHandlerType, Type genericWrapperType)
         {
             var handler = GetHandler(request, genericHandlerType);
 
             return (TWrapper)Activator.CreateInstance(genericWrapperType, handler);
         }
 
-        private object GetHandler([AllowNull]object request, Type handlerType)
+        private object GetHandler(Maybe<object> request, Type handlerType)
         {
             try
             {
@@ -102,7 +102,7 @@
             }
             catch (Exception e)
             {
-                throw request != null ? BuildException(request, e) : BuildException(e);
+                throw request.HasValue ? BuildException(request, e) : BuildException(e);
             }
         }
     }

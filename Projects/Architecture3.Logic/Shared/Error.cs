@@ -17,7 +17,7 @@
 
         public static Error CreateBadRequest(string message)
         {
-            if (string.IsNullOrEmpty(message))
+            if (message == string.Empty)
             {
                 throw new ArgumentException($"{nameof(Message)} can't be null or empty");
             }

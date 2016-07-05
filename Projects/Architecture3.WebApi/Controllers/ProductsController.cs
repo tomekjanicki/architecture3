@@ -2,6 +2,7 @@
 {
     using System.Net;
     using System.Web.Http;
+    using Architecture3.Common;
     using Architecture3.Logic.Facades;
     using Architecture3.WebApi.Controllers.Base;
     using Architecture3.WebApi.Dtos;
@@ -31,7 +32,7 @@
         [HttpGet]
         public IHttpActionResult FilterPaged(int skip, int top, string filter = null, string orderBy = null)
         {
-            var result = _filterPagedFacade.FilterPaged(skip, top, filter, orderBy);
+            var result = _filterPagedFacade.FilterPaged(skip, top, filter.ToEmptyString(), orderBy.ToEmptyString());
 
             return GetHttpActionResult(result);
         }
@@ -70,7 +71,7 @@
         [SwaggerResponse(HttpStatusCode.NotFound)]
         public IHttpActionResult Delete(int id, string version)
         {
-            var result = _productsDeleteFacade.Delete(id, version);
+            var result = _productsDeleteFacade.Delete(id, version.ToEmptyString());
 
             return GetHttpActionResultForDelete(result);
         }

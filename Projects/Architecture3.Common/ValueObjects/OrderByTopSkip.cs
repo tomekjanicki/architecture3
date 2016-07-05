@@ -17,13 +17,8 @@ namespace Architecture3.Common.ValueObjects
         public static Result<OrderByTopSkip, string> Create(string orderBy, int skip, int top, string skipField, string topField, string orderByField)
         {
             var topSkipResult = TopSkip.Create(skip, top, skipField, topField);
-            var result = ResultExtensions.CombineFailures(new[]
-            {
-                topSkipResult,
-                orderBy == null ? GetFailResult("{0} can't be null", orderByField) : (IResult<string>)null
-            });
 
-            return result.IsFailure ? GetFailResult(result.Error) : GetOkResult(new OrderByTopSkip(orderBy, topSkipResult.Value));
+            return topSkipResult.IsFailure ? GetFailResult(topSkipResult.Error) : GetOkResult(new OrderByTopSkip(orderBy, topSkipResult.Value));
         }
 
         protected override bool EqualsCore(OrderByTopSkip other)

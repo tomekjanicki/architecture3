@@ -22,7 +22,7 @@
             var result = ResultExtensions.CombineFailures(new[]
             {
                 idResult,
-                string.IsNullOrEmpty(version) ? GetFailResult("{0} can't be null or empty", versionField) : (IResult<string>)null
+                version == string.Empty ? GetFailResult("{0} can't be null or empty", versionField) : (IResult<string>)null
             });
 
             return result.IsFailure ? GetFailResult(result.Error) : GetOkResult(new IdVersion(idResult.Value, version));

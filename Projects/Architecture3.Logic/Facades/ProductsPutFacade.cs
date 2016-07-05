@@ -1,5 +1,6 @@
 namespace Architecture3.Logic.Facades
 {
+    using Architecture3.Common;
     using Architecture3.Common.Handlers.Interfaces;
     using Architecture3.Logic.CQ.Product.Put;
     using Architecture3.Logic.Shared;
@@ -17,7 +18,7 @@ namespace Architecture3.Logic.Facades
 
         public Result<Error> Put(int id, Product product)
         {
-            var commandResult = Command.Create(id, product.Version, product.Price, product.Name);
+            var commandResult = Command.Create(id, product.Version.ToEmptyString(), product.Price, product.Name.ToEmptyString());
 
             if (commandResult.IsFailure)
             {

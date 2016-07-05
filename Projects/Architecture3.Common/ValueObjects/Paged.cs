@@ -19,13 +19,7 @@
         public static Result<Paged<T>, string> Create(int count, IReadOnlyCollection<T> items)
         {
             var countResult = NonNegativeInt.Create(count, nameof(Count));
-            var result = ResultExtensions.CombineFailures(new[]
-            {
-                countResult,
-                items == null ? GetFailResult("Items can't be null") : (IResult<string>)null
-            });
-
-            return result.IsFailure ? GetFailResult(result.Error) : GetOkResult(new Paged<T>(countResult.Value, items));
+            return countResult.IsFailure ? GetFailResult(countResult.Error) : GetOkResult(new Paged<T>(countResult.Value, items));
         }
 
         public static Paged<T> CreateAndEnsureIsNotFaliure(int count, IReadOnlyCollection<T> items)

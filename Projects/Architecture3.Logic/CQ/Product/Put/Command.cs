@@ -36,7 +36,7 @@
                 nameResult
             });
 
-            return result.IsFailure ? GetFailResult(idVersionResult.Error) : GetOkResult(new Command(idVersionResult.Value, priceResult.Value, nameResult.Value));
+            return result.IsFailure ? GetFailResult(result.Error) : GetOkResult(new Command(idVersionResult.Value, priceResult.Value, nameResult.Value));
         }
 
         protected override bool EqualsCore(Command other)
