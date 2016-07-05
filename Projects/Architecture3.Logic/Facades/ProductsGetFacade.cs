@@ -28,9 +28,9 @@
 
             var result = _mediator.Send(queryResult.Value);
 
-            if (result.HasNoValue)
+            if (result.IsFailure)
             {
-                return ErrorResultExtensions.ToNotFound<Product>();
+                return result;
             }
 
             var data = _mapper.Map<Product>(result.Value);

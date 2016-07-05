@@ -61,6 +61,8 @@
     <Compile Include="CQ\Product\Delete\CommandHandler.cs" />
     <Compile Include="CQ\Product\Delete\Interfaces\IRepository.cs" />
     <Compile Include="CQ\Product\Delete\Repository.cs" />
+    <Compile Include="CQ\Product\Get\Interfaces\IRepository.cs" />
+    <Compile Include="CQ\Product\Get\Repository.cs" />
     <Compile Include="CQ\Product\Post\Command.cs" />
     <Compile Include="CQ\Product\Post\CommandHandler.cs" />
     <Compile Include="CQ\Product\Post\Interfaces\IRepository.cs" />
