@@ -2,7 +2,7 @@
 {
     using Architecture3.Logic.CQ.Product.Delete.Interfaces;
     using Architecture3.Logic.CQ.TemplateMethods.Commands;
-    using Architecture3.Logic.Facades.Shared;
+    using Architecture3.Logic.Shared;
     using Architecture3.Types.FunctionalExtensions;
 
     public sealed class CommandHandler : DeleteCommandHandlerTemplate<Command, IRepository>

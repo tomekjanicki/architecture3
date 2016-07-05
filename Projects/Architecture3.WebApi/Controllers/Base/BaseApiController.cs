@@ -3,7 +3,7 @@
     using System.Net;
     using System.Web.Http;
     using System.Web.Http.Results;
-    using Architecture3.Logic.Facades.Shared;
+    using Architecture3.Logic.Shared;
     using Architecture3.Types.FunctionalExtensions;
 
     public abstract class BaseApiController : ApiController

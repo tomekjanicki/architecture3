@@ -3,7 +3,7 @@
     using Architecture3.Common.Handlers.Interfaces;
     using Architecture3.Common.ValueObjects;
     using Architecture3.Logic.CQ.TemplateMethods.Commands.Interfaces;
-    using Architecture3.Logic.Facades.Shared;
+    using Architecture3.Logic.Shared;
     using Architecture3.Types.FunctionalExtensions;
 
     public sealed class Command : ValueObject<Command>, IRequest<Result<Error>>, IIdVersion

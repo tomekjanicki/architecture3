@@ -1,4 +1,4 @@
-﻿namespace Architecture3.Logic.Facades.Shared
+﻿namespace Architecture3.Logic.Shared
 {
     using System;
     using Architecture3.Types.FunctionalExtensions;

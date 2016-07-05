@@ -3,7 +3,7 @@
     using System.Reflection;
     using Architecture3.Common.Handlers.Interfaces;
     using Architecture3.Logic.CQ.Version.Get;
-    using Architecture3.Logic.Facades.Shared;
+    using Architecture3.Logic.Shared;
     using Architecture3.Types.FunctionalExtensions;
 
     public sealed class VersionGetFacade

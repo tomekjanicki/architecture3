@@ -81,10 +81,10 @@
     <Compile Include="Facades\ProductsDeleteFacade.cs" />
     <Compile Include="Facades\ProductsPostFacade.cs" />
     <Compile Include="Facades\ProductsPutFacade.cs" />
-    <Compile Include="Facades\Shared\Error.cs" />
+    <Compile Include="Shared\Error.cs" />
     <Compile Include="Facades\FilterPagedFacade.cs" />
     <Compile Include="Facades\ProductsGetFacade.cs" />
-    <Compile Include="Facades\Shared\ErrorType.cs" />
+    <Compile Include="Shared\ErrorType.cs" />
     <Compile Include="Facades\VersionGetFacade.cs" />
     <Compile Include="Database\Interfaces\IDbConnectionProvider.cs" />
     <Compile Include="CQ\Product\FilterPaged\Product.cs" />

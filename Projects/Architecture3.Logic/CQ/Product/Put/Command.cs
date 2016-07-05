@@ -4,7 +4,7 @@
     using Architecture3.Common.ValueObjects;
     using Architecture3.Logic.CQ.Product.ValueObjects;
     using Architecture3.Logic.CQ.TemplateMethods.Commands.Interfaces;
-    using Architecture3.Logic.Facades.Shared;
+    using Architecture3.Logic.Shared;
     using Architecture3.Types;
     using Architecture3.Types.FunctionalExtensions;
 
