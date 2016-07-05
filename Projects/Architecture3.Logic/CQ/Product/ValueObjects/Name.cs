@@ -30,7 +30,7 @@
 
             const int max = 100;
 
-            return name.Length > max ? GetFailResult($"{0} can't be longer than {max} chars.", field) : GetOkResult(new Name(name));
+            return name.Length > max ? GetFailResult($"{{0}} can't be longer than {max} chars.", field) : GetOkResult(new Name(name));
         }
 
         protected override bool EqualsCore(Name other)

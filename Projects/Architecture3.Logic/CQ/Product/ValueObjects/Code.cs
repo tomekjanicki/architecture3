@@ -30,7 +30,7 @@
 
             const int max = 50;
 
-            return code.Length > max ? GetFailResult($"{0} can't be longer than {max} chars.", field) : GetOkResult(new Code(code));
+            return code.Length > max ? GetFailResult($"{{0}} can't be longer than {max} chars.", field) : GetOkResult(new Code(code));
         }
 
         protected override bool EqualsCore(Code other)
