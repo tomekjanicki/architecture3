@@ -15,20 +15,20 @@
 
         public GreaterThanZeroInt Top { get; }
 
-        public static Result<TopSkip, string> Create(int skip, int pageSize)
+        public static Result<TopSkip, string> Create(int skip, int top, string skipField, string topField)
         {
-            var skipResult = NonNegativeInt.Create(skip);
+            var skipResult = NonNegativeInt.Create(skip, skipField);
 
-            var pageSizeResult = GreaterThanZeroInt.Create(pageSize);
+            var topResult = GreaterThanZeroInt.Create(top, topField);
 
-            var result = ResultExtensions.CombineFaliures(new IResult<string>[] { skipResult, pageSizeResult });
+            var result = ResultExtensions.CombineFailures(new[]
+            {
+                skipResult,
+                topResult,
+                topResult.Value > Const.MaxTopSize ? GetFailResult($"{0} can't be greater than {Const.MaxTopSize}", topField) : (IResult<string>)null
+            });
 
-            return result.IsFailure ? Result<TopSkip, string>.Fail(result.Error) : Create(skipResult.Value, pageSizeResult.Value);
-        }
-
-        public static Result<TopSkip, string> Create(NonNegativeInt skip, GreaterThanZeroInt pageSize)
-        {
-            return pageSize.Value > Const.MaxTopSize ? Result<TopSkip, string>.Fail($"Top can't be greater than {Const.MaxTopSize}") : Result<TopSkip, string>.Ok(new TopSkip(skip, pageSize));
+            return result.IsFailure ? GetFailResult(result.Error) : GetOkResult(new TopSkip(skipResult.Value, topResult.Value));
         }
 
         protected override bool EqualsCore(TopSkip other)

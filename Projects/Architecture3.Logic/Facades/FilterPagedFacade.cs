@@ -18,7 +18,7 @@
             _mapper = mapper;
         }
 
-        public Result<Paged<Product>, Error> FilterPaged(int skip, int top, string filter = null, string orderBy = null)
+        public Result<Paged<Product>, Error> FilterPaged(int skip, int top, string filter, string orderBy)
         {
             var queryResult = Query.Create(orderBy, skip, top, filter);
 

@@ -14,10 +14,16 @@ namespace Architecture3.Common.ValueObjects
 
         public TopSkip TopSkip { get; }
 
-        public static Result<OrderByTopSkip, string> Create(string sort, int skip, int pageSize)
+        public static Result<OrderByTopSkip, string> Create(string orderBy, int skip, int top, string skipField, string topField, string orderByField)
         {
-            var result = TopSkip.Create(skip, pageSize);
-            return result.IsFailure ? Result<OrderByTopSkip, string>.Fail(result.Error) : Result<OrderByTopSkip, string>.Ok(new OrderByTopSkip(sort, result.Value));
+            var topSkipResult = TopSkip.Create(skip, top, skipField, topField);
+            var result = ResultExtensions.CombineFailures(new[]
+            {
+                topSkipResult,
+                orderBy == null ? GetFailResult("{0} can't be null", orderByField) : (IResult<string>)null
+            });
+
+            return result.IsFailure ? GetFailResult(result.Error) : GetOkResult(new OrderByTopSkip(orderBy, topSkipResult.Value));
         }
 
         protected override bool EqualsCore(OrderByTopSkip other)

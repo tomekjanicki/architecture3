@@ -13,7 +13,7 @@
 
         public static explicit operator Name(string value)
         {
-            return Create(value).Value;
+            return Create(value, "Value").Value;
         }
 
         public static implicit operator string(Name name)
@@ -21,16 +21,16 @@
             return name.Value;
         }
 
-        public static Result<Name, string> Create(string name)
+        public static Result<Name, string> Create(string name, string field)
         {
             if (string.IsNullOrEmpty(name))
             {
-                return Result<Name, string>.Fail("Name can't be empty");
+                return GetFailResult("{0} can't be null or empty", field);
             }
 
             const int max = 100;
 
-            return name.Length > max ? Result<Name, string>.Fail($"Name can't be longer than {max} chars.") : Result<Name, string>.Ok(new Name(name));
+            return name.Length > max ? GetFailResult($"{0} can't be longer than {max} chars.", field) : GetOkResult(new Name(name));
         }
 
         protected override bool EqualsCore(Name other)

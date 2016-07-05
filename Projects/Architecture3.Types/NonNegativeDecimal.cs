@@ -13,7 +13,7 @@
 
         public static explicit operator NonNegativeDecimal(decimal value)
         {
-            return Create(value).Value;
+            return Create(value, "Value").Value;
         }
 
         public static implicit operator decimal(NonNegativeDecimal nonNegativeInt)
@@ -21,9 +21,14 @@
             return nonNegativeInt.Value;
         }
 
-        public static Result<NonNegativeDecimal, string> Create(decimal value)
+        public static Result<NonNegativeDecimal, string> Create(decimal? value, string field)
         {
-            return value < 0 ? Result<NonNegativeDecimal, string>.Fail("Value can't be lower than zero") : Result<NonNegativeDecimal, string>.Ok(new NonNegativeDecimal(value));
+            return value == null ? GetFailResult("{0} can't be null", field) : Create(value.Value, field);
+        }
+
+        public static Result<NonNegativeDecimal, string> Create(decimal value, string field)
+        {
+            return value < 0 ? GetFailResult("{0} can't be lower than zero", field) : GetOkResult(new NonNegativeDecimal(value));
         }
 
         protected override bool EqualsCore(NonNegativeDecimal other)

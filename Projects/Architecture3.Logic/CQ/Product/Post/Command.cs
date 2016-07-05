@@ -23,30 +23,18 @@
 
         public static Result<Command, string> Create(string name, string code, decimal? price)
         {
-            var nameResult = Name.Create(name);
-            if (nameResult.IsFailure)
-            {
-                return Result<Command, string>.Fail(nameResult.Error);
-            }
+            var nameResult = Name.Create(name, nameof(Name));
+            var codeResult = Code.Create(name, nameof(Code));
+            var priceResult = NonNegativeDecimal.Create(price, nameof(Price));
 
-            var codeResult = Code.Create(name);
-            if (codeResult.IsFailure)
+            var result = ResultExtensions.CombineFailures(new IResult<string>[]
             {
-                return Result<Command, string>.Fail(codeResult.Error);
-            }
+                codeResult,
+                priceResult,
+                nameResult
+            });
 
-            if (price == null)
-            {
-                return Result<Command, string>.Fail("price can't be null");
-            }
-
-            var priceResult = NonNegativeDecimal.Create(price.Value);
-            if (priceResult.IsFailure)
-            {
-                return Result<Command, string>.Fail(priceResult.Error);
-            }
-
-            return Result<Command, string>.Ok(new Command(nameResult.Value, codeResult.Value, priceResult.Value));
+            return result.IsFailure ? GetFailResult(result.Error) : GetOkResult(new Command(nameResult.Value, codeResult.Value, priceResult.Value));
         }
 
         protected override bool EqualsCore(Command other)

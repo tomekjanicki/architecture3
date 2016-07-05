@@ -17,8 +17,8 @@
 
         public static Result<Command, string> Create(int id, string version)
         {
-            var result = IdVersion.Create(id, version);
-            return result.IsFailure ? Result<Command, string>.Fail(result.Error) : Result<Command, string>.Ok(new Command(result.Value));
+            var result = IdVersion.Create(id, version, nameof(Common.ValueObjects.IdVersion.Id), nameof(Common.ValueObjects.IdVersion.Version));
+            return result.IsFailure ? GetFailResult(result.Error) : GetOkResult(new Command(result.Value));
         }
 
         protected override bool EqualsCore(Command other)

@@ -13,7 +13,7 @@
 
         public static explicit operator NonNegativeInt(int value)
         {
-            return Create(value).Value;
+            return Create(value, "Value").Value;
         }
 
         public static implicit operator int(NonNegativeInt nonNegativeInt)
@@ -21,9 +21,14 @@
             return nonNegativeInt.Value;
         }
 
-        public static Result<NonNegativeInt, string> Create(int value)
+        public static Result<NonNegativeInt, string> Create(int? value, string field)
         {
-            return value < 0 ? Result<NonNegativeInt, string>.Fail("Value can't be lower than zero") : Result<NonNegativeInt, string>.Ok(new NonNegativeInt(value));
+            return value == null ? GetFailResult("{0} can't be null", field) : Create(value.Value, field);
+        }
+
+        public static Result<NonNegativeInt, string> Create(int value, string field)
+        {
+            return value < 0 ? GetFailResult("{0} can't be lower than zero", field) : GetOkResult(new NonNegativeInt(value));
         }
 
         protected override bool EqualsCore(NonNegativeInt other)

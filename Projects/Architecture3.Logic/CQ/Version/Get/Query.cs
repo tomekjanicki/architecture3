@@ -15,7 +15,7 @@
 
         public static Result<Query, string> Create(Assembly assembly)
         {
-            return Result<Query, string>.Ok(new Query(assembly));
+            return assembly == null ? GetFailResult($"{nameof(Assembly)} can't be null") : GetOkResult(new Query(assembly));
         }
 
         protected override bool EqualsCore(Query other)

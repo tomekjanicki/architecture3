@@ -15,15 +15,17 @@
 
         public string Version { get; }
 
-        public static Result<IdVersion, string> Create(int id, string version)
+        public static Result<IdVersion, string> Create(int id, string version, string idField, string versionField)
         {
-            var idResult = NonNegativeInt.Create(id);
-            if (idResult.IsFailure)
-            {
-                return Result<IdVersion, string>.Fail(idResult.Error);
-            }
+            var idResult = NonNegativeInt.Create(id, idField);
 
-            return string.IsNullOrEmpty(version) ? Result<IdVersion, string>.Fail("Version can't be empty string") : Result<IdVersion, string>.Ok(new IdVersion(idResult.Value, version));
+            var result = ResultExtensions.CombineFailures(new[]
+            {
+                idResult,
+                string.IsNullOrEmpty(version) ? GetFailResult("{0} can't be null or empty", versionField) : (IResult<string>)null
+            });
+
+            return result.IsFailure ? GetFailResult(result.Error) : GetOkResult(new IdVersion(idResult.Value, version));
         }
 
         protected override bool EqualsCore(IdVersion other)

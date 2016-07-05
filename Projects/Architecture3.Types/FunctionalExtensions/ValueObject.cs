@@ -33,6 +33,21 @@
             return GetHashCodeCore();
         }
 
+        protected static Result<T, string> GetFailResult(string message, string field)
+        {
+            return Result<T, string>.Fail(string.Format(message, field));
+        }
+
+        protected static Result<T, string> GetFailResult(string message)
+        {
+            return Result<T, string>.Fail(message);
+        }
+
+        protected static Result<T, string> GetOkResult(T value)
+        {
+            return Result<T, string>.Ok(value);
+        }
+
         protected abstract bool EqualsCore(T other);
 
         protected abstract int GetHashCodeCore();

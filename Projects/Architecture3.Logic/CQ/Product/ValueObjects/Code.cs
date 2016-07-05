@@ -13,24 +13,24 @@
 
         public static explicit operator Code(string value)
         {
-            return Create(value).Value;
+            return Create(value, "Value").Value;
         }
 
-        public static implicit operator string(Code name)
+        public static implicit operator string(Code code)
         {
-            return name.Value;
+            return code.Value;
         }
 
-        public static Result<Code, string> Create(string name)
+        public static Result<Code, string> Create(string code, string field)
         {
-            if (string.IsNullOrEmpty(name))
+            if (string.IsNullOrEmpty(code))
             {
-                return Result<Code, string>.Fail("Code can't be empty");
+                return GetFailResult("{0} can't be null or empty", field);
             }
 
             const int max = 50;
 
-            return name.Length > max ? Result<Code, string>.Fail($"Code can't be longer than {max} chars.") : Result<Code, string>.Ok(new Code(name));
+            return code.Length > max ? GetFailResult($"{0} can't be longer than {max} chars.", field) : GetOkResult(new Code(code));
         }
 
         protected override bool EqualsCore(Code other)
