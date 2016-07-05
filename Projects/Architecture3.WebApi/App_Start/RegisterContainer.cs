@@ -13,6 +13,8 @@
     using Architecture3.Logic.CQ.Product.Delete;
     using Architecture3.Logic.CQ.Product.Delete.Interfaces;
     using Architecture3.Logic.CQ.Product.FilterPaged;
+    using Architecture3.Logic.CQ.TemplateMethods.Commands.Interfaces;
+    using Architecture3.Logic.CQ.TemplateMethods.Queries.Interfaces;
     using Architecture3.Logic.Database;
     using Architecture3.Logic.Database.Interfaces;
     using Architecture3.Logic.Facades;
@@ -61,9 +63,9 @@
             container.Register<ProductsPostFacade>(lifeStyle);
             container.Register<IRepository, Repository>(lifeStyle);
             container.Register<SharedQueries>(lifeStyle);
-            container.Register<Logic.CQ.Product.Put.Interfaces.IRepository, Logic.CQ.Product.Put.Repository>(lifeStyle);
+            container.Register<IUpdateRepository<Logic.CQ.Product.Put.Command>, Logic.CQ.Product.Put.Repository>(lifeStyle);
             container.Register<Logic.CQ.Product.Post.Interfaces.IRepository, Logic.CQ.Product.Post.Repository>(lifeStyle);
-            container.Register<Logic.CQ.Product.Get.Interfaces.IRepository, Logic.CQ.Product.Get.Repository>(lifeStyle);
+            container.Register<IGetRepository<Logic.CQ.Product.Get.Product>, Logic.CQ.Product.Get.Repository>(lifeStyle);
         }
 
         private static IEnumerable<Assembly> GetAssemblies()

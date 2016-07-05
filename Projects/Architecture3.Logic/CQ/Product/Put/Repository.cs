@@ -1,12 +1,12 @@
 ﻿namespace Architecture3.Logic.CQ.Product.Put
 {
-    using Architecture3.Logic.CQ.Product.Put.Interfaces;
+    using Architecture3.Logic.CQ.TemplateMethods.Commands.Interfaces;
     using Architecture3.Logic.Database.Interfaces;
     using Architecture3.Types;
     using Architecture3.Types.FunctionalExtensions;
     using Dapper;
 
-    public sealed class Repository : IRepository
+    public sealed class Repository : IUpdateRepository<Command>
     {
         private readonly IDbConnectionProvider _dbConnectionProvider;
         private readonly SharedQueries _sharedQueries;

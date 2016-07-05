@@ -1,11 +1,11 @@
 ﻿namespace Architecture3.Logic.CQ.Product.Put
 {
-    using Architecture3.Logic.CQ.Product.Put.Interfaces;
     using Architecture3.Logic.CQ.TemplateMethods.Commands;
+    using Architecture3.Logic.CQ.TemplateMethods.Commands.Interfaces;
 
-    public sealed class CommandHandler : UpdateCommandHandlerTemplate<Command, IRepository>
+    public sealed class CommandHandler : UpdateCommandHandlerTemplate<Command, IUpdateRepository<Command>>
     {
-        public CommandHandler(IRepository repository)
+        public CommandHandler(IUpdateRepository<Command> repository)
             : base(repository)
         {
         }
