@@ -17,6 +17,7 @@
         public Result<int, Error> Handle(Command message)
         {
             var codeExists = _repository.CodeExists(message.Code);
+
             if (codeExists)
             {
                 return "Code already defined".ToBadRequest<int>();

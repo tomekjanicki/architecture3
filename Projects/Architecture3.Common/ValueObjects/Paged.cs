@@ -28,6 +28,13 @@
             return result.IsFailure ? GetFailResult(result.Error) : GetOkResult(new Paged<T>(countResult.Value, items));
         }
 
+        public static Paged<T> CreateAndEnsureIsNotFaliure(int count, IReadOnlyCollection<T> items)
+        {
+            var pagedResult = Create(count, items);
+            pagedResult.EnsureIsNotFaliure();
+            return pagedResult.Value;
+        }
+
         protected override bool EqualsCore(Paged<T> other)
         {
             return Count == other.Count && Equals(Items, other.Items);

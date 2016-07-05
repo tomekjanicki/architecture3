@@ -6,7 +6,6 @@
     using Architecture3.Common.Handlers.Interfaces;
     using Architecture3.Common.ValueObjects;
     using Architecture3.Logic.Database.Interfaces;
-    using Architecture3.Types.FunctionalExtensions;
     using Dapper;
 
     public sealed class QueryHandler : IRequestHandler<Query, Paged<Product>>
@@ -32,9 +31,8 @@
                 var count = connection.Query<int>(countQuery, whereFragment.Parameters).Single();
                 whereFragment.Parameters.AddDynamicParams(pagedFragment.Parameters);
                 var select = connection.Query<Product>(selectQuery, whereFragment.Parameters);
-                var result = Paged<Product>.Create(count, select.ToList());
-                result.EnsureIsNotFaliure();
-                return result.Value;
+                var result = Paged<Product>.CreateAndEnsureIsNotFaliure(count, select.ToList());
+                return result;
             }
         }
 
