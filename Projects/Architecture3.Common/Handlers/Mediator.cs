@@ -3,6 +3,7 @@
     using System;
     using Architecture3.Common.Handlers.Interfaces;
     using Architecture3.Common.Handlers.Internal;
+    using NullGuard;
 
     public sealed class Mediator : IMediator
     {
@@ -86,14 +87,14 @@
             return GetWrapperInstance<TWrapper>(request, genericHandlerType, genericWrapperType);
         }
 
-        private TWrapper GetWrapperInstance<TWrapper>(object request, Type genericHandlerType, Type genericWrapperType)
+        private TWrapper GetWrapperInstance<TWrapper>([AllowNull]object request, Type genericHandlerType, Type genericWrapperType)
         {
             var handler = GetHandler(request, genericHandlerType);
 
             return (TWrapper)Activator.CreateInstance(genericWrapperType, handler);
         }
 
-        private object GetHandler(object request, Type handlerType)
+        private object GetHandler([AllowNull]object request, Type handlerType)
         {
             try
             {

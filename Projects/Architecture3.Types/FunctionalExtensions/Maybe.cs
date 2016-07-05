@@ -1,13 +1,14 @@
 ﻿namespace Architecture3.Types.FunctionalExtensions
 {
     using System;
+    using NullGuard;
 
     public struct Maybe<T> : IEquatable<Maybe<T>>
         where T : class
     {
         private readonly T _value;
 
-        private Maybe(T value)
+        private Maybe([AllowNull]T value)
         {
             _value = value;
         }
@@ -29,7 +30,7 @@
 
         public bool HasNoValue => !HasValue;
 
-        public static implicit operator Maybe<T>(T value)
+        public static implicit operator Maybe<T>([AllowNull]T value)
         {
             return new Maybe<T>(value);
         }
