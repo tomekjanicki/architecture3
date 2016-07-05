@@ -25,9 +25,9 @@
 
         public static Result<Command, string> Create(int id, string version, decimal? price, string name)
         {
-            var idVersionResult = IdVersion.Create(id, version, nameof(Common.ValueObjects.IdVersion.Id), nameof(Common.ValueObjects.IdVersion.Version));
-            var priceResult = NonNegativeDecimal.Create(price, nameof(Price));
-            var nameResult = Name.Create(name, nameof(Name));
+            var idVersionResult = IdVersion.Create(id, version, (NonEmptyString)nameof(Common.ValueObjects.IdVersion.Id), (NonEmptyString)nameof(Common.ValueObjects.IdVersion.Version));
+            var priceResult = NonNegativeDecimal.Create(price, (NonEmptyString)nameof(Price));
+            var nameResult = Name.Create(name, (NonEmptyString)nameof(Name));
 
             var result = ResultExtensions.CombineFailures(new IResult<string>[]
             {
@@ -36,7 +36,7 @@
                 nameResult
             });
 
-            return result.IsFailure ? GetFailResult(result.Error) : GetOkResult(new Command(idVersionResult.Value, priceResult.Value, nameResult.Value));
+            return result.IsFailure ? GetFailResult((NonEmptyString)result.Error) : GetOkResult(new Command(idVersionResult.Value, priceResult.Value, nameResult.Value));
         }
 
         protected override bool EqualsCore(Command other)

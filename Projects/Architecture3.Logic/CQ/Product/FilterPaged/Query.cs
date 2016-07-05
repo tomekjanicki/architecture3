@@ -2,6 +2,7 @@
 {
     using Architecture3.Common.Handlers.Interfaces;
     using Architecture3.Common.ValueObjects;
+    using Architecture3.Types;
     using Architecture3.Types.FunctionalExtensions;
 
     public sealed class Query : ValueObject<Query>, IRequest<Paged<Product>>
@@ -23,8 +24,8 @@
         {
             // todo filter parser
             // todo orderBy parser
-            var result = OrderByTopSkip.Create(string.Empty, skip, top, nameof(TopSkip.Top), nameof(TopSkip.Skip), nameof(Common.ValueObjects.OrderByTopSkip.OrderBy));
-            return result.IsFailure ? GetFailResult(result.Error) : GetOkResult(new Query(string.Empty, string.Empty, result.Value));
+            var result = OrderByTopSkip.Create(string.Empty, skip, top, (NonEmptyString)nameof(TopSkip.Top), (NonEmptyString)nameof(TopSkip.Skip));
+            return result.IsFailure ? GetFailResult((NonEmptyString)result.Error) : GetOkResult(new Query(string.Empty, string.Empty, result.Value));
         }
 
         protected override bool EqualsCore(Query other)

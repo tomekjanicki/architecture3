@@ -15,7 +15,7 @@
 
         public GreaterThanZeroInt Top { get; }
 
-        public static Result<TopSkip, string> Create(int skip, int top, string topField, string skipField)
+        public static Result<TopSkip, string> Create(int skip, int top, NonEmptyString topField, NonEmptyString skipField)
         {
             var skipResult = NonNegativeInt.Create(skip, skipField);
 
@@ -24,15 +24,15 @@
             var result = ResultExtensions.CombineFailures(new IResult<string>[]
             {
                 skipResult,
-                topResult,
+                topResult
             });
 
             if (result.IsFailure)
             {
-                return GetFailResult(result.Error);
+                return GetFailResult((NonEmptyString)result.Error);
             }
 
-            return topResult.Value > Const.MaxTopSize ? GetFailResult($"{{0}} can't be greater than {Const.MaxTopSize}", topField) : GetOkResult(new TopSkip(skipResult.Value, topResult.Value));
+            return topResult.Value > Const.MaxTopSize ? GetFailResult((NonEmptyString)$"{{0}} can't be greater than {Const.MaxTopSize}", topField) : GetOkResult(new TopSkip(skipResult.Value, topResult.Value));
         }
 
         protected override bool EqualsCore(TopSkip other)

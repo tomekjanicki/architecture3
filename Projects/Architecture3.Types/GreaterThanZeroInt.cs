@@ -13,7 +13,7 @@
 
         public static explicit operator GreaterThanZeroInt(int value)
         {
-            return Create(value, "Value").Value;
+            return Create(value, (NonEmptyString)"Value").Value;
         }
 
         public static implicit operator int(GreaterThanZeroInt greaterThanZeroInt)
@@ -21,14 +21,19 @@
             return greaterThanZeroInt.Value;
         }
 
-        public static Result<GreaterThanZeroInt, string> Create(int? value, string field)
+        public static Result<GreaterThanZeroInt, string> Create(int? value, NonEmptyString field)
         {
-            return value == null ? GetFailResult("{0} can't be null", field) : Create(value.Value, field);
+            return value == null ? GetFailResult((NonEmptyString)"{0} can't be null", field) : Create(value.Value, field);
         }
 
-        public static Result<GreaterThanZeroInt, string> Create(int value, string field)
+        public static Result<GreaterThanZeroInt, string> Create(int value, NonEmptyString field)
         {
-            return value <= 0 ? GetFailResult("{0} can't be lower or equal to zero", field) : GetOkResult(new GreaterThanZeroInt(value));
+            return value <= 0 ? GetFailResult((NonEmptyString)"{0} can't be lower or equal to zero", field) : GetOkResult(new GreaterThanZeroInt(value));
+        }
+
+        public override string ToString()
+        {
+            return Value.ToString();
         }
 
         protected override bool EqualsCore(GreaterThanZeroInt other)

@@ -1,5 +1,6 @@
 ﻿namespace Architecture3.Logic.CQ.Product.ValueObjects
 {
+    using Architecture3.Types;
     using Architecture3.Types.FunctionalExtensions;
 
     public sealed class Name : ValueObject<Name>
@@ -13,7 +14,7 @@
 
         public static explicit operator Name(string value)
         {
-            return Create(value, "Value").Value;
+            return Create(value, (NonEmptyString)"Value").Value;
         }
 
         public static implicit operator string(Name name)
@@ -21,16 +22,21 @@
             return name.Value;
         }
 
-        public static Result<Name, string> Create(string name, string field)
+        public static Result<Name, string> Create(string name, NonEmptyString field)
         {
             if (name == string.Empty)
             {
-                return GetFailResult("{0} can't be null or empty", field);
+                return GetFailResult((NonEmptyString)"{0} can't be empty", field);
             }
 
             const int max = 100;
 
-            return name.Length > max ? GetFailResult($"{{0}} can't be longer than {max} chars.", field) : GetOkResult(new Name(name));
+            return name.Length > max ? GetFailResult((NonEmptyString)$"{{0}} can't be longer than {max} chars.", field) : GetOkResult(new Name(name));
+        }
+
+        public override string ToString()
+        {
+            return Value;
         }
 
         protected override bool EqualsCore(Name other)

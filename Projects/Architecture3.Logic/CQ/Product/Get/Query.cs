@@ -17,8 +17,8 @@
 
         public static Result<Query, string> Create(int id)
         {
-            var result = NonNegativeInt.Create(id, nameof(Id));
-            return result.IsFailure ? GetFailResult(result.Error) : GetOkResult(new Query(result.Value));
+            var result = NonNegativeInt.Create(id, (NonEmptyString)nameof(Id));
+            return result.IsFailure ? GetFailResult((NonEmptyString)result.Error) : GetOkResult(new Query(result.Value));
         }
 
         protected override bool EqualsCore(Query other)

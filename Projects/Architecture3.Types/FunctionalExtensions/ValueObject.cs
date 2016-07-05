@@ -33,12 +33,12 @@
             return GetHashCodeCore();
         }
 
-        protected static Result<T, string> GetFailResult(string message, string field)
+        protected static Result<T, string> GetFailResult(NonEmptyString message, NonEmptyString field)
         {
             return Result<T, string>.Fail(string.Format(message, field));
         }
 
-        protected static Result<T, string> GetFailResult(string message)
+        protected static Result<T, string> GetFailResult(NonEmptyString message)
         {
             return Result<T, string>.Fail(message);
         }
