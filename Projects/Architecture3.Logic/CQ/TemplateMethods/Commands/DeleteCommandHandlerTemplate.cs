@@ -3,6 +3,7 @@
     using Architecture3.Common.Handlers.Interfaces;
     using Architecture3.Logic.CQ.TemplateMethods.Commands.Interfaces;
     using Architecture3.Logic.Shared;
+    using Architecture3.Types;
     using Architecture3.Types.FunctionalExtensions;
 
     public abstract class DeleteCommandHandlerTemplate<TCommand, TDeleteRepository> : IRequestHandler<TCommand, Result<Error>>
@@ -39,14 +40,14 @@
             }
             else
             {
-                return "GetRowVersionById returned no rows".ToBadRequest();
+                return ((NonEmptyString)"GetRowVersionById returned no rows").ToBadRequest();
             }
 
             var result = BeforeDelete(message);
 
             if (result.IsFailure)
             {
-                return result.Error.ToBadRequest();
+                return ((NonEmptyString)result.Error).ToBadRequest();
             }
 
             DeleteRepository.Delete(id);

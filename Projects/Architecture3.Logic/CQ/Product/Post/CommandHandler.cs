@@ -3,6 +3,7 @@
     using Architecture3.Common.Handlers.Interfaces;
     using Architecture3.Logic.CQ.Product.Post.Interfaces;
     using Architecture3.Logic.Shared;
+    using Architecture3.Types;
     using Architecture3.Types.FunctionalExtensions;
 
     public sealed class CommandHandler : IRequestHandler<Command, Result<int, Error>>
@@ -20,7 +21,7 @@
 
             if (codeExists)
             {
-                return "Code already defined".ToBadRequest<int>();
+                return ((NonEmptyString)"Code already defined").ToBadRequest<int>();
             }
 
             var id = _repository.Insert(message);

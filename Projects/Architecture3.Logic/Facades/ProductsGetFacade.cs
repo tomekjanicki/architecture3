@@ -3,6 +3,7 @@
     using Architecture3.Common.Handlers.Interfaces;
     using Architecture3.Logic.CQ.Product.Get;
     using Architecture3.Logic.Shared;
+    using Architecture3.Types;
     using Architecture3.Types.FunctionalExtensions;
     using AutoMapper;
 
@@ -23,7 +24,7 @@
 
             if (queryResult.IsFailure)
             {
-                return queryResult.Error.ToBadRequest<Product>();
+                return ((NonEmptyString)queryResult.Error).ToBadRequest<Product>();
             }
 
             var result = _mediator.Send(queryResult.Value);

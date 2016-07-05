@@ -1,6 +1,6 @@
 ﻿namespace Architecture3.Logic.Shared
 {
-    using System;
+    using Architecture3.Types;
     using Architecture3.Types.FunctionalExtensions;
 
     public class Error : ValueObject<Error>
@@ -15,13 +15,8 @@
 
         public string Message { get; }
 
-        public static Error CreateBadRequest(string message)
+        public static Error CreateBadRequest(NonEmptyString message)
         {
-            if (message == string.Empty)
-            {
-                throw new ArgumentException($"{nameof(Message)} can't be empty");
-            }
-
             return new Error(ErrorType.BadRequest, message);
         }
 
