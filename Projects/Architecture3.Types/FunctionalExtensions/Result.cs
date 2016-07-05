@@ -1,13 +1,14 @@
 ﻿namespace Architecture3.Types.FunctionalExtensions
 {
     using System;
+    using NullGuard;
 
     public struct Result<TError> : IResult<TError>
         where TError : class
     {
         private readonly ResultCommonLogic<TError> _logic;
 
-        private Result(bool isFailure, TError error)
+        private Result(bool isFailure, [AllowNull]TError error)
         {
             _logic = new ResultCommonLogic<TError>(isFailure, error);
         }
@@ -35,7 +36,7 @@
         private readonly ResultCommonLogic<TError> _logic;
         private readonly TResult _value;
 
-        internal Result(bool isFailure, TResult value, TError error)
+        internal Result(bool isFailure, TResult value, [AllowNull]TError error)
         {
             if (!isFailure && value == null)
             {

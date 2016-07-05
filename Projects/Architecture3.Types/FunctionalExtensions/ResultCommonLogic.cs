@@ -1,13 +1,14 @@
 ﻿namespace Architecture3.Types.FunctionalExtensions
 {
     using System;
+    using NullGuard;
 
     internal sealed class ResultCommonLogic<TError>
         where TError : class
     {
         private readonly TError _error;
 
-        public ResultCommonLogic(bool isFailure, TError error)
+        public ResultCommonLogic(bool isFailure, [AllowNull]TError error)
         {
             if (isFailure)
             {
