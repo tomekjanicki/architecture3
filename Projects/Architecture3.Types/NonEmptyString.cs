@@ -31,6 +31,11 @@
             return Value;
         }
 
+        public NonEmptyString ToUpperInvariant()
+        {
+            return (NonEmptyString)Value.ToUpperInvariant();
+        }
+
         protected override bool EqualsCore(NonEmptyString other)
         {
             return Value == other.Value;

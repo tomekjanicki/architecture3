@@ -19,22 +19,22 @@
             return connection;
         }
 
-        public static string ToLikeString(this string input, string escapeChar)
+        public static NonEmptyString ToLikeString(this string input, NonEmptyString escapeChar)
         {
-            return input == null ? null : $"%{input.ToLikeStringInternal(escapeChar)}%";
+            return (NonEmptyString)$"%{input.ToLikeStringInternal(escapeChar)}%";
         }
 
-        public static string ToLikeLeftString(this string input, string escapeChar)
+        public static NonEmptyString ToLikeLeftString(this string input, NonEmptyString escapeChar)
         {
-            return input == null ? null : $"%{input.ToLikeStringInternal(escapeChar)}";
+            return (NonEmptyString)$"%{input.ToLikeStringInternal(escapeChar)}";
         }
 
-        public static string ToLikeRightString(this string input, string escapeChar)
+        public static NonEmptyString ToLikeRightString(this string input, NonEmptyString escapeChar)
         {
-            return input == null ? null : $"{input.ToLikeStringInternal(escapeChar)}%";
+            return (NonEmptyString)$"{input.ToLikeStringInternal(escapeChar)}%";
         }
 
-        private static string ToLikeStringInternal(this string input, string escapeChar)
+        private static string ToLikeStringInternal(this string input, NonEmptyString escapeChar)
         {
             input = input.Replace(escapeChar, string.Format("{0}{0}", escapeChar));
             input = input.Replace("%", $"{escapeChar}%");

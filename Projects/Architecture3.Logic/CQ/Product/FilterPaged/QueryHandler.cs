@@ -6,6 +6,7 @@
     using Architecture3.Common.Handlers.Interfaces;
     using Architecture3.Common.ValueObjects;
     using Architecture3.Logic.Database.Interfaces;
+    using Architecture3.Types;
     using Dapper;
 
     public sealed class QueryHandler : IRequestHandler<Query, Paged<Product>>
@@ -24,38 +25,50 @@
         {
             var whereFragment = GetWhereFragment(query.Code, query.Name);
             var pagedFragment = CommandHelper.GetPagedFragment(query.OrderByTopSkip.TopSkip, GetTranslatedSort(query.OrderByTopSkip.OrderBy));
-            var countQuery = string.Format(CountQuery, whereFragment.Query);
-            var selectQuery = string.Format(SelectQuery, whereFragment.Query, pagedFragment.Query);
+            var countQuery = string.Format(CountQuery, whereFragment.Where);
+            var selectQuery = string.Format(SelectQuery, whereFragment.Where, pagedFragment.Data);
             using (var connection = _dbConnectionProvider.GetOpenDbConnection())
             {
                 var count = connection.Query<int>(countQuery, whereFragment.Parameters).Single();
                 whereFragment.Parameters.AddDynamicParams(pagedFragment.Parameters);
                 var select = connection.Query<Product>(selectQuery, whereFragment.Parameters);
-                var result = Paged<Product>.CreateAndEnsureIsNotFaliure(count, select.ToList());
-                return result;
+                return Paged<Product>.CreateAndEnsureIsNotFaliure(count, select.ToList());
             }
         }
 
-        private static CommandHelper.Result GetWhereFragment(string code, string name)
+        private static CommandHelper.WhereResult GetWhereFragment(string code, string name)
         {
             var dp = new DynamicParameters();
-            var criteria = new List<string>();
-            if (!string.IsNullOrEmpty(code))
+            var criteria = new List<NonEmptyString>();
+            var codeResult = NonEmptyString.Create(code, (NonEmptyString)"Value");
+            var nameResult = NonEmptyString.Create(name, (NonEmptyString)"Value");
+
+            if (codeResult.IsSuccess)
             {
-                CommandHelper.SetValues(criteria, dp, CommandHelper.GetLikeCaluse(nameof(Product.Code), nameof(Product.Code), code));
+                CommandHelper.SetValues(criteria, dp, CommandHelper.GetLikeCaluse((NonEmptyString)nameof(Product.Code), (NonEmptyString)nameof(Product.Code), codeResult.Value));
             }
 
-            if (!string.IsNullOrEmpty(name))
+            if (nameResult.IsSuccess)
             {
-                CommandHelper.SetValues(criteria, dp, CommandHelper.GetLikeCaluse(nameof(Product.Name), nameof(Product.Name), name));
+                CommandHelper.SetValues(criteria, dp, CommandHelper.GetLikeCaluse((NonEmptyString)nameof(Product.Name), (NonEmptyString)nameof(Product.Name), nameResult.Value));
             }
 
             return CommandHelper.GetWhereStringWithParams(criteria, dp);
         }
 
-        private string GetTranslatedSort(string modelColumn)
+        private NonEmptyString GetTranslatedSort(string modelColumn)
         {
-            return CommandHelper.GetTranslatedSort(modelColumn, $"{nameof(Product.Code)} ASC", new[] { nameof(Product.Id), nameof(Product.Code), nameof(Product.Name), nameof(Product.Price), nameof(Product.Date), nameof(Product.Version), nameof(Product.CanDelete) });
+            var allowedColumns = new[]
+            {
+                (NonEmptyString)nameof(Product.Id),
+                (NonEmptyString)nameof(Product.Code),
+                (NonEmptyString)nameof(Product.Name),
+                (NonEmptyString)nameof(Product.Price),
+                (NonEmptyString)nameof(Product.Date),
+                (NonEmptyString)nameof(Product.Version),
+                (NonEmptyString)nameof(Product.CanDelete)
+            };
+            return CommandHelper.GetTranslatedSort(modelColumn, (NonEmptyString)$"{nameof(Product.Code)} ASC", allowedColumns);
         }
     }
 }
