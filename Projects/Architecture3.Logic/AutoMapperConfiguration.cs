@@ -9,12 +9,12 @@
     {
         public static void Configure(IMapperConfigurationExpression expression)
         {
-            expression.CreateMap<Common.ValueObjects.Paged<CQ.Product.FilterPaged.Product>, Paged<WebApi.Dtos.Product.FilterPaged.Product>>().ConvertUsing(new TypeTypeConverter());
+            expression.CreateMap<Common.ValueObjects.Paged<CQ.Product.FilterPaged.Product>, Paged<WebApi.Dtos.Product.FilterPaged.Product>>().ConvertUsing(new FilterPagedProductConverter());
             expression.CreateMap<CQ.Product.Get.Product, WebApi.Dtos.Product.Get.Product>();
             expression.CreateMap<CQ.Product.FilterPaged.Product, WebApi.Dtos.Product.FilterPaged.Product>();
         }
 
-        public class TypeTypeConverter : ITypeConverter<Common.ValueObjects.Paged<CQ.Product.FilterPaged.Product>, Paged<WebApi.Dtos.Product.FilterPaged.Product>>
+        public class FilterPagedProductConverter : ITypeConverter<Common.ValueObjects.Paged<CQ.Product.FilterPaged.Product>, Paged<WebApi.Dtos.Product.FilterPaged.Product>>
         {
             public Paged<WebApi.Dtos.Product.FilterPaged.Product> Convert(Common.ValueObjects.Paged<CQ.Product.FilterPaged.Product> source, ResolutionContext context)
             {
