@@ -33,6 +33,7 @@
             result.Id.ShouldBe(id);
             result.Code.ShouldBe(code);
             result.Name.ShouldBe(name);
+            result.Version.ShouldBe(string.Empty);
         }
     }
 }
