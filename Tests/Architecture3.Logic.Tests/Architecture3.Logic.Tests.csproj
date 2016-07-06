@@ -60,6 +60,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CQ\Product\Delete\CommandHandlerTests.cs" />
+    <Compile Include="CQ\Product\Delete\CommandTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="MappingTests.cs" />
   </ItemGroup>
@@ -72,9 +74,17 @@
     <Analyzer Include="..\..\packages\StyleCop.Analyzers.1.0.0\analyzers\dotnet\cs\StyleCop.Analyzers.dll" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\Projects\Architecture3.Common\Architecture3.Common.csproj">
+      <Project>{B97EFB86-FB8B-43B7-9892-D4E2AF7257B6}</Project>
+      <Name>Architecture3.Common</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\Projects\Architecture3.Logic\Architecture3.Logic.csproj">
       <Project>{ac510806-42a1-4b3f-8a6c-97b96398d475}</Project>
       <Name>Architecture3.Logic</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Projects\Architecture3.Types\Architecture3.Types.csproj">
+      <Project>{9033BA8A-C531-4DCD-A342-A4B57DDD11D9}</Project>
+      <Name>Architecture3.Types</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\Projects\Architecture3.WebApi.Dtos\Architecture3.WebApi.Dtos.csproj">
       <Project>{d383fc01-3ab8-4106-98ea-543607ace0e9}</Project>
