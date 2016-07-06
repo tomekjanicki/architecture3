@@ -2,23 +2,22 @@
 {
     using System.Collections.Generic;
     using Architecture3.WebApi.Dtos;
-    using Architecture3.WebApi.Dtos.Product.FilterPaged;
     using AutoMapper;
 
     public static class AutoMapperConfiguration
     {
         public static void Configure(IMapperConfigurationExpression expression)
         {
-            expression.CreateMap<Common.ValueObjects.Paged<CQ.Product.FilterPaged.Product>, Paged<WebApi.Dtos.Product.FilterPaged.Product>>().ConvertUsing(new FilterPagedProductConverter());
+            expression.CreateMap<Common.ValueObjects.Paged<CQ.Product.FilterPaged.Product>, Paged<WebApi.Dtos.Product.FilterPaged.Product>>().ConvertUsing(new PagedConverter<CQ.Product.FilterPaged.Product, WebApi.Dtos.Product.FilterPaged.Product>());
             expression.CreateMap<CQ.Product.Get.Product, WebApi.Dtos.Product.Get.Product>();
             expression.CreateMap<CQ.Product.FilterPaged.Product, WebApi.Dtos.Product.FilterPaged.Product>();
         }
 
-        public class FilterPagedProductConverter : ITypeConverter<Common.ValueObjects.Paged<CQ.Product.FilterPaged.Product>, Paged<WebApi.Dtos.Product.FilterPaged.Product>>
+        public class PagedConverter<TSource, TDestination> : ITypeConverter<Common.ValueObjects.Paged<TSource>, Paged<TDestination>>
         {
-            public Paged<WebApi.Dtos.Product.FilterPaged.Product> Convert(Common.ValueObjects.Paged<CQ.Product.FilterPaged.Product> source, ResolutionContext context)
+            public Paged<TDestination> Convert(Common.ValueObjects.Paged<TSource> source, ResolutionContext context)
             {
-                return new Paged<Product>(source.Count, context.Mapper.Map<IEnumerable<WebApi.Dtos.Product.FilterPaged.Product>>(source.Items));
+                return new Paged<TDestination>(source.Count, context.Mapper.Map<IEnumerable<TDestination>>(source.Items));
             }
         }
     }
