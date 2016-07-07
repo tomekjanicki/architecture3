@@ -1,5 +1,6 @@
 ﻿namespace Architecture3.WebApi.Controllers.Base
 {
+    using System;
     using System.Net;
     using System.Web.Http;
     using System.Web.Http.Results;
@@ -25,17 +26,17 @@
 
         private IHttpActionResult GetErrorHttpActionResult(IResult<Error> result)
         {
-            if (result.Error.ErrorType == ErrorType.BadRequest)
+            switch (result.Error.ErrorType)
             {
-                return BadRequest(result.Error.Message);
+                case ErrorType.BadRequest:
+                    return BadRequest(result.Error.Message);
+                case ErrorType.PreconditionFailed:
+                    return new StatusCodeResult(HttpStatusCode.PreconditionFailed, this);
+                case ErrorType.NotFound:
+                    return NotFound();
+                default:
+                    throw new NotImplementedException();
             }
-
-            if (result.Error.ErrorType == ErrorType.PreconditionFailed)
-            {
-                return new StatusCodeResult(HttpStatusCode.PreconditionFailed, this);
-            }
-
-            return NotFound();
         }
     }
 }
