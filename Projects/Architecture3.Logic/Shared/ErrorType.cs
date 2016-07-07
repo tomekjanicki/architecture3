@@ -2,8 +2,8 @@
 {
     public enum ErrorType
     {
+        Generic,
         NotFound,
-        BadRequest,
         PreconditionFailed
     }
 }

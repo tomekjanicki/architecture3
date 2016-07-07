@@ -28,7 +28,7 @@
         {
             switch (result.Error.ErrorType)
             {
-                case ErrorType.BadRequest:
+                case ErrorType.Generic:
                     return BadRequest(result.Error.Message);
                 case ErrorType.PreconditionFailed:
                     return new StatusCodeResult(HttpStatusCode.PreconditionFailed, this);

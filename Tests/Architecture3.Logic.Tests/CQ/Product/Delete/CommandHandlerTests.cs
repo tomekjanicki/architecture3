@@ -70,7 +70,7 @@
             var result = _commandHandler.Handle(command);
 
             result.IsFailure.ShouldBeTrue();
-            result.Error.ErrorType.ShouldBe(ErrorType.BadRequest);
+            result.Error.ErrorType.ShouldBe(ErrorType.Generic);
         }
 
         private static Command GetValidCommand()

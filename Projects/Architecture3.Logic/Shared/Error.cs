@@ -20,18 +20,18 @@
         {
             get
             {
-                if (ErrorType != ErrorType.BadRequest)
+                if (ErrorType != ErrorType.Generic)
                 {
-                    throw new InvalidOperationException($"There is no message for others than {ErrorType.BadRequest}.");
+                    throw new InvalidOperationException($"There is no message for others than {ErrorType.Generic}.");
                 }
 
                 return _message;
             }
         }
 
-        public static Error CreateBadRequest(NonEmptyString message)
+        public static Error CreateGeneric(NonEmptyString message)
         {
-            return new Error(ErrorType.BadRequest, message);
+            return new Error(ErrorType.Generic, message);
         }
 
         public static Error CreateNotFound()

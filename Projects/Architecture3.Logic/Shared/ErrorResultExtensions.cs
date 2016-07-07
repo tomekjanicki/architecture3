@@ -7,12 +7,12 @@
     {
         public static Result<Error> ToBadRequest(this NonEmptyString message)
         {
-            return Result<Error>.Fail(Error.CreateBadRequest(message));
+            return Result<Error>.Fail(Error.CreateGeneric(message));
         }
 
         public static Result<T, Error> ToBadRequest<T>(this NonEmptyString message)
         {
-            return Result<T, Error>.Fail(Error.CreateBadRequest(message));
+            return Result<T, Error>.Fail(Error.CreateGeneric(message));
         }
 
         public static Result<T, Error> ToNotFound<T>()
