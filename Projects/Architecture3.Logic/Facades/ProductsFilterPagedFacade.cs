@@ -8,12 +8,12 @@
     using Architecture3.WebApi.Dtos;
     using AutoMapper;
 
-    public sealed class FilterPagedFacade
+    public sealed class ProductsFilterPagedFacade
     {
         private readonly IMediator _mediator;
         private readonly IMapper _mapper;
 
-        public FilterPagedFacade(IMediator mediator, IMapper mapper)
+        public ProductsFilterPagedFacade(IMediator mediator, IMapper mapper)
         {
             _mediator = mediator;
             _mapper = mapper;

@@ -55,7 +55,7 @@
             var assemblies = GetAssemblies().ToArray();
             var lifeStyle = Lifestyle.Scoped;
             container.Register(typeof(IRequestHandler<,>), assemblies, lifeStyle);
-            container.Register<FilterPagedFacade>(lifeStyle);
+            container.Register<ProductsFilterPagedFacade>(lifeStyle);
             container.Register<ProductsGetFacade>(lifeStyle);
             container.Register<VersionGetFacade>(lifeStyle);
             container.Register<ProductsDeleteFacade>(lifeStyle);

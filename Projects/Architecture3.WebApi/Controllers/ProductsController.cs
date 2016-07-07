@@ -12,15 +12,15 @@
     [SwaggerResponseRemoveDefaults]
     public sealed class ProductsController : BaseApiController
     {
-        private readonly FilterPagedFacade _filterPagedFacade;
+        private readonly ProductsFilterPagedFacade _productsFilterPagedFacade;
         private readonly ProductsGetFacade _productsGetFacade;
         private readonly ProductsDeleteFacade _productsDeleteFacade;
         private readonly ProductsPutFacade _productsPutFacade;
         private readonly ProductsPostFacade _productsPostFacade;
 
-        public ProductsController(FilterPagedFacade filterPagedFacade, ProductsGetFacade productsGetFacade, ProductsDeleteFacade productsDeleteFacade, ProductsPutFacade productsPutFacade, ProductsPostFacade productsPostFacade)
+        public ProductsController(ProductsFilterPagedFacade productsFilterPagedFacade, ProductsGetFacade productsGetFacade, ProductsDeleteFacade productsDeleteFacade, ProductsPutFacade productsPutFacade, ProductsPostFacade productsPostFacade)
         {
-            _filterPagedFacade = filterPagedFacade;
+            _productsFilterPagedFacade = productsFilterPagedFacade;
             _productsGetFacade = productsGetFacade;
             _productsDeleteFacade = productsDeleteFacade;
             _productsPutFacade = productsPutFacade;
@@ -32,7 +32,7 @@
         [HttpGet]
         public IHttpActionResult FilterPaged(int skip, int top, string filter = null, string orderBy = null)
         {
-            var result = _filterPagedFacade.FilterPaged(skip, top, filter.ToEmptyString(), orderBy.ToEmptyString());
+            var result = _productsFilterPagedFacade.FilterPaged(skip, top, filter.ToEmptyString(), orderBy.ToEmptyString());
 
             return GetHttpActionResult(result);
         }

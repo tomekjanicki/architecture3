@@ -92,7 +92,7 @@
     <Compile Include="Facades\ProductsPostFacade.cs" />
     <Compile Include="Facades\ProductsPutFacade.cs" />
     <Compile Include="Shared\Error.cs" />
-    <Compile Include="Facades\FilterPagedFacade.cs" />
+    <Compile Include="Facades\ProductsFilterPagedFacade.cs" />
     <Compile Include="Facades\ProductsGetFacade.cs" />
     <Compile Include="Shared\ErrorType.cs" />
     <Compile Include="Facades\VersionGetFacade.cs" />
