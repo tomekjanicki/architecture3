@@ -88,7 +88,10 @@
     <Compile Include="CQ\TemplateMethods\Queries\Interfaces\IId.cs" />
     <Compile Include="Database\DbConnectionProvider.cs" />
     <Compile Include="Facades\Base\Helper.cs" />
+    <Compile Include="Facades\Interfaces\IProductsFilterPagedCriteriaProvider.cs" />
+    <Compile Include="Facades\ProductsFilterPagedCriteria.cs" />
     <Compile Include="Facades\ProductsDeleteFacade.cs" />
+    <Compile Include="Facades\ProductsFilterPagedCriteriaProvider.cs" />
     <Compile Include="Facades\ProductsPostFacade.cs" />
     <Compile Include="Facades\ProductsPutFacade.cs" />
     <Compile Include="Shared\Error.cs" />
@@ -135,6 +138,7 @@
       <Name>Architecture3.WebApi.Dtos</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="..\..\packages\Fody.1.29.2\build\dotnet\Fody.targets" Condition="Exists('..\..\packages\Fody.1.29.2\build\dotnet\Fody.targets')" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

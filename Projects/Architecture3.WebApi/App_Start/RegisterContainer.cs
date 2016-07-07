@@ -18,6 +18,7 @@
     using Architecture3.Logic.Database;
     using Architecture3.Logic.Database.Interfaces;
     using Architecture3.Logic.Facades;
+    using Architecture3.Logic.Facades.Interfaces;
     using AutoMapper;
     using SimpleInjector;
     using SimpleInjector.Integration.WebApi;
@@ -66,6 +67,7 @@
             container.Register<IUpdateRepository<Logic.CQ.Product.Put.Command>, Logic.CQ.Product.Put.Repository>(lifeStyle);
             container.Register<Logic.CQ.Product.Post.Interfaces.IRepository, Logic.CQ.Product.Post.Repository>(lifeStyle);
             container.Register<IGetRepository<Logic.CQ.Product.Get.Product>, Logic.CQ.Product.Get.Repository>(lifeStyle);
+            container.Register<IProductsFilterPagedCriteriaProvider, ProductsFilterPagedCriteriaProvider>(lifeStyle);
         }
 
         private static IEnumerable<Assembly> GetAssemblies()
