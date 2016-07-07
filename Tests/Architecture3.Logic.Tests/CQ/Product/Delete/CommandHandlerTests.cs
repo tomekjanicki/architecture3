@@ -46,6 +46,33 @@
             result.Error.ErrorType.ShouldBe(ErrorType.NotFound);
         }
 
+        [Test]
+        public void InvalidVersion_ShouldBeFaliure()
+        {
+            var command = GetValidCommand();
+            _repository.ExistsById(Arg.Any<NonNegativeInt>()).Returns(true);
+            _repository.GetRowVersionById(Arg.Any<NonNegativeInt>()).Returns((NonEmptyString)$"{command.IdVersion.Version.Value}X");
+
+            var result = _commandHandler.Handle(command);
+
+            result.IsFailure.ShouldBeTrue();
+            result.Error.ErrorType.ShouldBe(ErrorType.PreconditionFailed);
+        }
+
+        [Test]
+        public void CantDelete_ShouldBeFaliure()
+        {
+            var command = GetValidCommand();
+            _repository.ExistsById(Arg.Any<NonNegativeInt>()).Returns(true);
+            _repository.GetRowVersionById(Arg.Any<NonNegativeInt>()).Returns(command.IdVersion.Version);
+            _repository.CanBeDeleted(Arg.Any<NonNegativeInt>()).Returns(false);
+
+            var result = _commandHandler.Handle(command);
+
+            result.IsFailure.ShouldBeTrue();
+            result.Error.ErrorType.ShouldBe(ErrorType.BadRequest);
+        }
+
         private static Command GetValidCommand()
         {
             var commandResult = Command.Create(1, "x");
