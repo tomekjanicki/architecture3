@@ -7,6 +7,7 @@ namespace Architecture3.WebApi.Client
     using System.Net.Http.Headers;
     using System.Threading.Tasks;
     using Architecture3.Types;
+    using Architecture3.Types.FunctionalExtensions;
 
     public static class Helper
     {
@@ -28,6 +29,33 @@ namespace Architecture3.WebApi.Client
         {
             var content = await httpResponseMessage.Content.ReadAsStringAsync().ConfigureAwait(false);
             return (NonEmptyString)$"Failed with {httpResponseMessage.StatusCode} {content}";
+        }
+
+        public static async Task<Result<T, NonEmptyString>> GetFailMessage<T>(HttpResponseMessage httpResponseMessage)
+        {
+            var message = await GetErrorMessage(httpResponseMessage).ConfigureAwait(false);
+            return Result<T, NonEmptyString>.Fail(message);
+        }
+
+        public static async Task<Result<NonEmptyString>> GetFailMessage(HttpResponseMessage httpResponseMessage)
+        {
+            var message = await GetErrorMessage(httpResponseMessage).ConfigureAwait(false);
+            return Result<NonEmptyString>.Fail(message);
+        }
+
+        public static Result<T, NonEmptyString> GetFailMessage<T>(NonEmptyString nonEmptyString)
+        {
+            return Result<T, NonEmptyString>.Fail(nonEmptyString);
+        }
+
+        public static Result<NonEmptyString> GetOkMessage()
+        {
+            return Result<NonEmptyString>.Ok();
+        }
+
+        public static Result<T, NonEmptyString> GetOkMessage<T>(T value)
+        {
+            return Result<T, NonEmptyString>.Ok(value);
         }
     }
 }

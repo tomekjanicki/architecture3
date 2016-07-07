@@ -33,12 +33,12 @@
                 var response = await client.GetAsync(uri).ConfigureAwait(false);
                 if (!response.IsSuccessStatusCode)
                 {
-                    return Result<Paged<Dtos.Product.FilterPaged.Product>, NonEmptyString>.Fail(await Helper.GetErrorMessage(response).ConfigureAwait(false));
+                    return await Helper.GetFailMessage<Paged<Dtos.Product.FilterPaged.Product>>(response).ConfigureAwait(false);
                 }
 
                 var data = await response.Content.ReadAsAsync<Paged<Dtos.Product.FilterPaged.Product>>().ConfigureAwait(false);
 
-                return Result<Paged<Dtos.Product.FilterPaged.Product>, NonEmptyString>.Ok(data);
+                return Helper.GetOkMessage(data);
             }
         }
 
@@ -50,12 +50,12 @@
                 var response = await client.GetAsync(uri).ConfigureAwait(false);
                 if (!response.IsSuccessStatusCode)
                 {
-                    return Result<Dtos.Product.Get.Product, NonEmptyString>.Fail(await Helper.GetErrorMessage(response).ConfigureAwait(false));
+                    return await Helper.GetFailMessage<Dtos.Product.Get.Product>(response).ConfigureAwait(false);
                 }
 
                 var data = await response.Content.ReadAsAsync<Dtos.Product.Get.Product>().ConfigureAwait(false);
 
-                return Result<Dtos.Product.Get.Product, NonEmptyString>.Ok(data);
+                return Helper.GetOkMessage(data);
             }
         }
 
@@ -69,7 +69,7 @@
                 };
                 var uri = new Uri(_baseUri, $"/products/{id}{Helper.GetEncodedParametersString(parameters)}");
                 var response = await client.DeleteAsync(uri).ConfigureAwait(false);
-                return response.IsSuccessStatusCode ? Result<NonEmptyString>.Ok() : Result<NonEmptyString>.Fail(await Helper.GetErrorMessage(response).ConfigureAwait(false));
+                return response.IsSuccessStatusCode ? Helper.GetOkMessage() : await Helper.GetFailMessage(response).ConfigureAwait(false);
             }
         }
 
@@ -81,19 +81,14 @@
                 var response = await client.GetAsync(uri).ConfigureAwait(false);
                 if (!response.IsSuccessStatusCode)
                 {
-                    return Result<string, NonEmptyString>.Fail(await Helper.GetErrorMessage(response).ConfigureAwait(false));
+                    return await Helper.GetFailMessage<string>(response).ConfigureAwait(false);
                 }
 
                 var data = await response.Content.ReadAsStringAsync().ConfigureAwait(false);
 
                 var dataResult = NonEmptyString.Create(data, (NonEmptyString)"Field");
 
-                if (dataResult.IsFailure)
-                {
-                    return Result<string, NonEmptyString>.Fail(dataResult.Error);
-                }
-
-                return Result<string, NonEmptyString>.Ok(dataResult.Value);
+                return dataResult.IsFailure ? Helper.GetFailMessage<string>(dataResult.Error) : Helper.GetOkMessage<string>(dataResult.Value);
             }
         }
 
@@ -103,7 +98,7 @@
             {
                 var uri = new Uri(_baseUri, $"/products/{id}");
                 var response = await client.PutAsJsonAsync(uri, product).ConfigureAwait(false);
-                return response.IsSuccessStatusCode ? Result<NonEmptyString>.Ok() : Result<NonEmptyString>.Fail(await Helper.GetErrorMessage(response).ConfigureAwait(false));
+                return response.IsSuccessStatusCode ? Helper.GetOkMessage() : await Helper.GetFailMessage(response).ConfigureAwait(false);
             }
         }
     }
