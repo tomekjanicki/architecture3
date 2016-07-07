@@ -63,6 +63,10 @@
     <Analyzer Include="..\..\packages\StyleCop.Analyzers.1.0.0\analyzers\dotnet\cs\StyleCop.Analyzers.dll" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Architecture3.Types\Architecture3.Types.csproj">
+      <Project>{9033BA8A-C531-4DCD-A342-A4B57DDD11D9}</Project>
+      <Name>Architecture3.Types</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Architecture3.WebApi.Client\Architecture3.WebApi.Client.csproj">
       <Project>{800fd538-82d0-43df-8d2c-618c2327b15e}</Project>
       <Name>Architecture3.WebApi.Client</Name>
