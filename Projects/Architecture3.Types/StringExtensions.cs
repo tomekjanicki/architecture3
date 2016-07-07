@@ -1,4 +1,4 @@
-﻿namespace Architecture3.Common
+﻿namespace Architecture3.Types
 {
     using Architecture3.Types.FunctionalExtensions;
     using NullGuard;

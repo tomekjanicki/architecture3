@@ -13,7 +13,7 @@ namespace Architecture3.WebApi.Client
     {
         public static string GetEncodedParametersString(ICollection<Tuple<NonEmptyString, Maybe<string>>> parameters)
         {
-            var array = parameters.Select(tuple => $"{Uri.EscapeDataString(tuple.Item1)}={Uri.EscapeDataString(tuple.Item2.HasNoValue ? string.Empty : tuple.Item2.Value)}").ToArray();
+            var array = parameters.Select(tuple => $"{Uri.EscapeDataString(tuple.Item1)}={Uri.EscapeDataString(tuple.Item2.ToEmptyString())}").ToArray();
             return array.Length == 0 ? string.Empty : $"?{string.Join("&", array)}";
         }
 

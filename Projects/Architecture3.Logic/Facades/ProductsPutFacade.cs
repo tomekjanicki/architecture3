@@ -1,10 +1,10 @@
 namespace Architecture3.Logic.Facades
 {
-    using Architecture3.Common;
     using Architecture3.Common.Handlers.Interfaces;
     using Architecture3.Logic.CQ.Product.Put;
     using Architecture3.Logic.Facades.Base;
     using Architecture3.Logic.Shared;
+    using Architecture3.Types;
     using Architecture3.Types.FunctionalExtensions;
     using Architecture3.WebApi.Dtos.Product.Put;
 

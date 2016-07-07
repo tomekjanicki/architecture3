@@ -2,8 +2,8 @@
 {
     using System.Net;
     using System.Web.Http;
-    using Architecture3.Common;
     using Architecture3.Logic.Facades;
+    using Architecture3.Types;
     using Architecture3.WebApi.Controllers.Base;
     using Architecture3.WebApi.Dtos;
     using Architecture3.WebApi.Dtos.Product.Put;

@@ -1,6 +1,5 @@
 namespace Architecture3.Logic.Facades
 {
-    using Architecture3.Common;
     using Architecture3.Common.Handlers.Interfaces;
     using Architecture3.Logic.CQ.Product.Post;
     using Architecture3.Logic.Facades.Base;
