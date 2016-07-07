@@ -1,28 +1,30 @@
 ﻿namespace Architecture3.Logic.CQ.Product.Get
 {
     using System;
+    using Architecture3.Logic.CQ.Product.ValueObjects;
+    using Architecture3.Types;
 
-    public sealed class Product
+    public class Product
     {
         public Product()
         {
-            VersionPrivate = new byte[0];
+            VersionPrivate = new byte[] { 1 };
         }
 
-        public int Id { get; set; }
+        public NonNegativeInt Id { get; set; }
 
-        public string Code { get; set; }
+        public Code Code { get; set; }
 
-        public string Name { get; set; }
+        public Name Name { get; set; }
 
-        public decimal Price { get; set; }
+        public NonNegativeDecimal Price { get; set; }
 
         public DateTime? Date { get; set; }
 
         public bool CanDelete { get; set; }
 
-        public string Version => Convert.ToBase64String(VersionPrivate);
+        public NonEmptyString Version => (NonEmptyString)Convert.ToBase64String(VersionPrivate);
 
-        private byte[] VersionPrivate { get; }
+        protected byte[] VersionPrivate { get; set; }
     }
 }

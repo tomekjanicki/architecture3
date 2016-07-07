@@ -31,7 +31,7 @@
         {
             using (var connection = _dbConnectionProvider.GetOpenDbConnection())
             {
-                connection.Execute("UPDATE DBO.PRODUCTS WHERE ID = @ID", new { command.IdVersion.Id });
+                connection.Execute("UPDATE DBO.PRODUCTS WHERE ID = @ID", new { command.IdVersion.Id.Value });
             }
         }
     }

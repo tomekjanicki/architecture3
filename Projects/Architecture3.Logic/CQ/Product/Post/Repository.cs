@@ -19,7 +19,7 @@
         {
             using (var connection = _dbConnectionProvider.GetOpenDbConnection())
             {
-                return connection.Query<bool>("X", new { code }).Single();
+                return connection.Query<bool>("X", new { code = code.Value }).Single();
             }
         }
 

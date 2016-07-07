@@ -32,7 +32,7 @@
         {
             using (var connection = _dbConnectionProvider.GetOpenDbConnection())
             {
-                return connection.Query<bool>("x", new { id }).Single();
+                return connection.Query<bool>("x", new { id = id.Value }).Single();
             }
         }
 
@@ -40,7 +40,7 @@
         {
             using (var connection = _dbConnectionProvider.GetOpenDbConnection())
             {
-                connection.Execute("DELETE FROM DBO.PRODUCTS WHERE ID = @ID", new { id });
+                connection.Execute("DELETE FROM DBO.PRODUCTS WHERE ID = @ID", new { id = id.Value });
             }
         }
     }

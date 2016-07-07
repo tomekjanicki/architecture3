@@ -20,7 +20,7 @@
         {
             using (var connection = _dbConnectionProvider.GetOpenDbConnection())
             {
-                return connection.Query<bool>("x", new { id }).Single();
+                return connection.Query<bool>("x", new { id.Value }).Single();
             }
         }
 
@@ -28,7 +28,7 @@
         {
             using (var connection = _dbConnectionProvider.GetOpenDbConnection())
             {
-                var result = connection.Query<byte[]>("SELECT VERSION FROM DBO.PRODUCTS WHERE ID = @ID", new { id }).SingleOrDefault();
+                var result = connection.Query<byte[]>("SELECT VERSION FROM DBO.PRODUCTS WHERE ID = @ID", new { id = id.Value }).SingleOrDefault();
                 return result != null ? (NonEmptyString)Convert.ToBase64String(result) : null;
             }
         }

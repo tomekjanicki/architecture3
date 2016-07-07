@@ -1,6 +1,8 @@
 ﻿namespace Architecture3.Logic.Tests
 {
     using Architecture3.Logic.CQ.Product.Get;
+    using Architecture3.Logic.CQ.Product.ValueObjects;
+    using Architecture3.Types;
     using AutoMapper;
     using NUnit.Framework;
     using Shouldly;
@@ -23,17 +25,20 @@
             const int id = 1;
             const string code = "code";
             const string name = "name";
+            const decimal price = 5.22M;
             var source = new Product
             {
-                Id = id,
-                Code = code,
-                Name = name
+                Id = (NonNegativeInt)id,
+                Code = (Code)code,
+                Name = (Name)name,
+                Price = (NonNegativeDecimal)price
             };
             var result = _mapper.Map<WebApi.Dtos.Product.Get.Product>(source);
             result.Id.ShouldBe(id);
             result.Code.ShouldBe(code);
             result.Name.ShouldBe(name);
-            result.Version.ShouldBe(string.Empty);
+            result.Price.ShouldBe(price);
+            result.Version.ShouldNotBeNullOrEmpty();
         }
     }
 }

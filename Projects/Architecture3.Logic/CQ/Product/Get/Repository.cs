@@ -22,7 +22,7 @@
         {
             using (var connection = _dbConnectionProvider.GetOpenDbConnection())
             {
-                var select = connection.Query<Product>(SelectQuery, new { id });
+                var select = connection.Query<Product>(SelectQuery, new { id = id.Value });
                 return select.SingleOrDefault();
             }
         }

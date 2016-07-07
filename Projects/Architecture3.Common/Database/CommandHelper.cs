@@ -18,8 +18,8 @@ namespace Architecture3.Common.Database
         public static DataResult GetPagedFragment(TopSkip topSkip, string sort)
         {
             var dp = new DynamicParameters();
-            dp.Add("SKIP", topSkip.Skip);
-            dp.Add("TOP", topSkip.Top);
+            dp.Add("SKIP", topSkip.Skip.Value);
+            dp.Add("TOP", topSkip.Top.Value);
             return new DataResult((NonEmptyString)$@"{GetSort(sort)} OFFSET @SKIP ROWS FETCH NEXT @TOP ROWS ONLY", dp);
         }
 
