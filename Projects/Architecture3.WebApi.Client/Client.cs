@@ -59,13 +59,13 @@
             }
         }
 
-        public async Task<Result<NonEmptyString>> ProductsDelete(int id, NonEmptyString version)
+        public async Task<Result<NonEmptyString>> ProductsDelete(int id, string version)
         {
             using (var client = Helper.GetConfiguredHttpClient())
             {
                 var parameters = new List<Tuple<NonEmptyString, string>>
                 {
-                    new Tuple<NonEmptyString, string>((NonEmptyString)"version", version.Value)
+                    new Tuple<NonEmptyString, string>((NonEmptyString)"version", version)
                 };
                 var uri = new Uri(_baseUri, $"/products/{id}{Helper.GetEncodedParametersString(parameters)}");
                 var response = await client.DeleteAsync(uri).ConfigureAwait(false);
@@ -73,7 +73,7 @@
             }
         }
 
-        public async Task<Result<NonEmptyString, NonEmptyString>> VersionGet()
+        public async Task<Result<string, NonEmptyString>> VersionGet()
         {
             using (var client = Helper.GetConfiguredHttpClient())
             {
@@ -81,7 +81,7 @@
                 var response = await client.GetAsync(uri).ConfigureAwait(false);
                 if (!response.IsSuccessStatusCode)
                 {
-                    return Result<NonEmptyString, NonEmptyString>.Fail(await Helper.GetErrorMessage(response).ConfigureAwait(false));
+                    return Result<string, NonEmptyString>.Fail(await Helper.GetErrorMessage(response).ConfigureAwait(false));
                 }
 
                 var data = await response.Content.ReadAsStringAsync().ConfigureAwait(false);
@@ -90,10 +90,10 @@
 
                 if (dataResult.IsFailure)
                 {
-                    return Result<NonEmptyString, NonEmptyString>.Fail(dataResult.Error);
+                    return Result<string, NonEmptyString>.Fail(dataResult.Error);
                 }
 
-                return Result<NonEmptyString, NonEmptyString>.Ok(dataResult.Value);
+                return Result<string, NonEmptyString>.Ok(dataResult.Value);
             }
         }
 
