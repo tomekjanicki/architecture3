@@ -4,6 +4,7 @@
     using Architecture3.Logic.CQ.Product.Post.Interfaces;
     using Architecture3.Logic.CQ.Product.ValueObjects;
     using Architecture3.Logic.Database.Interfaces;
+    using Architecture3.Types;
     using Dapper;
 
     public class Repository : IRepository
@@ -23,7 +24,7 @@
             }
         }
 
-        public int Insert(Command command)
+        public NonNegativeInt Insert(Command command)
         {
             throw new System.NotImplementedException();
         }

@@ -3,31 +3,29 @@ namespace Architecture3.Logic.Facades
     using Architecture3.Common;
     using Architecture3.Common.Handlers.Interfaces;
     using Architecture3.Logic.CQ.Product.Post;
+    using Architecture3.Logic.Facades.Base;
     using Architecture3.Logic.Shared;
+    using Architecture3.Types;
     using Architecture3.Types.FunctionalExtensions;
     using Architecture3.WebApi.Dtos.Product.Post;
+    using AutoMapper;
 
     public sealed class ProductsPostFacade
     {
         private readonly IMediator _mediator;
+        private readonly IMapper _mapper;
 
-        public ProductsPostFacade(IMediator mediator)
+        public ProductsPostFacade(IMediator mediator, IMapper mapper)
         {
             _mediator = mediator;
+            _mapper = mapper;
         }
 
         public Result<int, Error> Post(Product product)
         {
             var commandResult = Command.Create(product.Name.ToEmptyString(), product.Code.ToEmptyString(), product.Price);
 
-            if (commandResult.IsFailure)
-            {
-                return commandResult.Error.ToBadRequest<int>();
-            }
-
-            var result = _mediator.Send(commandResult.Value);
-
-            return result;
+            return Helper.Post<int, Command, NonNegativeInt>(_mediator, _mapper, commandResult);
         }
     }
 }

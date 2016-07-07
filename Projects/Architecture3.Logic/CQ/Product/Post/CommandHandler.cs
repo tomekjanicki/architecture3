@@ -6,7 +6,7 @@
     using Architecture3.Types;
     using Architecture3.Types.FunctionalExtensions;
 
-    public sealed class CommandHandler : IRequestHandler<Command, Result<int, Error>>
+    public sealed class CommandHandler : IRequestHandler<Command, Result<NonNegativeInt, Error>>
     {
         private readonly IRepository _repository;
 
@@ -15,18 +15,18 @@
             _repository = repository;
         }
 
-        public Result<int, Error> Handle(Command message)
+        public Result<NonNegativeInt, Error> Handle(Command message)
         {
             var codeExists = _repository.CodeExists(message.Code);
 
             if (codeExists)
             {
-                return ((NonEmptyString)"Code already defined").ToBadRequest<int>();
+                return ((NonEmptyString)"Code already defined").ToBadRequest<NonNegativeInt>();
             }
 
             var id = _repository.Insert(message);
 
-            return Result<int, Error>.Ok(id);
+            return Result<NonNegativeInt, Error>.Ok(id);
         }
     }
 }

@@ -3,6 +3,7 @@ namespace Architecture3.Logic.Facades
     using Architecture3.Common;
     using Architecture3.Common.Handlers.Interfaces;
     using Architecture3.Logic.CQ.Product.Put;
+    using Architecture3.Logic.Facades.Base;
     using Architecture3.Logic.Shared;
     using Architecture3.Types.FunctionalExtensions;
     using Architecture3.WebApi.Dtos.Product.Put;
@@ -20,14 +21,7 @@ namespace Architecture3.Logic.Facades
         {
             var commandResult = Command.Create(id, product.Version.ToEmptyString(), product.Price, product.Name.ToEmptyString());
 
-            if (commandResult.IsFailure)
-            {
-                return commandResult.Error.ToBadRequest();
-            }
-
-            var result = _mediator.Send(commandResult.Value);
-
-            return result;
+            return Helper.Put(_mediator, commandResult);
         }
     }
 }

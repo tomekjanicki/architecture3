@@ -2,6 +2,7 @@
 {
     using Architecture3.Common.Handlers.Interfaces;
     using Architecture3.Logic.CQ.Product.FilterPaged;
+    using Architecture3.Logic.Facades.Base;
     using Architecture3.Logic.Shared;
     using Architecture3.Types.FunctionalExtensions;
     using Architecture3.WebApi.Dtos;
@@ -22,16 +23,7 @@
         {
             var queryResult = Query.Create(orderBy, skip, top, filter);
 
-            if (queryResult.IsFailure)
-            {
-                return queryResult.Error.ToBadRequest<Paged<WebApi.Dtos.Product.FilterPaged.Product>>();
-            }
-
-            var result = _mediator.Send(queryResult.Value);
-
-            var data = _mapper.Map<Paged<WebApi.Dtos.Product.FilterPaged.Product>>(result);
-
-            return Result<Paged<WebApi.Dtos.Product.FilterPaged.Product>, Error>.Ok(data);
+            return Helper.GetItems<Paged<WebApi.Dtos.Product.FilterPaged.Product>, Query, Common.ValueObjects.Paged<Product>>(_mediator, _mapper, queryResult);
         }
     }
 }

@@ -2,6 +2,7 @@
 {
     using Architecture3.Common.Handlers.Interfaces;
     using Architecture3.Logic.CQ.Product.Get;
+    using Architecture3.Logic.Facades.Base;
     using Architecture3.Logic.Shared;
     using Architecture3.Types.FunctionalExtensions;
     using AutoMapper;
@@ -21,21 +22,7 @@
         {
             var queryResult = Query.Create(id);
 
-            if (queryResult.IsFailure)
-            {
-                return queryResult.Error.ToBadRequest<WebApi.Dtos.Product.Get.Product>();
-            }
-
-            var result = _mediator.Send(queryResult.Value);
-
-            if (result.IsFailure)
-            {
-                return Result<WebApi.Dtos.Product.Get.Product, Error>.Fail(result.Error);
-            }
-
-            var data = _mapper.Map<WebApi.Dtos.Product.Get.Product>(result.Value);
-
-            return Result<WebApi.Dtos.Product.Get.Product, Error>.Ok(data);
+            return Helper.GetItem<WebApi.Dtos.Product.Get.Product, Query, Product>(_mediator, _mapper, queryResult);
         }
     }
 }

@@ -2,6 +2,7 @@
 {
     using Architecture3.Common.Handlers.Interfaces;
     using Architecture3.Logic.CQ.Product.Delete;
+    using Architecture3.Logic.Facades.Base;
     using Architecture3.Logic.Shared;
     using Architecture3.Types.FunctionalExtensions;
 
@@ -18,14 +19,7 @@
         {
             var commandResult = Command.Create(id, version);
 
-            if (commandResult.IsFailure)
-            {
-                return commandResult.Error.ToBadRequest();
-            }
-
-            var result = _mediator.Send(commandResult.Value);
-
-            return result;
+            return Helper.Delete(_mediator, commandResult);
         }
     }
 }
