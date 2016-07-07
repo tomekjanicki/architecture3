@@ -2,10 +2,12 @@
 {
     using System;
     using System.Collections.Generic;
+    using System.Net;
     using System.Net.Http;
     using System.Threading.Tasks;
     using Architecture3.WebApi.Client.Interfaces;
     using Architecture3.WebApi.Dtos;
+    using Architecture3.WebApi.Dtos.Product.Get;
     using Types;
     using Types.FunctionalExtensions;
 
@@ -42,24 +44,29 @@
             }
         }
 
-        public async Task<Result<Dtos.Product.Get.Product, NonEmptyString>> ProductsGet(int id)
+        public async Task<Result<Maybe<Dtos.Product.Get.Product>, NonEmptyString>> ProductsGet(int id)
         {
             using (var client = Helper.GetConfiguredHttpClient())
             {
                 var uri = new Uri(_baseUri, $"/products/{id}");
                 var response = await client.GetAsync(uri).ConfigureAwait(false);
+                if (response.StatusCode == HttpStatusCode.NotFound)
+                {
+                    return Result<Maybe<Product>, NonEmptyString>.Ok(null);
+                }
+
                 if (!response.IsSuccessStatusCode)
                 {
-                    return await Helper.GetFailMessage<Dtos.Product.Get.Product>(response).ConfigureAwait(false);
+                    return await Helper.GetFailMessage<Maybe<Dtos.Product.Get.Product>>(response).ConfigureAwait(false);
                 }
 
                 var data = await response.Content.ReadAsAsync<Dtos.Product.Get.Product>().ConfigureAwait(false);
 
-                return Helper.GetOkMessage(data);
+                return Helper.GetOkMessage<Maybe<Dtos.Product.Get.Product>>(data);
             }
         }
 
-        public async Task<Result<NonEmptyString>> ProductsDelete(int id, string version)
+        public async Task<Result<NonEmptyString>> ProductsDelete(int id, NonEmptyString version)
         {
             using (var client = Helper.GetConfiguredHttpClient())
             {
@@ -73,7 +80,7 @@
             }
         }
 
-        public async Task<Result<string, NonEmptyString>> VersionGet()
+        public async Task<Result<NonEmptyString, NonEmptyString>> VersionGet()
         {
             using (var client = Helper.GetConfiguredHttpClient())
             {
@@ -81,14 +88,14 @@
                 var response = await client.GetAsync(uri).ConfigureAwait(false);
                 if (!response.IsSuccessStatusCode)
                 {
-                    return await Helper.GetFailMessage<string>(response).ConfigureAwait(false);
+                    return await Helper.GetFailMessage<NonEmptyString>(response).ConfigureAwait(false);
                 }
 
                 var data = await response.Content.ReadAsStringAsync().ConfigureAwait(false);
 
                 var dataResult = NonEmptyString.Create(data, (NonEmptyString)"Field");
 
-                return dataResult.IsFailure ? Helper.GetFailMessage<string>(dataResult.Error) : Helper.GetOkMessage<string>(dataResult.Value);
+                return dataResult.IsFailure ? Helper.GetFailMessage<NonEmptyString>(dataResult.Error) : Helper.GetOkMessage(dataResult.Value);
             }
         }
 

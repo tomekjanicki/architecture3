@@ -10,11 +10,11 @@
     {
         Task<Result<Paged<Product>, NonEmptyString>> ProductsFilterPaged(int top, int skip, string filter, string orderBy);
 
-        Task<Result<Dtos.Product.Get.Product, NonEmptyString>> ProductsGet(int id);
+        Task<Result<Maybe<Dtos.Product.Get.Product>, NonEmptyString>> ProductsGet(int id);
 
-        Task<Result<NonEmptyString>> ProductsDelete(int id, string version);
+        Task<Result<NonEmptyString>> ProductsDelete(int id, NonEmptyString version);
 
-        Task<Result<string, NonEmptyString>> VersionGet();
+        Task<Result<NonEmptyString, NonEmptyString>> VersionGet();
 
         Task<Result<NonEmptyString>> ProductsPut(int id, Dtos.Product.Put.Product product);
     }
