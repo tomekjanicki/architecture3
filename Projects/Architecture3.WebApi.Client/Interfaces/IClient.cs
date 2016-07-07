@@ -8,7 +8,7 @@
 
     public interface IClient
     {
-        Task<Result<Paged<Product>, NonEmptyString>> ProductsFilterPaged(int top, int skip, Maybe<string> filter, Maybe<string> orderBy);
+        Task<Result<Paged<Product>, NonEmptyString>> ProductsFilterPaged(int top, int skip, string filter, string orderBy);
 
         Task<Result<Dtos.Product.Get.Product, NonEmptyString>> ProductsGet(int id);
 

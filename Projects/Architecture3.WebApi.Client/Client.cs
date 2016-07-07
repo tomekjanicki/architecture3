@@ -18,16 +18,16 @@
             _baseUri = baseUri;
         }
 
-        public async Task<Result<Paged<Dtos.Product.FilterPaged.Product>, NonEmptyString>> ProductsFilterPaged(int top, int skip, Maybe<string> filter, Maybe<string> orderBy)
+        public async Task<Result<Paged<Dtos.Product.FilterPaged.Product>, NonEmptyString>> ProductsFilterPaged(int top, int skip, string filter, string orderBy)
         {
             using (var client = Helper.GetConfiguredHttpClient())
             {
-                var parameters = new List<Tuple<NonEmptyString, Maybe<string>>>
+                var parameters = new List<Tuple<NonEmptyString, string>>
                 {
-                    new Tuple<NonEmptyString, Maybe<string>>((NonEmptyString)"top", top.ToString()),
-                    new Tuple<NonEmptyString, Maybe<string>>((NonEmptyString)"skip", skip.ToString()),
-                    new Tuple<NonEmptyString, Maybe<string>>((NonEmptyString)"filter", filter),
-                    new Tuple<NonEmptyString, Maybe<string>>((NonEmptyString)"orderBy", orderBy)
+                    new Tuple<NonEmptyString, string>((NonEmptyString)"top", top.ToString()),
+                    new Tuple<NonEmptyString, string>((NonEmptyString)"skip", skip.ToString()),
+                    new Tuple<NonEmptyString, string>((NonEmptyString)"filter", filter),
+                    new Tuple<NonEmptyString, string>((NonEmptyString)"orderBy", orderBy)
                 };
                 var uri = new Uri(_baseUri, $"/products/{Helper.GetEncodedParametersString(parameters)}");
                 var response = await client.GetAsync(uri).ConfigureAwait(false);
@@ -63,9 +63,9 @@
         {
             using (var client = Helper.GetConfiguredHttpClient())
             {
-                var parameters = new List<Tuple<NonEmptyString, Maybe<string>>>
+                var parameters = new List<Tuple<NonEmptyString, string>>
                 {
-                    new Tuple<NonEmptyString, Maybe<string>>((NonEmptyString)"version", version.Value)
+                    new Tuple<NonEmptyString, string>((NonEmptyString)"version", version.Value)
                 };
                 var uri = new Uri(_baseUri, $"/products/{id}{Helper.GetEncodedParametersString(parameters)}");
                 var response = await client.DeleteAsync(uri).ConfigureAwait(false);

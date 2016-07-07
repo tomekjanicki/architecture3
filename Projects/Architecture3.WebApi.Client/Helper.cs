@@ -7,13 +7,12 @@ namespace Architecture3.WebApi.Client
     using System.Net.Http.Headers;
     using System.Threading.Tasks;
     using Architecture3.Types;
-    using Architecture3.Types.FunctionalExtensions;
 
     public static class Helper
     {
-        public static string GetEncodedParametersString(ICollection<Tuple<NonEmptyString, Maybe<string>>> parameters)
+        public static string GetEncodedParametersString(ICollection<Tuple<NonEmptyString, string>> parameters)
         {
-            var array = parameters.Select(tuple => $"{Uri.EscapeDataString(tuple.Item1)}={Uri.EscapeDataString(tuple.Item2.ToEmptyString())}").ToArray();
+            var array = parameters.Select(tuple => $"{Uri.EscapeDataString(tuple.Item1)}={Uri.EscapeDataString(tuple.Item2)}").ToArray();
             return array.Length == 0 ? string.Empty : $"?{string.Join("&", array)}";
         }
 
