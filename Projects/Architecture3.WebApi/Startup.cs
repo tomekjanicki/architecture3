@@ -13,7 +13,6 @@
             RegisterRoutes.Execute(httpConfiguration);
             RegisterMiscs.Execute(httpConfiguration);
             appBuilder.UseWebApi(httpConfiguration);
-            appBuilder.UseWelcomePage();
         }
     }
 }
