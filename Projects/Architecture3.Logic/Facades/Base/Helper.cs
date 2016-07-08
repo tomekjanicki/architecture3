@@ -13,7 +13,7 @@
         {
             if (queryResult.IsFailure)
             {
-                return queryResult.Error.ToBadRequest<TDto>();
+                return queryResult.Error.ToGeneric<TDto>();
             }
 
             var result = mediator.Send(queryResult.Value);
@@ -39,7 +39,7 @@
         {
             if (queryResult.IsFailure)
             {
-                return queryResult.Error.ToBadRequest<TDto>();
+                return queryResult.Error.ToGeneric<TDto>();
             }
 
             var result = mediator.Send(queryResult.Value);
@@ -54,7 +54,7 @@
         {
             if (commandResult.IsFailure)
             {
-                return commandResult.Error.ToBadRequest();
+                return commandResult.Error.ToGeneric();
             }
 
             var result = mediator.Send(commandResult.Value);

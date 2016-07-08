@@ -21,7 +21,7 @@
 
             if (codeExists)
             {
-                return ((NonEmptyString)"Code already defined").ToBadRequest<NonNegativeInt>();
+                return ((NonEmptyString)"Code already defined").ToGeneric<NonNegativeInt>();
             }
 
             var id = _repository.Insert(message);

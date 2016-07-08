@@ -5,12 +5,12 @@
 
     public static class ErrorResultExtensions
     {
-        public static IResult<Error> ToBadRequest(this NonEmptyString message)
+        public static IResult<Error> ToGeneric(this NonEmptyString message)
         {
             return Result<Error>.Fail(Error.CreateGeneric(message));
         }
 
-        public static IResult<T, Error> ToBadRequest<T>(this NonEmptyString message)
+        public static IResult<T, Error> ToGeneric<T>(this NonEmptyString message)
         {
             return Result<T, Error>.Fail(Error.CreateGeneric(message));
         }

@@ -40,14 +40,14 @@
             }
             else
             {
-                return ((NonEmptyString)"GetRowVersionById returned no rows").ToBadRequest();
+                return ((NonEmptyString)"GetRowVersionById returned no rows").ToGeneric();
             }
 
             var result = BeforeUpdate(message);
 
             if (result.IsFailure)
             {
-                return result.Error.ToBadRequest();
+                return result.Error.ToGeneric();
             }
 
             UpdateRepository.Update(message);
