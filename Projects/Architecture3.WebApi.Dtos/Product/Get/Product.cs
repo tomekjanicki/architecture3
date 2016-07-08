@@ -1,4 +1,4 @@
-﻿namespace Architecture3.WebApi.Dtos.Product.Get
+﻿namespace Architecture3.Web.Dtos.Product.Get
 {
     using System;
 

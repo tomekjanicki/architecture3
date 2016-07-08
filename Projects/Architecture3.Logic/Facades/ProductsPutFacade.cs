@@ -6,7 +6,7 @@ namespace Architecture3.Logic.Facades
     using Architecture3.Logic.Shared;
     using Architecture3.Types;
     using Architecture3.Types.FunctionalExtensions;
-    using Architecture3.WebApi.Dtos.Product.Put;
+    using Architecture3.Web.Dtos.Product.Put;
 
     public sealed class ProductsPutFacade
     {

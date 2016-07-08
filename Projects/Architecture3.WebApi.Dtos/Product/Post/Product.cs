@@ -1,4 +1,4 @@
-﻿namespace Architecture3.WebApi.Dtos.Product.Post
+﻿namespace Architecture3.Web.Dtos.Product.Post
 {
     public class Product
     {

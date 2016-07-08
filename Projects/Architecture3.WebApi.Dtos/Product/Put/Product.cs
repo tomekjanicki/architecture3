@@ -1,4 +1,4 @@
-﻿namespace Architecture3.WebApi.Dtos.Product.Put
+﻿namespace Architecture3.Web.Dtos.Product.Put
 {
     public class Product
     {

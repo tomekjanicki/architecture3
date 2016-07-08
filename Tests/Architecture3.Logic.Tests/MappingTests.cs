@@ -33,7 +33,7 @@
                 Name = (Name)name,
                 Price = (NonNegativeDecimal)price
             };
-            var result = _mapper.Map<WebApi.Dtos.Product.Get.Product>(source);
+            var result = _mapper.Map<Web.Dtos.Product.Get.Product>(source);
             result.Id.ShouldBe(id);
             result.Code.ShouldBe(code);
             result.Name.ShouldBe(name);

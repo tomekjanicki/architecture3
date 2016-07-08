@@ -5,7 +5,7 @@
     using Architecture3.Logic.Facades.Base;
     using Architecture3.Logic.Shared;
     using Architecture3.Types.FunctionalExtensions;
-    using Architecture3.WebApi.Dtos;
+    using Architecture3.Web.Dtos;
     using AutoMapper;
 
     public sealed class ProductsFilterPagedFacade
@@ -19,11 +19,11 @@
             _mapper = mapper;
         }
 
-        public IResult<Paged<WebApi.Dtos.Product.FilterPaged.Product>, Error> FilterPaged(int skip, int top, string filter, string orderBy)
+        public IResult<Paged<Web.Dtos.Product.FilterPaged.Product>, Error> FilterPaged(int skip, int top, string filter, string orderBy)
         {
             var queryResult = Query.Create(orderBy, skip, top, filter);
 
-            return Helper.GetItems<Paged<WebApi.Dtos.Product.FilterPaged.Product>, Query, Common.ValueObjects.Paged<Product>>(_mediator, _mapper, queryResult);
+            return Helper.GetItems<Paged<Web.Dtos.Product.FilterPaged.Product>, Query, Common.ValueObjects.Paged<Product>>(_mediator, _mapper, queryResult);
         }
     }
 }

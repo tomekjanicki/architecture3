@@ -7,8 +7,8 @@
     <ProjectGuid>{D383FC01-3AB8-4106-98EA-543607ACE0E9}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Architecture3.WebApi.Dtos</RootNamespace>
-    <AssemblyName>Architecture3.WebApi.Dtos</AssemblyName>
+    <RootNamespace>Architecture3.Web.Dtos</RootNamespace>
+    <AssemblyName>Architecture3.Web.Dtos</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>

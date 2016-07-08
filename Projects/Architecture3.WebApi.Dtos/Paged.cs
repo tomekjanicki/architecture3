@@ -1,4 +1,4 @@
-namespace Architecture3.WebApi.Dtos
+namespace Architecture3.Web.Dtos
 {
     using System.Collections.Generic;
 

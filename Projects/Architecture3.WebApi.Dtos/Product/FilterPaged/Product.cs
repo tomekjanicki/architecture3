@@ -1,4 +1,4 @@
-﻿namespace Architecture3.WebApi.Dtos.Product.FilterPaged
+﻿namespace Architecture3.Web.Dtos.Product.FilterPaged
 {
     using System;
 

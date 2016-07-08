@@ -18,11 +18,11 @@
             _mapper = mapper;
         }
 
-        public IResult<WebApi.Dtos.Product.Get.Product, Error> Get(int id)
+        public IResult<Web.Dtos.Product.Get.Product, Error> Get(int id)
         {
             var queryResult = Query.Create(id);
 
-            return Helper.GetItem<WebApi.Dtos.Product.Get.Product, Query, Product>(_mediator, _mapper, queryResult);
+            return Helper.GetItem<Web.Dtos.Product.Get.Product, Query, Product>(_mediator, _mapper, queryResult);
         }
     }
 }

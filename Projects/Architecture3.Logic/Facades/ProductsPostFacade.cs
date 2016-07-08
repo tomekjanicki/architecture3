@@ -6,7 +6,7 @@ namespace Architecture3.Logic.Facades
     using Architecture3.Logic.Shared;
     using Architecture3.Types;
     using Architecture3.Types.FunctionalExtensions;
-    using Architecture3.WebApi.Dtos.Product.Post;
+    using Architecture3.Web.Dtos.Product.Post;
     using AutoMapper;
 
     public sealed class ProductsPostFacade

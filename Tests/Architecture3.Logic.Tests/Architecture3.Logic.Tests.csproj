@@ -86,9 +86,9 @@
       <Project>{9033BA8A-C531-4DCD-A342-A4B57DDD11D9}</Project>
       <Name>Architecture3.Types</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\Projects\Architecture3.WebApi.Dtos\Architecture3.WebApi.Dtos.csproj">
+    <ProjectReference Include="..\..\Projects\Architecture3.WebApi.Dtos\Architecture3.Web.Dtos.csproj">
       <Project>{d383fc01-3ab8-4106-98ea-543607ace0e9}</Project>
-      <Name>Architecture3.WebApi.Dtos</Name>
+      <Name>Architecture3.Web.Dtos</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
