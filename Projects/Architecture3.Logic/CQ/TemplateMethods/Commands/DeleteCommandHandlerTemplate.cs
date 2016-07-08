@@ -6,8 +6,8 @@
     using Architecture3.Types;
     using Architecture3.Types.FunctionalExtensions;
 
-    public abstract class DeleteCommandHandlerTemplate<TCommand, TDeleteRepository> : IRequestHandler<TCommand, Result<Error>>
-        where TCommand : IIdVersion, IRequest<Result<Error>>
+    public abstract class DeleteCommandHandlerTemplate<TCommand, TDeleteRepository> : IRequestHandler<TCommand, IResult<Error>>
+        where TCommand : IIdVersion, IRequest<IResult<Error>>
         where TDeleteRepository : class, IDeleteRepository
     {
         protected DeleteCommandHandlerTemplate(TDeleteRepository deleteRepository)
@@ -17,7 +17,7 @@
 
         protected TDeleteRepository DeleteRepository { get; }
 
-        public Result<Error> Handle(TCommand message)
+        public IResult<Error> Handle(TCommand message)
         {
             var id = message.IdVersion.Id;
             var version = message.IdVersion.Version;
@@ -55,7 +55,7 @@
             return Result<Error>.Ok();
         }
 
-        protected virtual Result<NonEmptyString> BeforeDelete(TCommand message)
+        protected virtual IResult<NonEmptyString> BeforeDelete(TCommand message)
         {
             return Result<NonEmptyString>.Ok();
         }

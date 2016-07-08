@@ -5,27 +5,27 @@
 
     public static class ErrorResultExtensions
     {
-        public static Result<Error> ToBadRequest(this NonEmptyString message)
+        public static IResult<Error> ToBadRequest(this NonEmptyString message)
         {
             return Result<Error>.Fail(Error.CreateGeneric(message));
         }
 
-        public static Result<T, Error> ToBadRequest<T>(this NonEmptyString message)
+        public static IResult<T, Error> ToBadRequest<T>(this NonEmptyString message)
         {
             return Result<T, Error>.Fail(Error.CreateGeneric(message));
         }
 
-        public static Result<T, Error> ToNotFound<T>()
+        public static IResult<T, Error> ToNotFound<T>()
         {
             return Result<T, Error>.Fail(Error.CreateNotFound());
         }
 
-        public static Result<Error> ToNotFound()
+        public static IResult<Error> ToNotFound()
         {
             return Result<Error>.Fail(Error.CreateNotFound());
         }
 
-        public static Result<Error> ToPreconditionFailed()
+        public static IResult<Error> ToPreconditionFailed()
         {
             return Result<Error>.Fail(Error.CreatePreconditionFailed());
         }

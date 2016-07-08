@@ -9,7 +9,7 @@
     public static class Helper
     {
         public static IResult<TDto, Error> GetItem<TDto, TQuery, TObject>(IMediator mediator, IMapper mapper, IResult<TQuery, NonEmptyString> queryResult)
-            where TQuery : IRequest<Result<TObject, Error>>
+            where TQuery : IRequest<IResult<TObject, Error>>
         {
             if (queryResult.IsFailure)
             {
@@ -50,7 +50,7 @@
         }
 
         public static IResult<Error> Delete<TCommand>(IMediator mediator, IResult<TCommand, NonEmptyString> commandResult)
-            where TCommand : IRequest<Result<Error>>
+            where TCommand : IRequest<IResult<Error>>
         {
             if (commandResult.IsFailure)
             {
@@ -63,13 +63,13 @@
         }
 
         public static IResult<Error> Put<TCommand>(IMediator mediator, IResult<TCommand, NonEmptyString> commandResult)
-            where TCommand : IRequest<Result<Error>>
+            where TCommand : IRequest<IResult<Error>>
         {
             return Delete(mediator, commandResult);
         }
 
         public static IResult<TDto, Error> Post<TDto, TCommand, TObject>(IMediator mediator, IMapper mapper, IResult<TCommand, NonEmptyString> commandResult)
-            where TCommand : IRequest<Result<TObject, Error>>
+            where TCommand : IRequest<IResult<TObject, Error>>
         {
             return GetItem<TDto, TCommand, TObject>(mediator, mapper, commandResult);
         }

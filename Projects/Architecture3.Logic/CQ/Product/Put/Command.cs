@@ -8,7 +8,7 @@
     using Architecture3.Types;
     using Architecture3.Types.FunctionalExtensions;
 
-    public sealed class Command : ValueObject<Command>, IRequest<Result<Error>>, IIdVersion
+    public sealed class Command : ValueObject<Command>, IRequest<IResult<Error>>, IIdVersion
     {
         private Command(IdVersion idVersion, NonNegativeDecimal price, Name name)
         {

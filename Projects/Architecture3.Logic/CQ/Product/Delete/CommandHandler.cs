@@ -12,7 +12,7 @@
         {
         }
 
-        protected override Result<NonEmptyString> BeforeDelete(Command message)
+        protected override IResult<NonEmptyString> BeforeDelete(Command message)
         {
             var id = message.IdVersion.Id;
 

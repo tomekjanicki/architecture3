@@ -6,8 +6,8 @@
     using Architecture3.Types;
     using Architecture3.Types.FunctionalExtensions;
 
-    public abstract class UpdateCommandHandlerTemplate<TCommand, TUpdateRepository> : IRequestHandler<TCommand, Result<Error>>
-        where TCommand : IIdVersion, IRequest<Result<Error>>
+    public abstract class UpdateCommandHandlerTemplate<TCommand, TUpdateRepository> : IRequestHandler<TCommand, IResult<Error>>
+        where TCommand : IIdVersion, IRequest<IResult<Error>>
         where TUpdateRepository : class, IUpdateRepository<TCommand>
     {
         protected UpdateCommandHandlerTemplate(TUpdateRepository updateRepository)
@@ -17,7 +17,7 @@
 
         protected TUpdateRepository UpdateRepository { get; }
 
-        public Result<Error> Handle(TCommand message)
+        public IResult<Error> Handle(TCommand message)
         {
             var id = message.IdVersion.Id;
             var version = message.IdVersion.Version;

@@ -5,8 +5,8 @@
     using Architecture3.Logic.Shared;
     using Architecture3.Types.FunctionalExtensions;
 
-    public class GetCommandHandlerTemplate<TQuery, TGetRepository, TItem> : IRequestHandler<TQuery, Result<TItem, Error>>
-        where TQuery : IId, IRequest<Result<TItem, Error>>
+    public class GetCommandHandlerTemplate<TQuery, TGetRepository, TItem> : IRequestHandler<TQuery, IResult<TItem, Error>>
+        where TQuery : IId, IRequest<IResult<TItem, Error>>
         where TGetRepository : class, IGetRepository<TItem>
         where TItem : class
     {
@@ -17,7 +17,7 @@
 
         protected TGetRepository GetRepository { get; }
 
-        public Result<TItem, Error> Handle(TQuery message)
+        public IResult<TItem, Error> Handle(TQuery message)
         {
             var data = GetRepository.Get(message.Id);
 
