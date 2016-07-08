@@ -7,8 +7,8 @@
     <ProjectGuid>{800FD538-82D0-43DF-8D2C-618C2327B15E}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Architecture3.WebApi.Client</RootNamespace>
-    <AssemblyName>Architecture3.WebApi.Client</AssemblyName>
+    <RootNamespace>Architecture3.Common.Web</RootNamespace>
+    <AssemblyName>Architecture3.Common.Web</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <NuGetPackageImportStamp>
@@ -58,8 +58,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Client.cs" />
-    <Compile Include="Interfaces\IClient.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Helper.cs" />
   </ItemGroup>
@@ -78,10 +76,6 @@
     <ProjectReference Include="..\Architecture3.Types\Architecture3.Types.csproj">
       <Project>{9033BA8A-C531-4DCD-A342-A4B57DDD11D9}</Project>
       <Name>Architecture3.Types</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Architecture3.WebApi.Dtos\Architecture3.WebApi.Dtos.csproj">
-      <Project>{d383fc01-3ab8-4106-98ea-543607ace0e9}</Project>
-      <Name>Architecture3.WebApi.Dtos</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

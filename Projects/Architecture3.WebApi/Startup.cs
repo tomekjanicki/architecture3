@@ -12,7 +12,6 @@
             RegisterSwagger.Execute(httpConfiguration);
             RegisterRoutes.Execute(httpConfiguration);
             RegisterMiscs.Execute(httpConfiguration);
-            RegisterValidation.Execute();
             appBuilder.UseWebApi(httpConfiguration);
             appBuilder.UseWelcomePage();
         }

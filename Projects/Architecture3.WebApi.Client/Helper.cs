@@ -1,4 +1,4 @@
-namespace Architecture3.WebApi.Client
+namespace Architecture3.Common.Web
 {
     using System;
     using System.Collections.Generic;

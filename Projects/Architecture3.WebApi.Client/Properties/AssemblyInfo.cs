@@ -6,11 +6,11 @@ using NullGuard;
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
 [assembly: NullGuard(ValidationFlags.All)]
-[assembly: AssemblyTitle("Architecture3.WebApi.Client")]
+[assembly: AssemblyTitle("Architecture3.Common.Web")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("Architecture3.WebApi.Client")]
+[assembly: AssemblyProduct("Architecture3.Common.Web")]
 [assembly: AssemblyCopyright("Copyright ©  2016")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
