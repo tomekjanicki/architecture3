@@ -7,7 +7,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Projects", "Projects", "{92
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{8A636113-5D27-43DF-A291-5B66EB1DA71F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Architecture3.WebApi", "Projects\Architecture3.WebApi\Architecture3.WebApi.csproj", "{CFD858E7-4A1B-423B-8DFA-E68D0CD4E6EC}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Architecture3.Web", "Projects\Architecture3.WebApi\Architecture3.Web.csproj", "{CFD858E7-4A1B-423B-8DFA-E68D0CD4E6EC}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Architecture3.WebApi.Dtos", "Projects\Architecture3.WebApi.Dtos\Architecture3.WebApi.Dtos.csproj", "{D383FC01-3AB8-4106-98EA-543607ACE0E9}"
 EndProject

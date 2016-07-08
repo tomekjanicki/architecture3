@@ -1,4 +1,4 @@
-﻿namespace Architecture3.WebApi.Infrastructure
+﻿namespace Architecture3.Web.Infrastructure
 {
     using System.Web.Http.ExceptionHandling;
     using Architecture3.Common.Log4Net;

@@ -1,4 +1,4 @@
-namespace Architecture3.WebApi
+namespace Architecture3.Web
 {
     using System.Web.Http;
     using Architecture3.Common.Tools.Interfaces;
@@ -16,7 +16,7 @@ namespace Architecture3.WebApi
 
         private static void Configure(string version, SwaggerDocsConfig config)
         {
-            config.SingleApiVersion(version, "Architecture3.WebApi");
+            config.SingleApiVersion(version, "Architecture3.Web");
             config.UseFullTypeNameInSchemaIds();
         }
 

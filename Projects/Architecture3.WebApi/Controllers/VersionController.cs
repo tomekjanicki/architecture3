@@ -1,9 +1,9 @@
-﻿namespace Architecture3.WebApi.Controllers
+﻿namespace Architecture3.Web.Controllers
 {
     using System.Net;
     using System.Web.Http;
     using Architecture3.Logic.Facades;
-    using Architecture3.WebApi.Controllers.Base;
+    using Architecture3.Web.Controllers.Base;
     using Swashbuckle.Swagger.Annotations;
 
     [SwaggerResponseRemoveDefaults]

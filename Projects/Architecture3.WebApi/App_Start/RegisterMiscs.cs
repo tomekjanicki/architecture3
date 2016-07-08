@@ -1,10 +1,10 @@
-﻿namespace Architecture3.WebApi
+﻿namespace Architecture3.Web
 {
     using System.Linq;
     using System.Net.Http.Formatting;
     using System.Web.Http;
     using System.Web.Http.ExceptionHandling;
-    using Architecture3.WebApi.Infrastructure;
+    using Architecture3.Web.Infrastructure;
     using Newtonsoft.Json.Converters;
     using Newtonsoft.Json.Serialization;
 

@@ -1,13 +1,13 @@
-﻿namespace Architecture3.WebApi.Controllers
+﻿namespace Architecture3.Web.Controllers
 {
     using System.Net;
     using System.Web.Http;
     using Architecture3.Logic.Facades;
     using Architecture3.Types;
-    using Architecture3.WebApi.Controllers.Base;
+    using Architecture3.Web.Controllers.Base;
     using Architecture3.WebApi.Dtos;
-    using Architecture3.WebApi.Dtos.Product.Put;
     using Swashbuckle.Swagger.Annotations;
+    using Product = Architecture3.WebApi.Dtos.Product.FilterPaged.Product;
 
     [SwaggerResponseRemoveDefaults]
     public sealed class ProductsController : BaseApiController
@@ -27,7 +27,7 @@
             _productsPostFacade = productsPostFacade;
         }
 
-        [SwaggerResponse(HttpStatusCode.OK, null, typeof(Paged<Dtos.Product.FilterPaged.Product>))]
+        [SwaggerResponse(HttpStatusCode.OK, null, typeof(Paged<Product>))]
         [SwaggerResponse(HttpStatusCode.BadRequest)]
         [HttpGet]
         public IHttpActionResult FilterPaged(int skip, int top, string filter = null, string orderBy = null)
@@ -40,7 +40,7 @@
         [SwaggerResponse(HttpStatusCode.OK)]
         [SwaggerResponse(HttpStatusCode.BadRequest)]
         [SwaggerResponse(HttpStatusCode.NotFound)]
-        public IHttpActionResult Put(int id, Product product)
+        public IHttpActionResult Put(int id, WebApi.Dtos.Product.Put.Product product)
         {
             var result = _productsPutFacade.Put(id, product);
 
@@ -56,7 +56,7 @@
             return GetHttpActionResult(result);
         }
 
-        [SwaggerResponse(HttpStatusCode.OK, null, typeof(Dtos.Product.Get.Product))]
+        [SwaggerResponse(HttpStatusCode.OK, null, typeof(WebApi.Dtos.Product.Get.Product))]
         [SwaggerResponse(HttpStatusCode.BadRequest)]
         [SwaggerResponse(HttpStatusCode.NotFound)]
         public IHttpActionResult Get(int id)
