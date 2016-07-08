@@ -21,12 +21,12 @@
             return greaterThanZeroInt.Value;
         }
 
-        public static Result<GreaterThanZeroInt, NonEmptyString> Create(int? value, NonEmptyString field)
+        public static IResult<GreaterThanZeroInt, NonEmptyString> Create(int? value, NonEmptyString field)
         {
             return value == null ? GetFailResult((NonEmptyString)"{0} can't be null", field) : Create(value.Value, field);
         }
 
-        public static Result<GreaterThanZeroInt, NonEmptyString> Create(int value, NonEmptyString field)
+        public static IResult<GreaterThanZeroInt, NonEmptyString> Create(int value, NonEmptyString field)
         {
             return value <= 0 ? GetFailResult((NonEmptyString)"{0} can't be lower or equal to zero", field) : GetOkResult(new GreaterThanZeroInt(value));
         }

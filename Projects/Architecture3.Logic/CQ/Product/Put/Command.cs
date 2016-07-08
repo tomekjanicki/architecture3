@@ -23,7 +23,7 @@
 
         public Name Name { get; }
 
-        public static Result<Command, NonEmptyString> Create(int id, string version, decimal? price, string name)
+        public static IResult<Command, NonEmptyString> Create(int id, string version, decimal? price, string name)
         {
             var idVersionResult = IdVersion.Create(id, version, (NonEmptyString)nameof(Common.ValueObjects.IdVersion.Id), (NonEmptyString)nameof(Common.ValueObjects.IdVersion.Version));
             var priceResult = NonNegativeDecimal.Create(price, (NonEmptyString)nameof(Price));

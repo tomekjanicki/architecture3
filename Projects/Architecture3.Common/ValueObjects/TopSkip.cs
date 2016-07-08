@@ -15,7 +15,7 @@
 
         public GreaterThanZeroInt Top { get; }
 
-        public static Result<TopSkip, NonEmptyString> Create(int skip, int top, NonEmptyString topField, NonEmptyString skipField)
+        public static IResult<TopSkip, NonEmptyString> Create(int skip, int top, NonEmptyString topField, NonEmptyString skipField)
         {
             var skipResult = NonNegativeInt.Create(skip, skipField);
 

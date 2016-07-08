@@ -8,7 +8,7 @@
 
     public static class Helper
     {
-        public static Result<TDto, Error> GetItem<TDto, TQuery, TObject>(IMediator mediator, IMapper mapper, Result<TQuery, NonEmptyString> queryResult)
+        public static IResult<TDto, Error> GetItem<TDto, TQuery, TObject>(IMediator mediator, IMapper mapper, IResult<TQuery, NonEmptyString> queryResult)
             where TQuery : IRequest<Result<TObject, Error>>
         {
             if (queryResult.IsFailure)
@@ -28,13 +28,13 @@
             return Result<TDto, Error>.Ok(data);
         }
 
-        public static Result<TDto, Error> GetItemSimple<TDto, TQuery, TObject>(IMediator mediator, IMapper mapper, Result<TQuery, NonEmptyString> queryResult)
+        public static IResult<TDto, Error> GetItemSimple<TDto, TQuery, TObject>(IMediator mediator, IMapper mapper, IResult<TQuery, NonEmptyString> queryResult)
             where TQuery : IRequest<TObject>
         {
             return GetItems<TDto, TQuery, TObject>(mediator, mapper, queryResult);
         }
 
-        public static Result<TDto, Error> GetItems<TDto, TQuery, TObject>(IMediator mediator, IMapper mapper, Result<TQuery, NonEmptyString> queryResult)
+        public static IResult<TDto, Error> GetItems<TDto, TQuery, TObject>(IMediator mediator, IMapper mapper, IResult<TQuery, NonEmptyString> queryResult)
             where TQuery : IRequest<TObject>
         {
             if (queryResult.IsFailure)
@@ -49,7 +49,7 @@
             return Result<TDto, Error>.Ok(data);
         }
 
-        public static Result<Error> Delete<TCommand>(IMediator mediator, Result<TCommand, NonEmptyString> commandResult)
+        public static IResult<Error> Delete<TCommand>(IMediator mediator, IResult<TCommand, NonEmptyString> commandResult)
             where TCommand : IRequest<Result<Error>>
         {
             if (commandResult.IsFailure)
@@ -62,13 +62,13 @@
             return result;
         }
 
-        public static Result<Error> Put<TCommand>(IMediator mediator, Result<TCommand, NonEmptyString> commandResult)
+        public static IResult<Error> Put<TCommand>(IMediator mediator, IResult<TCommand, NonEmptyString> commandResult)
             where TCommand : IRequest<Result<Error>>
         {
             return Delete(mediator, commandResult);
         }
 
-        public static Result<TDto, Error> Post<TDto, TCommand, TObject>(IMediator mediator, IMapper mapper, Result<TCommand, NonEmptyString> commandResult)
+        public static IResult<TDto, Error> Post<TDto, TCommand, TObject>(IMediator mediator, IMapper mapper, IResult<TCommand, NonEmptyString> commandResult)
             where TCommand : IRequest<Result<TObject, Error>>
         {
             return GetItem<TDto, TCommand, TObject>(mediator, mapper, commandResult);

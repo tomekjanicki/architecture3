@@ -33,19 +33,19 @@
             return GetHashCodeCore();
         }
 
-        protected static Result<T, NonEmptyString> GetFailResult(NonEmptyString message, NonEmptyString field)
+        protected static IResult<T, NonEmptyString> GetFailResult(NonEmptyString message, NonEmptyString field)
         {
-            return Result<T, NonEmptyString>.Fail((NonEmptyString)string.Format(message, field));
+            return ((NonEmptyString)string.Format(message, field)).GetFailResult<T>();
         }
 
-        protected static Result<T, NonEmptyString> GetFailResult(NonEmptyString message)
+        protected static IResult<T, NonEmptyString> GetFailResult(NonEmptyString message)
         {
-            return Result<T, NonEmptyString>.Fail(message);
+            return message.GetFailResult<T>();
         }
 
-        protected static Result<T, NonEmptyString> GetOkResult(T value)
+        protected static IResult<T, NonEmptyString> GetOkResult(T value)
         {
-            return Result<T, NonEmptyString>.Ok(value);
+            return value.GetOkMessage();
         }
 
         protected abstract bool EqualsCore(T other);

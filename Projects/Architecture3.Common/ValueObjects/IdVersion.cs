@@ -15,7 +15,7 @@
 
         public NonEmptyString Version { get; }
 
-        public static Result<IdVersion, NonEmptyString> Create(int id, string version, NonEmptyString idField, NonEmptyString versionField)
+        public static IResult<IdVersion, NonEmptyString> Create(int id, string version, NonEmptyString idField, NonEmptyString versionField)
         {
             var idResult = NonNegativeInt.Create(id, idField);
             var versionResult = NonEmptyString.Create(version, versionField);

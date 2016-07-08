@@ -22,12 +22,12 @@
             return nonNegativeInt.Value;
         }
 
-        public static Result<NonNegativeDecimal, NonEmptyString> Create(decimal? value, NonEmptyString field)
+        public static IResult<NonNegativeDecimal, NonEmptyString> Create(decimal? value, NonEmptyString field)
         {
             return value == null ? GetFailResult((NonEmptyString)"{0} can't be null", field) : Create(value.Value, field);
         }
 
-        public static Result<NonNegativeDecimal, NonEmptyString> Create(decimal value, NonEmptyString field)
+        public static IResult<NonNegativeDecimal, NonEmptyString> Create(decimal value, NonEmptyString field)
         {
             return value < 0 ? GetFailResult((NonEmptyString)"{0} can't be lower than zero", field) : GetOkResult(new NonNegativeDecimal(value));
         }

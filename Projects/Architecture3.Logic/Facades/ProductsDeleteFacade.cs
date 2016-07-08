@@ -15,7 +15,7 @@
             _mediator = mediator;
         }
 
-        public Result<Error> Delete(int id, string version)
+        public IResult<Error> Delete(int id, string version)
         {
             var commandResult = Command.Create(id, version);
 

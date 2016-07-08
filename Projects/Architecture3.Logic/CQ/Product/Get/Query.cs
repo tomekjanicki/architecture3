@@ -15,7 +15,7 @@
 
         public NonNegativeInt Id { get; }
 
-        public static Result<Query, NonEmptyString> Create(int id)
+        public static IResult<Query, NonEmptyString> Create(int id)
         {
             var result = NonNegativeInt.Create(id, (NonEmptyString)nameof(Id));
             return result.IsFailure ? GetFailResult(result.Error) : GetOkResult(new Query(result.Value));

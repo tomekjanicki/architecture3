@@ -21,12 +21,12 @@
             return nonNegativeInt.Value;
         }
 
-        public static Result<NonNegativeInt, NonEmptyString> Create(int? value, NonEmptyString field)
+        public static IResult<NonNegativeInt, NonEmptyString> Create(int? value, NonEmptyString field)
         {
             return value == null ? GetFailResult((NonEmptyString)"{0} can't be null", field) : Create(value.Value, field);
         }
 
-        public static Result<NonNegativeInt, NonEmptyString> Create(int value, NonEmptyString field)
+        public static IResult<NonNegativeInt, NonEmptyString> Create(int value, NonEmptyString field)
         {
             return value < 0 ? GetFailResult((NonEmptyString)"{0} can't be lower than zero", field) : GetOkResult(new NonNegativeInt(value));
         }

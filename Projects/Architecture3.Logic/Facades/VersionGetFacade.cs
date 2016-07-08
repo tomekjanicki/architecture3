@@ -20,7 +20,7 @@
             _mapper = mapper;
         }
 
-        public Result<string, Error> Get(Assembly assembly)
+        public IResult<string, Error> Get(Assembly assembly)
         {
             var queryResult = Query.Create(assembly);
 

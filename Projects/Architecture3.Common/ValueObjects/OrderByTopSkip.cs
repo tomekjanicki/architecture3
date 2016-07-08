@@ -15,7 +15,7 @@ namespace Architecture3.Common.ValueObjects
 
         public TopSkip TopSkip { get; }
 
-        public static Result<OrderByTopSkip, NonEmptyString> Create(string orderBy, int skip, int top, NonEmptyString skipField, NonEmptyString topField)
+        public static IResult<OrderByTopSkip, NonEmptyString> Create(string orderBy, int skip, int top, NonEmptyString skipField, NonEmptyString topField)
         {
             var topSkipResult = TopSkip.Create(skip, top, skipField, topField);
 

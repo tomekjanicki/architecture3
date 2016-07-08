@@ -17,7 +17,7 @@ namespace Architecture3.Logic.Facades
             _mediator = mediator;
         }
 
-        public Result<Error> Put(int id, Product product)
+        public IResult<Error> Put(int id, Product product)
         {
             var commandResult = Command.Create(id, product.Version.ToEmptyString(), product.Price, product.Name.ToEmptyString());
 

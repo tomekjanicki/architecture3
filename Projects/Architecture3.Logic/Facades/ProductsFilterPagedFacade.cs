@@ -19,7 +19,7 @@
             _mapper = mapper;
         }
 
-        public Result<Paged<WebApi.Dtos.Product.FilterPaged.Product>, Error> FilterPaged(int skip, int top, string filter, string orderBy)
+        public IResult<Paged<WebApi.Dtos.Product.FilterPaged.Product>, Error> FilterPaged(int skip, int top, string filter, string orderBy)
         {
             var queryResult = Query.Create(orderBy, skip, top, filter);
 

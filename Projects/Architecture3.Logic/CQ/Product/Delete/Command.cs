@@ -16,7 +16,7 @@
 
         public IdVersion IdVersion { get; }
 
-        public static Result<Command, NonEmptyString> Create(int id, string version)
+        public static IResult<Command, NonEmptyString> Create(int id, string version)
         {
             var result = IdVersion.Create(id, version, (NonEmptyString)nameof(Common.ValueObjects.IdVersion.Id), (NonEmptyString)nameof(Common.ValueObjects.IdVersion.Version));
             return result.IsFailure ? GetFailResult(result.Error) : GetOkResult(new Command(result.Value));

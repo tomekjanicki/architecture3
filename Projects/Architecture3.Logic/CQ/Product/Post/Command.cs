@@ -21,7 +21,7 @@
 
         public NonNegativeDecimal Price { get; }
 
-        public static Result<Command, NonEmptyString> Create(string name, string code, decimal? price)
+        public static IResult<Command, NonEmptyString> Create(string name, string code, decimal? price)
         {
             var nameResult = Name.Create(name, (NonEmptyString)nameof(Name));
             var codeResult = Code.Create(code, (NonEmptyString)nameof(Code));

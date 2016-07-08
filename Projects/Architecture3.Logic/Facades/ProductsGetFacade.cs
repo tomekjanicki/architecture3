@@ -18,7 +18,7 @@
             _mapper = mapper;
         }
 
-        public Result<WebApi.Dtos.Product.Get.Product, Error> Get(int id)
+        public IResult<WebApi.Dtos.Product.Get.Product, Error> Get(int id)
         {
             var queryResult = Query.Create(id);
 

@@ -21,7 +21,7 @@
             return value.Value;
         }
 
-        public static Result<NonEmptyString, NonEmptyString> Create(string value, NonEmptyString field)
+        public static IResult<NonEmptyString, NonEmptyString> Create(string value, NonEmptyString field)
         {
             return value == string.Empty ? GetFailResult((NonEmptyString)"{0} can't be empty", field) : GetOkResult(new NonEmptyString(value));
         }

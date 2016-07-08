@@ -20,7 +20,7 @@
 
         public string Code { get; }
 
-        public static Result<Query, NonEmptyString> Create(string orderBy, int skip, int top, string filter)
+        public static IResult<Query, NonEmptyString> Create(string orderBy, int skip, int top, string filter)
         {
             // todo filter parser
             // todo orderBy parser

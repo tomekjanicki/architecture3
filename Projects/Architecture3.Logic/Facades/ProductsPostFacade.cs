@@ -20,7 +20,7 @@ namespace Architecture3.Logic.Facades
             _mapper = mapper;
         }
 
-        public Result<int, Error> Post(Product product)
+        public IResult<int, Error> Post(Product product)
         {
             var commandResult = Command.Create(product.Name.ToEmptyString(), product.Code.ToEmptyString(), product.Price);
 

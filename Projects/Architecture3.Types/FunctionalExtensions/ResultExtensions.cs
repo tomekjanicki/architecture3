@@ -36,12 +36,32 @@
 
             if (!failedResults.Any())
             {
-                return Result<NonEmptyString>.Ok();
+                return GetOkMessage();
             }
 
             var errorMessage = (NonEmptyString)string.Join("; ", failedResults.Select(result => result.Error.Value).ToArray());
 
-            return Result<NonEmptyString>.Fail(errorMessage);
+            return errorMessage.GetFailResult();
+        }
+
+        public static IResult<T, NonEmptyString> GetFailResult<T>(this NonEmptyString message)
+        {
+            return Result<T, NonEmptyString>.Fail(message);
+        }
+
+        public static IResult<NonEmptyString> GetFailResult(this NonEmptyString message)
+        {
+            return Result<NonEmptyString>.Fail(message);
+        }
+
+        public static IResult<NonEmptyString> GetOkMessage()
+        {
+            return Result<NonEmptyString>.Ok();
+        }
+
+        public static IResult<T, NonEmptyString> GetOkMessage<T>(this T value)
+        {
+            return Result<T, NonEmptyString>.Ok(value);
         }
     }
 }

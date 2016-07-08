@@ -11,7 +11,7 @@ namespace Architecture3.Common.Web
 
     public static class Helper
     {
-        public static string GetEncodedParametersString(ICollection<Tuple<NonEmptyString, string>> parameters)
+        public static string GetEncodedParametersString(this ICollection<Tuple<NonEmptyString, string>> parameters)
         {
             var array = parameters.Select(tuple => $"{Uri.EscapeDataString(tuple.Item1)}={Uri.EscapeDataString(tuple.Item2)}").ToArray();
             return array.Length == 0 ? string.Empty : $"?{string.Join("&", array)}";
@@ -25,37 +25,22 @@ namespace Architecture3.Common.Web
             return client;
         }
 
-        public static async Task<NonEmptyString> GetErrorMessage(HttpResponseMessage httpResponseMessage)
+        public static async Task<NonEmptyString> GetErrorMessage(this HttpResponseMessage httpResponseMessage)
         {
             var content = await httpResponseMessage.Content.ReadAsStringAsync().ConfigureAwait(false);
             return (NonEmptyString)$"Failed with {httpResponseMessage.StatusCode} {content}";
         }
 
-        public static async Task<Result<T, NonEmptyString>> GetFailMessage<T>(HttpResponseMessage httpResponseMessage)
+        public static async Task<IResult<T, NonEmptyString>> GetFailMessage<T>(this HttpResponseMessage httpResponseMessage)
         {
             var message = await GetErrorMessage(httpResponseMessage).ConfigureAwait(false);
-            return Result<T, NonEmptyString>.Fail(message);
+            return message.GetFailResult<T>();
         }
 
-        public static async Task<Result<NonEmptyString>> GetFailMessage(HttpResponseMessage httpResponseMessage)
+        public static async Task<IResult<NonEmptyString>> GetFailMessage(this HttpResponseMessage httpResponseMessage)
         {
             var message = await GetErrorMessage(httpResponseMessage).ConfigureAwait(false);
-            return Result<NonEmptyString>.Fail(message);
-        }
-
-        public static Result<T, NonEmptyString> GetFailMessage<T>(NonEmptyString nonEmptyString)
-        {
-            return Result<T, NonEmptyString>.Fail(nonEmptyString);
-        }
-
-        public static Result<NonEmptyString> GetOkMessage()
-        {
-            return Result<NonEmptyString>.Ok();
-        }
-
-        public static Result<T, NonEmptyString> GetOkMessage<T>(T value)
-        {
-            return Result<T, NonEmptyString>.Ok(value);
+            return message.GetFailResult();
         }
     }
 }
