@@ -8,7 +8,7 @@
     using Newtonsoft.Json.Converters;
     using Newtonsoft.Json.Serialization;
 
-    public static class RegisterMiscs
+    public static class RegisterWebApiMiscs
     {
         public static void Execute(HttpConfiguration configuration)
         {

@@ -10,8 +10,10 @@
             var httpConfiguration = new HttpConfiguration();
             RegisterContainer.Execute(httpConfiguration);
             RegisterSwagger.Execute(httpConfiguration);
-            RegisterRoutes.Execute(httpConfiguration);
-            RegisterMiscs.Execute(httpConfiguration);
+            RegisterMvcRoutes.Execute();
+            RegisterWebApiRoutes.Execute(httpConfiguration);
+            RegisterMvcMiscs.Execute();
+            RegisterWebApiMiscs.Execute(httpConfiguration);
             appBuilder.UseWebApi(httpConfiguration);
         }
     }

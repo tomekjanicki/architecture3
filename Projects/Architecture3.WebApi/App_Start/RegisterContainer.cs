@@ -4,6 +4,7 @@
     using System.Linq;
     using System.Reflection;
     using System.Web.Http;
+    using System.Web.Mvc;
     using Architecture3.Common.Handlers;
     using Architecture3.Common.Handlers.Interfaces;
     using Architecture3.Common.Tools;
@@ -20,6 +21,8 @@
     using Architecture3.Logic.Facades;
     using AutoMapper;
     using SimpleInjector;
+    using SimpleInjector.Integration.Web;
+    using SimpleInjector.Integration.Web.Mvc;
     using SimpleInjector.Integration.WebApi;
 
     public static class RegisterContainer
@@ -28,7 +31,9 @@
         {
             var container = new Container();
 
-            container.Options.DefaultScopedLifestyle = new WebApiRequestLifestyle(true);
+            container.Options.DefaultScopedLifestyle = new WebRequestLifestyle(true);
+
+            container.RegisterMvcControllers();
 
             container.RegisterWebApiControllers(configuration);
 
@@ -39,6 +44,8 @@
             container.Verify();
 
             configuration.DependencyResolver = new SimpleInjectorWebApiDependencyResolver(container);
+
+            DependencyResolver.SetResolver(new SimpleInjectorDependencyResolver(container));
         }
 
         private static void RegisterSingletons(Container container)
