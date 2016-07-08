@@ -18,7 +18,7 @@
 
             var canBeDeleted = DeleteRepository.CanBeDeleted(id);
 
-            return !canBeDeleted ? Result<NonEmptyString>.Fail((NonEmptyString)"Can't delete because there are rows dependent on that item") : base.BeforeDelete(message);
+            return !canBeDeleted ? ((NonEmptyString)"Can't delete because there are rows dependent on that item").GetFailResult() : base.BeforeDelete(message);
         }
     }
 }
