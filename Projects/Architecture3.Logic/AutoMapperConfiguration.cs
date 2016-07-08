@@ -15,7 +15,7 @@
 
         public class PagedConverter<TSource, TDestination> : ITypeConverter<Common.ValueObjects.Paged<TSource>, Paged<TDestination>>
         {
-            public Paged<TDestination> Convert(Common.ValueObjects.Paged<TSource> source, ResolutionContext context)
+            public Paged<TDestination> Convert(Common.ValueObjects.Paged<TSource> source, Paged<TDestination> destination, ResolutionContext context)
             {
                 return new Paged<TDestination>(source.Count, context.Mapper.Map<IEnumerable<TDestination>>(source.Items));
             }
