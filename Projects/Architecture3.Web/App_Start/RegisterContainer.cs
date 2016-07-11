@@ -68,6 +68,7 @@
             container.Register<ProductsDeleteFacade>(lifeStyle);
             container.Register<ProductsPutFacade>(lifeStyle);
             container.Register<ProductsPostFacade>(lifeStyle);
+            container.Register<HomeIndexFacade>(lifeStyle);
             container.Register<IRepository, Repository>(lifeStyle);
             container.Register<SharedQueries>(lifeStyle);
             container.Register<IUpdateRepository<Logic.CQ.Product.Put.Command>, Logic.CQ.Product.Put.Repository>(lifeStyle);

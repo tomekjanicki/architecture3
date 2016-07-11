@@ -84,6 +84,7 @@
     <Compile Include="CQ\TemplateMethods\Queries\Interfaces\IId.cs" />
     <Compile Include="Database\DbConnectionProvider.cs" />
     <Compile Include="Facades\Base\Helper.cs" />
+    <Compile Include="Facades\HomeIndexFacade.cs" />
     <Compile Include="Facades\ProductsDeleteFacade.cs" />
     <Compile Include="Facades\ProductsPostFacade.cs" />
     <Compile Include="Facades\ProductsPutFacade.cs" />

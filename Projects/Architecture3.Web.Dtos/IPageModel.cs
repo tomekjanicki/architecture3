@@ -1,4 +1,4 @@
-﻿namespace Architecture3.Common.Web
+﻿namespace Architecture3.Web.Dtos
 {
     public interface IPageModel
     {

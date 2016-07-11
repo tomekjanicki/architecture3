@@ -4,13 +4,13 @@
     using System.Web.Http;
     using Architecture3.Logic.Facades;
     using Architecture3.Types;
-    using Architecture3.Web.Apis.Base;
     using Architecture3.Web.Dtos;
     using Architecture3.Web.Dtos.Product.FilterPaged;
+    using Architecture3.Web.Infrastructure;
     using Swashbuckle.Swagger.Annotations;
 
     [SwaggerResponseRemoveDefaults]
-    public sealed class ProductsController : BaseApiController
+    public sealed class ProductsController : BaseWebApiController
     {
         private readonly ProductsFilterPagedFacade _productsFilterPagedFacade;
         private readonly ProductsGetFacade _productsGetFacade;

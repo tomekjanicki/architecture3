@@ -44,6 +44,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Home\Index\ViewModel.cs" />
+    <Compile Include="IPageModel.cs" />
     <Compile Include="Paged.cs" />
     <Compile Include="Product\FilterPaged\Product.cs" />
     <Compile Include="Product\Get\Product.cs" />

@@ -1,8 +1,9 @@
-﻿namespace Architecture3.Common.Web
+﻿namespace Architecture3.Web.Infrastructure
 {
     using System.Web.Mvc;
+    using Architecture3.Web.Dtos;
 
-    public abstract class PageController : Controller
+    public abstract class BaseMvcPageController : Controller
     {
         protected virtual ActionResult View(IPageModel pageModel)
         {

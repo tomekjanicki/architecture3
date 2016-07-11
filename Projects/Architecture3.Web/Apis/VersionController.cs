@@ -3,11 +3,11 @@
     using System.Net;
     using System.Web.Http;
     using Architecture3.Logic.Facades;
-    using Architecture3.Web.Apis.Base;
+    using Architecture3.Web.Infrastructure;
     using Swashbuckle.Swagger.Annotations;
 
     [SwaggerResponseRemoveDefaults]
-    public sealed class VersionController : BaseApiController
+    public sealed class VersionController : BaseWebApiController
     {
         private readonly VersionGetFacade _versionGetFacade;
 

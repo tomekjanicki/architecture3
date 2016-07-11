@@ -1,4 +1,4 @@
-﻿namespace Architecture3.Web.Apis.Base
+﻿namespace Architecture3.Web.Infrastructure
 {
     using System;
     using System.Net;
@@ -7,7 +7,7 @@
     using Architecture3.Logic.Shared;
     using Architecture3.Types.FunctionalExtensions;
 
-    public abstract class BaseApiController : ApiController
+    public abstract class BaseWebApiController : ApiController
     {
         protected IHttpActionResult GetHttpActionResult<T>(IResult<T, Error> result)
         {
