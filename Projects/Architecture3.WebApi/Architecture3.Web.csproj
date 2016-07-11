@@ -175,9 +175,9 @@
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Static\Forbidden.html" />
-    <Content Include="Static\NotFound.html" />
-    <Content Include="Static\Error.html" />
+    <Content Include="Static\HttpErrors\Forbidden.html" />
+    <Content Include="Static\HttpErrors\NotFound.html" />
+    <Content Include="Static\HttpErrors\Error.html" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
@@ -216,6 +216,13 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Pages\Home\Index.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Pages\Web.config" />
+  </ItemGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <Content Include="Static\Web.config" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
