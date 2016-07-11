@@ -25,6 +25,13 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Architecture3.Logic.Tests",
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Architecture3.Types.Tests", "Tests\Architecture3.Types.Tests\Architecture3.Types.Tests.csproj", "{CC8DD834-7317-4928-ABCE-ED4A0A99D8D2}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Items", "Items", "{0DAD39A1-9848-4CD3-A1C6-2785F969FAE8}"
+	ProjectSection(SolutionItems) = preProject
+		bower.json = bower.json
+		gulpfile.js = gulpfile.js
+		package.json = package.json
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
