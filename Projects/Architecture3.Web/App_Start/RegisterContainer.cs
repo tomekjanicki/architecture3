@@ -10,20 +10,23 @@
     using Architecture3.Common.Tools;
     using Architecture3.Common.Tools.Interfaces;
     using Architecture3.Logic;
-    using Architecture3.Logic.CQ.Product;
-    using Architecture3.Logic.CQ.Product.Delete;
-    using Architecture3.Logic.CQ.Product.Delete.Interfaces;
-    using Architecture3.Logic.CQ.Product.FilterPaged;
+    using Architecture3.Logic.CQ.Apis.Product;
+    using Architecture3.Logic.CQ.Apis.Product.Delete.Interfaces;
+    using Architecture3.Logic.CQ.Apis.Product.Get;
     using Architecture3.Logic.CQ.TemplateMethods.Commands.Interfaces;
     using Architecture3.Logic.CQ.TemplateMethods.Queries.Interfaces;
     using Architecture3.Logic.Database;
     using Architecture3.Logic.Database.Interfaces;
-    using Architecture3.Logic.Facades;
+    using Architecture3.Logic.Facades.Apis;
+    using Architecture3.Logic.Facades.Pages;
     using AutoMapper;
     using SimpleInjector;
     using SimpleInjector.Integration.Web;
     using SimpleInjector.Integration.Web.Mvc;
     using SimpleInjector.Integration.WebApi;
+    using Command = Architecture3.Logic.CQ.Apis.Product.Put.Command;
+    using QueryHandler = Architecture3.Logic.CQ.Apis.Product.FilterPaged.QueryHandler;
+    using Repository = Architecture3.Logic.CQ.Apis.Product.Delete.Repository;
 
     public static class RegisterContainer
     {
@@ -72,9 +75,9 @@
             container.Register<HomeIndexFacade>(lifeStyle);
             container.Register<IRepository, Repository>(lifeStyle);
             container.Register<SharedQueries>(lifeStyle);
-            container.Register<IUpdateRepository<Logic.CQ.Product.Put.Command>, Logic.CQ.Product.Put.Repository>(lifeStyle);
-            container.Register<Logic.CQ.Product.Post.Interfaces.IRepository, Logic.CQ.Product.Post.Repository>(lifeStyle);
-            container.Register<IGetRepository<Logic.CQ.Product.Get.Product>, Logic.CQ.Product.Get.Repository>(lifeStyle);
+            container.Register<IUpdateRepository<Command>, Logic.CQ.Apis.Product.Put.Repository>(lifeStyle);
+            container.Register<Logic.CQ.Apis.Product.Post.Interfaces.IRepository, Logic.CQ.Apis.Product.Post.Repository>(lifeStyle);
+            container.Register<IGetRepository<Product>, Logic.CQ.Apis.Product.Get.Repository>(lifeStyle);
         }
 
         private static IEnumerable<Assembly> GetAssemblies()

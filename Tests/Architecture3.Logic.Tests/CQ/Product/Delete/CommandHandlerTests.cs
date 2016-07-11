@@ -1,7 +1,7 @@
 ﻿namespace Architecture3.Logic.Tests.CQ.Product.Delete
 {
-    using Architecture3.Logic.CQ.Product.Delete;
-    using Architecture3.Logic.CQ.Product.Delete.Interfaces;
+    using Architecture3.Logic.CQ.Apis.Product.Delete;
+    using Architecture3.Logic.CQ.Apis.Product.Delete.Interfaces;
     using Architecture3.Logic.Shared;
     using Architecture3.Types;
     using Architecture3.Types.FunctionalExtensions;

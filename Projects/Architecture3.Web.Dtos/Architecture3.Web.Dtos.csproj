@@ -44,13 +44,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Home\Index\ViewModel.cs" />
+    <Compile Include="Pages\Home\Index\ViewModel.cs" />
     <Compile Include="IPageModel.cs" />
     <Compile Include="Paged.cs" />
-    <Compile Include="Product\FilterPaged\Product.cs" />
-    <Compile Include="Product\Get\Product.cs" />
-    <Compile Include="Product\Post\Product.cs" />
-    <Compile Include="Product\Put\Product.cs" />
+    <Compile Include="Apis\Product\FilterPaged\Product.cs" />
+    <Compile Include="Apis\Product\Get\Product.cs" />
+    <Compile Include="Apis\Product\Post\Product.cs" />
+    <Compile Include="Apis\Product\Put\Product.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

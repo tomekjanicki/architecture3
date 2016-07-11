@@ -1,6 +1,6 @@
 ﻿namespace Architecture3.Logic.Tests.CQ.Product.Delete
 {
-    using Architecture3.Logic.CQ.Product.Delete;
+    using Architecture3.Logic.CQ.Apis.Product.Delete;
     using Architecture3.Types.FunctionalExtensions;
     using NUnit.Framework;
     using Shouldly;

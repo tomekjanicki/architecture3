@@ -1,7 +1,7 @@
 ﻿namespace Architecture3.Web.Pages.Home
 {
     using System.Web.Mvc;
-    using Architecture3.Logic.Facades;
+    using Architecture3.Logic.Facades.Pages;
     using Architecture3.Web.Infrastructure;
 
     public class HomeController : BaseMvcPageController
