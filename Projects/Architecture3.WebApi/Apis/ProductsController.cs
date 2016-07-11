@@ -1,10 +1,10 @@
-﻿namespace Architecture3.Web.Controllers
+﻿namespace Architecture3.Web.Apis
 {
     using System.Net;
     using System.Web.Http;
     using Architecture3.Logic.Facades;
     using Architecture3.Types;
-    using Architecture3.Web.Controllers.Base;
+    using Architecture3.Web.Apis.Base;
     using Architecture3.Web.Dtos;
     using Architecture3.Web.Dtos.Product.FilterPaged;
     using Swashbuckle.Swagger.Annotations;

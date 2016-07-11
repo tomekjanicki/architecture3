@@ -1,4 +1,4 @@
-﻿namespace Architecture3.Web.Controllers
+﻿namespace Architecture3.Web.Pages.Home
 {
     using System.Web.Mvc;
 

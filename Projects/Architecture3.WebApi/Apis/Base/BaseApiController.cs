@@ -1,4 +1,4 @@
-﻿namespace Architecture3.Web.Controllers.Base
+﻿namespace Architecture3.Web.Apis.Base
 {
     using System;
     using System.Net;

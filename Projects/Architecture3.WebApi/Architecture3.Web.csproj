@@ -165,10 +165,10 @@
     <Compile Include="App_Start\RegisterWebApiMiscs.cs" />
     <Compile Include="App_Start\RegisterWebApiRoutes.cs" />
     <Compile Include="App_Start\RegisterSwagger.cs" />
-    <Compile Include="Controllers\Base\BaseApiController.cs" />
-    <Compile Include="Controllers\HomeController.cs" />
-    <Compile Include="Controllers\ProductsController.cs" />
-    <Compile Include="Controllers\VersionController.cs" />
+    <Compile Include="Apis\Base\BaseApiController.cs" />
+    <Compile Include="Pages\Home\HomeController.cs" />
+    <Compile Include="Apis\ProductsController.cs" />
+    <Compile Include="Apis\VersionController.cs" />
     <Compile Include="Infrastructure\GlobalWebApiExceptionLogger.cs" />
     <Compile Include="Infrastructure\GlobalLoggerHttpModule.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -209,16 +209,13 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Views\_ViewStart.cshtml" />
+    <Content Include="Pages\_ViewStart.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Views\Shared\_Layout.cshtml" />
+    <Content Include="Pages\Shared\Views\_Layout.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Views\Home\Index.cshtml" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Views\web.config" />
+    <Content Include="Pages\Home\Index.cshtml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
