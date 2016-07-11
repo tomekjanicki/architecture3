@@ -1,7 +1,13 @@
-﻿<!DOCTYPE html>
+﻿@using Architecture3.Common.Web
+<!DOCTYPE html>
 <html>
 <head>
-    <title>bla</title>
+    <title>
+        @{
+            var model = Model as IPageModel;
+        }
+        @(model != null ? model.Title : "No title")
+    </title>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="~/Static/Content/css/app.min.css" rel="stylesheet" />
