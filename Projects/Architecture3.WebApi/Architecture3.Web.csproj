@@ -175,9 +175,13 @@
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Static\Content\css\app.min.css" />
+    <Content Include="Static\Content\fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Static\HttpErrors\Forbidden.html" />
     <Content Include="Static\HttpErrors\NotFound.html" />
     <Content Include="Static\HttpErrors\Error.html" />
+    <Content Include="Static\Scripts\bootstrap.min.js" />
+    <Content Include="Static\Scripts\jquery.min.js" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
@@ -220,9 +224,18 @@
   <ItemGroup>
     <Content Include="Pages\Web.config" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Content Include="Static\Content\fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="Static\Content\fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="Static\Content\fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="Static\Content\fonts\glyphicons-halflings-regular.woff2" />
+  </ItemGroup>
   <ItemGroup>
     <Content Include="Static\Web.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Static\Scripts\maps\bootstrap.min.js.map" />
+    <Content Include="Static\Scripts\maps\jquery.min.js.map" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

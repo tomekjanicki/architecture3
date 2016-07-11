@@ -56,8 +56,10 @@ gulp.task("clean-styles", function () {
 
 gulp.task("css", ["clean-styles", "bower-restore"], function () {
     return gulp.src([config.bootstrapcss])
+     .pipe(sourcemaps.init())
      .pipe(minifyCSS())
      .pipe(concat("app.min.css"))
+     .pipe(sourcemaps.write("maps"))
      .pipe(gulp.dest(config.cssout));
 });
 
