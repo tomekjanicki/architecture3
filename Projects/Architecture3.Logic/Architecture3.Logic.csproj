@@ -128,7 +128,7 @@
       <Project>{9033BA8A-C531-4DCD-A342-A4B57DDD11D9}</Project>
       <Name>Architecture3.Types</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Architecture3.WebApi.Dtos\Architecture3.Web.Dtos.csproj">
+    <ProjectReference Include="..\Architecture3.Web.Dtos\Architecture3.Web.Dtos.csproj">
       <Project>{D383FC01-3AB8-4106-98EA-543607ACE0E9}</Project>
       <Name>Architecture3.Web.Dtos</Name>
     </ProjectReference>

@@ -203,11 +203,11 @@
       <Project>{9033BA8A-C531-4DCD-A342-A4B57DDD11D9}</Project>
       <Name>Architecture3.Types</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Architecture3.WebApi.Client\Architecture3.Common.Web.csproj">
+    <ProjectReference Include="..\Architecture3.Common.Web\Architecture3.Common.Web.csproj">
       <Project>{800FD538-82D0-43DF-8D2C-618C2327B15E}</Project>
       <Name>Architecture3.Common.Web</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Architecture3.WebApi.Dtos\Architecture3.Web.Dtos.csproj">
+    <ProjectReference Include="..\Architecture3.Web.Dtos\Architecture3.Web.Dtos.csproj">
       <Project>{D383FC01-3AB8-4106-98EA-543607ACE0E9}</Project>
       <Name>Architecture3.Web.Dtos</Name>
     </ProjectReference>

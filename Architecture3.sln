@@ -7,15 +7,15 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Projects", "Projects", "{92
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{8A636113-5D27-43DF-A291-5B66EB1DA71F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Architecture3.Web", "Projects\Architecture3.WebApi\Architecture3.Web.csproj", "{CFD858E7-4A1B-423B-8DFA-E68D0CD4E6EC}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Architecture3.Web", "Projects\Architecture3.Web\Architecture3.Web.csproj", "{CFD858E7-4A1B-423B-8DFA-E68D0CD4E6EC}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Architecture3.Web.Dtos", "Projects\Architecture3.WebApi.Dtos\Architecture3.Web.Dtos.csproj", "{D383FC01-3AB8-4106-98EA-543607ACE0E9}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Architecture3.Web.Dtos", "Projects\Architecture3.Web.Dtos\Architecture3.Web.Dtos.csproj", "{D383FC01-3AB8-4106-98EA-543607ACE0E9}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Architecture3.Common", "Projects\Architecture3.Common\Architecture3.Common.csproj", "{B97EFB86-FB8B-43B7-9892-D4E2AF7257B6}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Architecture3.Logic", "Projects\Architecture3.Logic\Architecture3.Logic.csproj", "{AC510806-42A1-4B3F-8A6C-97B96398D475}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Architecture3.Common.Web", "Projects\Architecture3.WebApi.Client\Architecture3.Common.Web.csproj", "{800FD538-82D0-43DF-8D2C-618C2327B15E}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Architecture3.Common.Web", "Projects\Architecture3.Common.Web\Architecture3.Common.Web.csproj", "{800FD538-82D0-43DF-8D2C-618C2327B15E}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Architecture3.Types", "Projects\Architecture3.Types\Architecture3.Types.csproj", "{9033BA8A-C531-4DCD-A342-A4B57DDD11D9}"
 EndProject
