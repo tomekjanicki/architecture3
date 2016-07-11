@@ -7,7 +7,7 @@ var sourcemaps = require("gulp-sourcemaps");
 var concat = require("gulp-concat");
 var uglify = require("gulp-uglify");
 
-var root = "projects/Architecture3.WebApi/Static/";
+var root = "projects/Architecture3.Web/Static/";
 
 var config = {
     jquerysrc: [
