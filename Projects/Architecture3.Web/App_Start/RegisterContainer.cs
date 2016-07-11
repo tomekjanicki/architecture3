@@ -66,6 +66,7 @@
             var lifeStyle = Lifestyle.Scoped;
             container.Register(typeof(IRequestHandler<,>), assemblies, lifeStyle);
             container.Register(typeof(IRequestHandler<>), assemblies, lifeStyle);
+            container.Register(typeof(IVoidRequestHandler<>), assemblies, lifeStyle);
             container.Register<ProductsFilterPagedFacade>(lifeStyle);
             container.Register<ProductsGetFacade>(lifeStyle);
             container.Register<VersionGetFacade>(lifeStyle);

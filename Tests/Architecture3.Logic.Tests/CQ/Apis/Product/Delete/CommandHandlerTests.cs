@@ -1,4 +1,4 @@
-﻿namespace Architecture3.Logic.Tests.CQ.Product.Delete
+﻿namespace Architecture3.Logic.Tests.CQ.Apis.Product.Delete
 {
     using Architecture3.Logic.CQ.Apis.Product.Delete;
     using Architecture3.Logic.CQ.Apis.Product.Delete.Interfaces;
