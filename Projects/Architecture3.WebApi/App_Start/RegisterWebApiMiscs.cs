@@ -14,7 +14,7 @@
         {
             configuration.Formatters.Clear();
             configuration.Formatters.Add(GetConfiguredJsonMediaTypeFormatter());
-            configuration.Services.Add(typeof(IExceptionLogger), new GlobalExceptionLogger());
+            configuration.Services.Add(typeof(IExceptionLogger), new GlobalWebApiExceptionLogger());
         }
 
         private static JsonMediaTypeFormatter GetConfiguredJsonMediaTypeFormatter()

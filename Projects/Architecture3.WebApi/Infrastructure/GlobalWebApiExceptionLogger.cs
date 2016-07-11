@@ -4,9 +4,9 @@
     using Architecture3.Common.Log4Net;
     using log4net;
 
-    public sealed class GlobalExceptionLogger : ExceptionLogger
+    public sealed class GlobalWebApiExceptionLogger : ExceptionLogger
     {
-        private static readonly ILog Logger = LogManager.GetLogger(typeof(GlobalExceptionLogger));
+        private static readonly ILog Logger = LogManager.GetLogger(typeof(GlobalWebApiExceptionLogger));
 
         public override void Log(ExceptionLoggerContext context)
         {
