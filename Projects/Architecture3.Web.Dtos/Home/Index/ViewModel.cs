@@ -2,6 +2,11 @@
 {
     public class ViewModel : IPageModel
     {
-        public string Title => "Index";
+        public ViewModel(string title)
+        {
+            Title = title;
+        }
+
+        public string Title { get; }
     }
 }

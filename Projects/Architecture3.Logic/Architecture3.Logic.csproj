@@ -59,6 +59,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AutoMapperConfiguration.cs" />
+    <Compile Include="CQ\Home\Index\QueryHandler.cs" />
     <Compile Include="CQ\Product\Delete\Command.cs" />
     <Compile Include="CQ\Product\Delete\CommandHandler.cs" />
     <Compile Include="CQ\Product\Delete\Interfaces\IRepository.cs" />

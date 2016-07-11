@@ -1,6 +1,7 @@
 ﻿namespace Architecture3.Logic.Facades
 {
     using Architecture3.Common.Handlers.Interfaces;
+    using Architecture3.Types;
     using Architecture3.Web.Dtos.Home.Index;
 
     public class HomeIndexFacade
@@ -14,7 +15,8 @@
 
         public ViewModel GetViewModel()
         {
-            return new ViewModel();
+            var data = _mediator.Send<NonEmptyString>();
+            return new ViewModel(data);
         }
     }
 }
