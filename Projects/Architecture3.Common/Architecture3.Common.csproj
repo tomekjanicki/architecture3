@@ -60,14 +60,13 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Const.cs" />
+    <Compile Include="CQ\EmptyQueryCommand.cs" />
     <Compile Include="Database\CommandHelper.cs" />
     <Compile Include="Database\DatabaseExtension.cs" />
     <Compile Include="Handlers\Interfaces\IVoidRequestHandler.cs" />
     <Compile Include="Handlers\Interfaces\IMediator.cs" />
     <Compile Include="Handlers\Interfaces\IRequest.cs" />
     <Compile Include="Handlers\Interfaces\IRequestHandler.cs" />
-    <Compile Include="Handlers\Internal\AbstractHandlerWrapper.cs" />
-    <Compile Include="Handlers\Internal\HandlerWrapper.cs" />
     <Compile Include="Handlers\Internal\RequestHandlerWrapper.cs" />
     <Compile Include="Handlers\Internal\AbstractRequestHandlerWrapper.cs" />
     <Compile Include="Handlers\Internal\AbstractVoidRequestHandlerWrapper.cs" />
@@ -102,6 +101,7 @@
   <ItemGroup>
     <Content Include="FodyWeavers.xml" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="..\..\packages\Fody.1.29.4\build\dotnet\Fody.targets" Condition="Exists('..\..\packages\Fody.1.29.4\build\dotnet\Fody.targets')" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

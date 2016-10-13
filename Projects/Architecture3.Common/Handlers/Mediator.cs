@@ -30,15 +30,6 @@
             defaultHandler.Handle(request);
         }
 
-        public TResponse Send<TResponse>()
-        {
-            var defaultHandler = GetHandler<TResponse>();
-
-            var result = defaultHandler.Handle();
-
-            return result;
-        }
-
         private static InvalidOperationException BuildException(Exception inner)
         {
             return new InvalidOperationException("Container or service locator not configured properly or handlers not registered with your container.", inner);
@@ -49,11 +40,6 @@
             return new InvalidOperationException($"Handler was not found for request of type {message.GetType()}.\r\nContainer or service locator not configured properly or handlers not registered with your container.", inner);
         }
 
-        private AbstractHandlerWrapper<TResponse> GetHandler<TResponse>()
-        {
-            return GetWrapper<AbstractHandlerWrapper<TResponse>, TResponse>(typeof(IRequestHandler<>), typeof(HandlerWrapper<>));
-        }
-
         private AbstractVoidRequestHandlerWrapper GetHandler(IRequest request)
         {
             return GetWrapper<AbstractVoidRequestHandlerWrapper>(request, typeof(IVoidRequestHandler<>), typeof(VoidRequestHandlerWrapper<>));
@@ -62,13 +48,6 @@
         private AbstractRequestHandlerWrapper<TResponse> GetHandler<TResponse>(IRequest<TResponse> request)
         {
             return GetWrapper<AbstractRequestHandlerWrapper<TResponse>, TResponse>(request, typeof(IRequestHandler<,>), typeof(RequestHandlerWrapper<,>));
-        }
-
-        private TWrapper GetWrapper<TWrapper, TResponse>(Type handlerType, Type wrapperType)
-        {
-            var genericHandlerType = handlerType.MakeGenericType(typeof(TResponse));
-            var genericWrapperType = wrapperType.MakeGenericType(typeof(TResponse));
-            return GetWrapperInstance<TWrapper>(null, genericHandlerType, genericWrapperType);
         }
 
         private TWrapper GetWrapper<TWrapper>(object request, Type handlerType, Type wrapperType)

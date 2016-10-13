@@ -3,9 +3,9 @@
     using Architecture3.Common.Handlers.Interfaces;
     using Architecture3.Types;
 
-    public sealed class QueryHandler : IRequestHandler<NonEmptyString>
+    public sealed class QueryHandler : IRequestHandler<Query, NonEmptyString>
     {
-        public NonEmptyString Handle()
+        public NonEmptyString Handle(Query message)
         {
             return (NonEmptyString)"Index";
         }

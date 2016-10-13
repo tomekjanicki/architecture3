@@ -5,7 +5,5 @@ namespace Architecture3.Common.Handlers.Interfaces
         TResponse Send<TResponse>(IRequest<TResponse> request);
 
         void Send(IRequest request);
-
-        TResponse Send<TResponse>();
     }
 }
