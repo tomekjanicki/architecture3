@@ -30,7 +30,7 @@
             }
         }
 
-        public static IResult<NonEmptyString> CombineFailures(IResult<NonEmptyString>[] results)
+        public static IResult<NonEmptyString> IfAtLeastOneFailCombineElseReturnOk(IResult<NonEmptyString>[] results)
         {
             var failedResults = results.Where(result => result.IsFailure).ToList();
 

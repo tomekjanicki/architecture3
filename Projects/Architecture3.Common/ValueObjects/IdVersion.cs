@@ -20,7 +20,7 @@
             var idResult = NonNegativeInt.Create(id, idField);
             var versionResult = NonEmptyString.Create(version, versionField);
 
-            var result = ResultExtensions.CombineFailures(new IResult<NonEmptyString>[]
+            var result = ResultExtensions.IfAtLeastOneFailCombineElseReturnOk(new IResult<NonEmptyString>[]
             {
                 idResult,
                 versionResult

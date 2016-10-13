@@ -21,7 +21,7 @@
 
             var topResult = GreaterThanZeroInt.Create(top, topField);
 
-            var result = ResultExtensions.CombineFailures(new IResult<NonEmptyString>[]
+            var result = ResultExtensions.IfAtLeastOneFailCombineElseReturnOk(new IResult<NonEmptyString>[]
             {
                 skipResult,
                 topResult

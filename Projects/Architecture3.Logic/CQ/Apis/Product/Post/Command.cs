@@ -27,7 +27,7 @@
             var codeResult = Code.Create(code, (NonEmptyString)nameof(Code));
             var priceResult = NonNegativeDecimal.Create(price, (NonEmptyString)nameof(Price));
 
-            var result = ResultExtensions.CombineFailures(new IResult<NonEmptyString>[]
+            var result = ResultExtensions.IfAtLeastOneFailCombineElseReturnOk(new IResult<NonEmptyString>[]
             {
                 codeResult,
                 priceResult,

@@ -29,7 +29,7 @@
             var priceResult = NonNegativeDecimal.Create(price, (NonEmptyString)nameof(Price));
             var nameResult = Name.Create(name, (NonEmptyString)nameof(Name));
 
-            var result = ResultExtensions.CombineFailures(new IResult<NonEmptyString>[]
+            var result = ResultExtensions.IfAtLeastOneFailCombineElseReturnOk(new IResult<NonEmptyString>[]
             {
                 idVersionResult,
                 priceResult,
