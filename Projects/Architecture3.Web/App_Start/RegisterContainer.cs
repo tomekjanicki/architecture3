@@ -11,8 +11,6 @@
     using Architecture3.Common.Tools.Interfaces;
     using Architecture3.Logic;
     using Architecture3.Logic.CQ.Apis.Product;
-    using Architecture3.Logic.CQ.Apis.Product.Delete.Interfaces;
-    using Architecture3.Logic.CQ.Apis.Product.Get;
     using Architecture3.Logic.CQ.TemplateMethods.Commands.Interfaces;
     using Architecture3.Logic.CQ.TemplateMethods.Queries.Interfaces;
     using Architecture3.Logic.Database;
@@ -24,9 +22,6 @@
     using SimpleInjector.Integration.Web;
     using SimpleInjector.Integration.Web.Mvc;
     using SimpleInjector.Integration.WebApi;
-    using Command = Architecture3.Logic.CQ.Apis.Product.Put.Command;
-    using QueryHandler = Architecture3.Logic.CQ.Apis.Product.FilterPaged.QueryHandler;
-    using Repository = Architecture3.Logic.CQ.Apis.Product.Delete.Repository;
 
     public static class RegisterContainer
     {
@@ -73,16 +68,16 @@
             container.Register<ProductsPutFacade>(lifeStyle);
             container.Register<ProductsPostFacade>(lifeStyle);
             container.Register<HomeIndexFacade>(lifeStyle);
-            container.Register<IRepository, Repository>(lifeStyle);
+            container.Register<Logic.CQ.Apis.Product.Delete.Interfaces.IRepository, Logic.CQ.Apis.Product.Delete.Repository>(lifeStyle);
             container.Register<SharedQueries>(lifeStyle);
-            container.Register<IUpdateRepository<Command>, Logic.CQ.Apis.Product.Put.Repository>(lifeStyle);
+            container.Register<IUpdateRepository<Logic.CQ.Apis.Product.Put.Command>, Logic.CQ.Apis.Product.Put.Repository>(lifeStyle);
             container.Register<Logic.CQ.Apis.Product.Post.Interfaces.IRepository, Logic.CQ.Apis.Product.Post.Repository>(lifeStyle);
-            container.Register<IGetRepository<Product>, Logic.CQ.Apis.Product.Get.Repository>(lifeStyle);
+            container.Register<IGetRepository<Logic.CQ.Apis.Product.Get.Product>, Logic.CQ.Apis.Product.Get.Repository>(lifeStyle);
         }
 
         private static IEnumerable<Assembly> GetAssemblies()
         {
-            yield return typeof(QueryHandler).GetTypeInfo().Assembly;
+            yield return typeof(Logic.CQ.Apis.Product.Get.QueryHandler).GetTypeInfo().Assembly;
         }
 
         private static IMapper GetMapper()
