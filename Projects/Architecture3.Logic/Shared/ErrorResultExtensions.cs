@@ -29,5 +29,10 @@
         {
             return Result<Error>.Fail(Error.CreatePreconditionFailed());
         }
+
+        public static IResult<T, Error> ToPreconditionFailed<T>()
+        {
+            return Result<T, Error>.Fail(Error.CreatePreconditionFailed());
+        }
     }
 }
