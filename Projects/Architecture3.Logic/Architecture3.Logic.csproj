@@ -123,6 +123,10 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Architecture3.Common.Web\Architecture3.Common.Web.csproj">
+      <Project>{800FD538-82D0-43DF-8D2C-618C2327B15E}</Project>
+      <Name>Architecture3.Common.Web</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Architecture3.Common\Architecture3.Common.csproj">
       <Project>{B97EFB86-FB8B-43B7-9892-D4E2AF7257B6}</Project>
       <Name>Architecture3.Common</Name>

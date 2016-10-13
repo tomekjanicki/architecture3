@@ -45,7 +45,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Pages\Home\Index\ViewModel.cs" />
-    <Compile Include="IPageModel.cs" />
     <Compile Include="Paged.cs" />
     <Compile Include="Apis\Product\FilterPaged\Product.cs" />
     <Compile Include="Apis\Product\Get\Product.cs" />
@@ -60,6 +59,12 @@
     <Analyzer Include="..\..\packages\StyleCop.Analyzers.1.0.0\analyzers\dotnet\cs\Newtonsoft.Json.dll" />
     <Analyzer Include="..\..\packages\StyleCop.Analyzers.1.0.0\analyzers\dotnet\cs\StyleCop.Analyzers.CodeFixes.dll" />
     <Analyzer Include="..\..\packages\StyleCop.Analyzers.1.0.0\analyzers\dotnet\cs\StyleCop.Analyzers.dll" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Architecture3.Common.Web\Architecture3.Common.Web.csproj">
+      <Project>{800FD538-82D0-43DF-8D2C-618C2327B15E}</Project>
+      <Name>Architecture3.Common.Web</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -1,7 +1,7 @@
 ﻿namespace Architecture3.Web.Infrastructure
 {
     using System.Web.Mvc;
-    using Architecture3.Web.Dtos;
+    using Architecture3.Common.Web;
 
     public abstract class BaseMvcPageController : Controller
     {
