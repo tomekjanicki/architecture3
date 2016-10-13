@@ -21,11 +21,11 @@
 
             var topResult = GreaterThanZeroInt.Create(top, topField);
 
-            var result = ResultExtensions.IfAtLeastOneFailCombineElseReturnOk(new IResult<NonEmptyString>[]
+            var result = new IResult<NonEmptyString>[]
             {
                 skipResult,
                 topResult
-            });
+            }.IfAtLeastOneFailCombineElseReturnOk();
 
             if (result.IsFailure)
             {

@@ -27,12 +27,12 @@
             var codeResult = Code.Create(code, (NonEmptyString)nameof(Code));
             var priceResult = NonNegativeDecimal.Create(price, (NonEmptyString)nameof(Price));
 
-            var result = ResultExtensions.IfAtLeastOneFailCombineElseReturnOk(new IResult<NonEmptyString>[]
+            var result = new IResult<NonEmptyString>[]
             {
                 codeResult,
                 priceResult,
                 nameResult
-            });
+            }.IfAtLeastOneFailCombineElseReturnOk();
 
             return result.IsFailure ? GetFailResult(result.Error) : GetOkResult(new Command(nameResult.Value, codeResult.Value, priceResult.Value));
         }

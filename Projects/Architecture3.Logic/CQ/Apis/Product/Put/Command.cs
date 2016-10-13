@@ -29,12 +29,12 @@
             var priceResult = NonNegativeDecimal.Create(price, (NonEmptyString)nameof(Price));
             var nameResult = Name.Create(name, (NonEmptyString)nameof(Name));
 
-            var result = ResultExtensions.IfAtLeastOneFailCombineElseReturnOk(new IResult<NonEmptyString>[]
+            var result = new IResult<NonEmptyString>[]
             {
                 idVersionResult,
                 priceResult,
                 nameResult
-            });
+            }.IfAtLeastOneFailCombineElseReturnOk();
 
             return result.IsFailure ? GetFailResult(result.Error) : GetOkResult(new Command(idVersionResult.Value, priceResult.Value, nameResult.Value));
         }
