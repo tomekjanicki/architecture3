@@ -167,6 +167,7 @@
     <Compile Include="App_Start\RegisterSwagger.cs" />
     <Compile Include="Infrastructure\BaseWebApiController.cs" />
     <Compile Include="Infrastructure\BaseMvcPageController.cs" />
+    <Compile Include="Infrastructure\WebApiControllerHelper.cs" />
     <Compile Include="Pages\Home\HomeController.cs" />
     <Compile Include="Apis\ProductsController.cs" />
     <Compile Include="Apis\VersionController.cs" />
