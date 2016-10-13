@@ -17,6 +17,11 @@
 
         protected TUpdateRepository UpdateRepository { get; }
 
+        public NonEmptyString GetRowVersionIsEmptyMessage()
+        {
+            return (NonEmptyString)"GetRowVersionById returned no rows";
+        }
+
         public IResult<Error> Handle(TCommand message)
         {
             var id = message.IdVersion.Id;
@@ -40,7 +45,7 @@
             }
             else
             {
-                return ((NonEmptyString)"GetRowVersionById returned no rows").ToGeneric();
+                return GetRowVersionIsEmptyMessage().ToGeneric();
             }
 
             var result = BeforeUpdate(message);
