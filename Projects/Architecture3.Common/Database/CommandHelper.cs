@@ -8,6 +8,9 @@ namespace Architecture3.Common.Database
 
     public static class CommandHelper
     {
+        public const string TopParamName = "TOP";
+        public const string SkipParamName = "SKIP";
+
         private enum LikeType
         {
             Full,
@@ -18,9 +21,9 @@ namespace Architecture3.Common.Database
         public static DataResult GetPagedFragment(TopSkip topSkip, string sort)
         {
             var dp = new DynamicParameters();
-            dp.Add("SKIP", topSkip.Skip.Value);
-            dp.Add("TOP", topSkip.Top.Value);
-            return new DataResult((NonEmptyString)$@"{GetSort(sort)} OFFSET @SKIP ROWS FETCH NEXT @TOP ROWS ONLY", dp);
+            dp.Add(SkipParamName, topSkip.Skip.Value);
+            dp.Add(TopParamName, topSkip.Top.Value);
+            return new DataResult((NonEmptyString)$@"{GetSort(sort)} OFFSET @{SkipParamName} ROWS FETCH NEXT @{TopParamName} ROWS ONLY", dp);
         }
 
         public static string GetSort(string sort)
@@ -85,7 +88,7 @@ namespace Architecture3.Common.Database
         {
             var escapeChar = (NonEmptyString)@"\";
             var dp = new DynamicParameters();
-            dp.Add(paramName.Value.ToUpperInvariant(), ToLikeString(value, likeType, escapeChar));
+            dp.Add(paramName.Value.ToUpperInvariant(), ToLikeString(value, likeType, escapeChar).Value);
             return new DataResult((NonEmptyString)$@"{fieldName.Value.ToUpperInvariant()} LIKE @{paramName.Value.ToUpperInvariant()} ESCAPE '{escapeChar}'", dp);
         }
 
@@ -118,7 +121,7 @@ namespace Architecture3.Common.Database
 
         public class DataResult
         {
-            internal DataResult(NonEmptyString data, DynamicParameters parameters)
+            public DataResult(NonEmptyString data, DynamicParameters parameters)
             {
                 Data = data;
                 Parameters = parameters;
