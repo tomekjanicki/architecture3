@@ -244,3 +244,4 @@ ModelManifest.xml
 # FAKE - F# Make
 .fake/
 /bower_components
+/Projects/Architecture3.Web/Logs
