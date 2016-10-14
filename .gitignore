@@ -245,5 +245,6 @@ ModelManifest.xml
 .fake/
 /bower_components
 /Projects/Architecture3.Web/Logs
-!/packages/NuGet.CommandLine*
+!/packages/NuGet.CommandLine.*
+!/packages/MSBuildTasks.*
 /build_results
