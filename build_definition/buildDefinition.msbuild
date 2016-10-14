@@ -10,6 +10,7 @@
     <BuildReportsPath>$(BuildResultPath)\reports</BuildReportsPath>
     <CleanDirectories>$(RootPath)\Projects\**\obj\$(Configuration)\**;$(RootPath)\Projects\**\bin\$(Configuration)\**;$(RootPath)\Projects\Architecture3.Web\bin\**;$(RootPath)\Tests\**\obj\$(Configuration)\**;$(RootPath)\Tests\**\bin\$(Configuration)\**</CleanDirectories>
     <DeleteFiles>$(RootPath)\Projects\Architecture3.Web\bin\*</DeleteFiles>
+    <TestsPath>$(RootPath)\Tests\**\bin\$(Configuration)</TestsPath>
 
     <NugetPathScript>
       public static string ScriptMain()
@@ -17,11 +18,19 @@
       return Directory.GetDirectories(@"$(PackagesPath)", "NuGet.CommandLine.*").FirstOrDefault();
       }
     </NugetPathScript>
+  
+    <NUnitPathScript>
+      public static string ScriptMain() 
+      {
+      return Directory.GetDirectories(@"$(PackagesPath)", "NUnit.ConsoleRunner.*").FirstOrDefault();
+      }
+    </NUnitPathScript>  
+    <NUnitAssemblies>$(TestsPath)\*.Tests.dll</NUnitAssemblies>  
   </PropertyGroup>
 
   <Import Project="$(PackagesPath)\MSBuildTasks.*\tools\MSBuild.Community.Tasks.Targets"/>
 
-  <Target Name="CI" DependsOnTargets="Clean;RestoreNugetPackages;Compile"/>
+  <Target Name="CI" DependsOnTargets="Clean;RestoreNugetPackages;Compile;NUnit"/>
 
   <Target Name="Clean">
     <Message Importance="high" Text="Executing Clean"/>
@@ -60,5 +69,39 @@
     <Message Importance="high" Text="Executing RestoreNugetPackages" />
     <Exec Command="$(NuGetCmdExe) restore $(Solution)"  />
     <Message Importance="high" Text="Finsihed RestoreNugetPackages" />
+  </Target>
+
+  <Target Name="GetNUnitPathFull">
+    <Message Importance="high" Text="Executing GetNUnitPathFull" />
+    <Script Language="C#" Code="$(NUnitPathScript)" Imports="System.Linq">
+      <Output TaskParameter="ReturnValue" PropertyName="NUnitPath" />
+    </Script>
+    <CreateProperty Value="$(NUnitPath)\tools\">
+      <Output TaskParameter="Value" PropertyName="NUnitPathFull"/>
+    </CreateProperty>
+    <Message Importance="high" Text="Finished GetNUnitPathFull: $(NUnitPathFull)" />
+  </Target>
+
+  <Target Name="NUnit" DependsOnTargets="GetNUnitPathFull">
+    <Message Importance="high" Text="Executing NUnit"/>
+    <ItemGroup>
+      <NUnitTestDlls Include="$(NUnitAssemblies)" />
+    </ItemGroup>
+    <ItemGroup>
+      <TempProjectsNUnit Include="$(MSBuildProjectFile)" >
+        <Properties>NUnitTestDllFile=%(NUnitTestDlls.FullPath);NUnitPathFull=$(NUnitPathFull)</Properties>
+      </TempProjectsNUnit>
+    </ItemGroup>
+    <MSBuild Projects="@(TempProjectsNUnit)" BuildInParallel="true" Targets="RunOneNUnitTestDll" />
+    <Message Importance="high" Text="Finished NUnit"/>
+  </Target>
+
+  <Target Name="RunOneNUnitTestDll">
+    <Message Importance="high" Text="Executing RunOneNUnitTestDll: $(NUnitTestDllFile)" />
+    <ItemGroup>
+      <ThisDll Include="$(NUnitTestDllFile)"/>
+    </ItemGroup>
+    <Exec Command="$(NUnitPathFull)\nunit3-console.exe @(ThisDll) --result=$(BuildReportsPath)\%(ThisDll.Filename).Results.nunit.xml" />
+    <Message Importance="high" Text="Finnished RunOneNUnitTestDll: $(NUnitTestDllFile)" />
   </Target>
 </Project>
