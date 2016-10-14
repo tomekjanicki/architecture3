@@ -60,7 +60,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Const.cs" />
-    <Compile Include="CQ\EmptyQueryCommand.cs" />
+    <Compile Include="CQ\EmptyCommandQuery.cs" />
     <Compile Include="Database\CommandHelper.cs" />
     <Compile Include="Database\DatabaseExtension.cs" />
     <Compile Include="Handlers\Interfaces\IVoidRequestHandler.cs" />

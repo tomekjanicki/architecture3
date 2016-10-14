@@ -2,9 +2,9 @@
 {
     using Architecture3.Types.FunctionalExtensions;
 
-    public abstract class EmptyQueryCommand : ValueObject<EmptyQueryCommand>
+    public abstract class EmptyCommandQuery : ValueObject<EmptyCommandQuery>
     {
-        protected override bool EqualsCore(EmptyQueryCommand other)
+        protected override bool EqualsCore(EmptyCommandQuery other)
         {
             return this == other;
         }

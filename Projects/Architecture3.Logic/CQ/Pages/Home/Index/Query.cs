@@ -4,7 +4,7 @@
     using Architecture3.Common.Handlers.Interfaces;
     using Architecture3.Types;
 
-    public sealed class Query : EmptyQueryCommand, IRequest<NonEmptyString>
+    public sealed class Query : EmptyCommandQuery, IRequest<NonEmptyString>
     {
         private Query()
         {
