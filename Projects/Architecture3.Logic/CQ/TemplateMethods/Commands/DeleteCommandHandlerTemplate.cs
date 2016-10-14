@@ -17,6 +17,11 @@
 
         protected TDeleteRepository DeleteRepository { get; }
 
+        public NonEmptyString GetRowVersionIsEmptyMessage()
+        {
+            return (NonEmptyString)"GetRowVersionById returned no rows";
+        }
+
         public IResult<Error> Handle(TCommand message)
         {
             var id = message.IdVersion.Id;

@@ -62,7 +62,9 @@
   <ItemGroup>
     <Compile Include="CQ\Apis\Product\Delete\CommandHandlerTests.cs" />
     <Compile Include="CQ\Apis\Product\Delete\CommandTests.cs" />
+    <Compile Include="CQ\TemplateMethods\Commands\DeleteCommandHandlerTemplateTests.cs" />
     <Compile Include="CQ\TemplateMethods\Commands\UpdateCommandHandlerTemplateTests.cs" />
+    <Compile Include="CQ\TemplateMethods\Queries\GetCommandHandlerTemplateTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="MappingTests.cs" />
   </ItemGroup>

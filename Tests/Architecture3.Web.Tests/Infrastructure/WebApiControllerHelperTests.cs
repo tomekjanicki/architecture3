@@ -7,6 +7,7 @@
     using Architecture3.Types;
     using Architecture3.Types.FunctionalExtensions;
     using Architecture3.Web.Infrastructure;
+    using NSubstitute;
     using NUnit.Framework;
     using Shouldly;
 
@@ -17,7 +18,7 @@
         {
             const string content = "Ok";
             var result = Result<string, Error>.Ok(content);
-            var actionResult = WebApiControllerHelper.GetHttpActionResult(result, new TestApiController());
+            var actionResult = WebApiControllerHelper.GetHttpActionResult(result, Substitute.For<ApiController>());
             var okNegotiatedContentResult = actionResult as OkNegotiatedContentResult<string>;
             okNegotiatedContentResult.ShouldNotBeNull();
             okNegotiatedContentResult?.Content.ShouldBe(content);
@@ -28,7 +29,7 @@
         {
             const string error = "error";
             var result = ((NonEmptyString)error).ToGeneric<string>();
-            var actionResult = WebApiControllerHelper.GetHttpActionResult(result, new TestApiController());
+            var actionResult = WebApiControllerHelper.GetHttpActionResult(result, Substitute.For<ApiController>());
             var badRequestErrorMessageResult = actionResult as BadRequestErrorMessageResult;
             badRequestErrorMessageResult.ShouldNotBeNull();
             badRequestErrorMessageResult?.Message.ShouldBe(error);
@@ -38,7 +39,7 @@
         public void GetHttpActionResult_NotFound_ShouldReturnNotFoundResult()
         {
             var result = ErrorResultExtensions.ToNotFound<string>();
-            var actionResult = WebApiControllerHelper.GetHttpActionResult(result, new TestApiController());
+            var actionResult = WebApiControllerHelper.GetHttpActionResult(result, Substitute.For<ApiController>());
             var notFoundResult = actionResult as NotFoundResult;
             notFoundResult.ShouldNotBeNull();
         }
@@ -47,7 +48,7 @@
         public void GetHttpActionResult_PreconditionFailed_ShouldReturnStatusCodeResult()
         {
             var result = ErrorResultExtensions.ToPreconditionFailed<string>();
-            var actionResult = WebApiControllerHelper.GetHttpActionResult(result, new TestApiController());
+            var actionResult = WebApiControllerHelper.GetHttpActionResult(result, Substitute.For<ApiController>());
             var statusCodeResult = actionResult as StatusCodeResult;
             statusCodeResult.ShouldNotBeNull();
             statusCodeResult?.StatusCode.ShouldBe(HttpStatusCode.PreconditionFailed);
@@ -57,7 +58,7 @@
         public void GetHttpActionResultForDelete_Ok_ShouldReturnStatusCodeResult()
         {
             var result = Result<Error>.Ok();
-            var actionResult = WebApiControllerHelper.GetHttpActionResultForDelete(result, new TestApiController());
+            var actionResult = WebApiControllerHelper.GetHttpActionResultForDelete(result, Substitute.For<ApiController>());
             var statusCodeResult = actionResult as StatusCodeResult;
             statusCodeResult.ShouldNotBeNull();
             statusCodeResult?.StatusCode.ShouldBe(HttpStatusCode.NoContent);
@@ -68,7 +69,7 @@
         {
             const string error = "error";
             var result = ((NonEmptyString)error).ToGeneric();
-            var actionResult = WebApiControllerHelper.GetHttpActionResultForDelete(result, new TestApiController());
+            var actionResult = WebApiControllerHelper.GetHttpActionResultForDelete(result, Substitute.For<ApiController>());
             var badRequestErrorMessageResult = actionResult as BadRequestErrorMessageResult;
             badRequestErrorMessageResult.ShouldNotBeNull();
             badRequestErrorMessageResult?.Message.ShouldBe(error);
@@ -78,7 +79,7 @@
         public void GetHttpActionResultForDelete_NotFound_ShouldReturnNotFoundResult()
         {
             var result = ErrorResultExtensions.ToNotFound();
-            var actionResult = WebApiControllerHelper.GetHttpActionResultForDelete(result, new TestApiController());
+            var actionResult = WebApiControllerHelper.GetHttpActionResultForDelete(result, Substitute.For<ApiController>());
             var notFoundResult = actionResult as NotFoundResult;
             notFoundResult.ShouldNotBeNull();
         }
@@ -87,7 +88,7 @@
         public void GetHttpActionResultForDelete_PreconditionFailed_ShouldReturnStatusCodeResult()
         {
             var result = ErrorResultExtensions.ToPreconditionFailed();
-            var actionResult = WebApiControllerHelper.GetHttpActionResultForDelete(result, new TestApiController());
+            var actionResult = WebApiControllerHelper.GetHttpActionResultForDelete(result, Substitute.For<ApiController>());
             var statusCodeResult = actionResult as StatusCodeResult;
             statusCodeResult.ShouldNotBeNull();
             statusCodeResult?.StatusCode.ShouldBe(HttpStatusCode.PreconditionFailed);
@@ -97,7 +98,7 @@
         public void GetHttpActionResultForPut_Ok_ShouldReturnOkResult()
         {
             var result = Result<Error>.Ok();
-            var actionResult = WebApiControllerHelper.GetHttpActionResultForPut(result, new TestApiController());
+            var actionResult = WebApiControllerHelper.GetHttpActionResultForPut(result, Substitute.For<ApiController>());
             var okResult = actionResult as OkResult;
             okResult.ShouldNotBeNull();
         }
@@ -107,7 +108,7 @@
         {
             const string error = "error";
             var result = ((NonEmptyString)error).ToGeneric();
-            var actionResult = WebApiControllerHelper.GetHttpActionResultForPut(result, new TestApiController());
+            var actionResult = WebApiControllerHelper.GetHttpActionResultForPut(result, Substitute.For<ApiController>());
             var badRequestErrorMessageResult = actionResult as BadRequestErrorMessageResult;
             badRequestErrorMessageResult.ShouldNotBeNull();
             badRequestErrorMessageResult?.Message.ShouldBe(error);
@@ -117,7 +118,7 @@
         public void GetHttpActionResultForPut_NotFound_ShouldReturnNotFoundResult()
         {
             var result = ErrorResultExtensions.ToNotFound();
-            var actionResult = WebApiControllerHelper.GetHttpActionResultForPut(result, new TestApiController());
+            var actionResult = WebApiControllerHelper.GetHttpActionResultForPut(result, Substitute.For<ApiController>());
             var notFoundResult = actionResult as NotFoundResult;
             notFoundResult.ShouldNotBeNull();
         }
@@ -126,14 +127,10 @@
         public void GetHttpActionResultForPut_PreconditionFailed_ShouldReturnStatusCodeResult()
         {
             var result = ErrorResultExtensions.ToPreconditionFailed();
-            var actionResult = WebApiControllerHelper.GetHttpActionResultForPut(result, new TestApiController());
+            var actionResult = WebApiControllerHelper.GetHttpActionResultForPut(result, Substitute.For<ApiController>());
             var statusCodeResult = actionResult as StatusCodeResult;
             statusCodeResult.ShouldNotBeNull();
             statusCodeResult?.StatusCode.ShouldBe(HttpStatusCode.PreconditionFailed);
-        }
-
-        public class TestApiController : ApiController
-        {
         }
     }
 }
