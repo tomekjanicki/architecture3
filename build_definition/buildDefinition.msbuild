@@ -3,15 +3,17 @@
     <Configuration>Release</Configuration>
     <Platform>Any CPU</Platform>
 
-    <RootPath>$(MSBuildStartupDirectory)\..\</RootPath>
-    <Solution>$(RootPath)\Architecture3.sln</Solution>
-    <PackagesPath>$(RootPath)\packages</PackagesPath>
-    <BuildResultPath>$(RootPath)\build_results</BuildResultPath>
-    <BuildReportsPath>$(BuildResultPath)\reports</BuildReportsPath>
-    <CleanDirectories>$(RootPath)\Projects\**\obj\$(Configuration)\**;$(RootPath)\Projects\**\bin\$(Configuration)\**;$(RootPath)\Projects\Architecture3.Web\bin\**;$(RootPath)\Tests\**\obj\$(Configuration)\**;$(RootPath)\Tests\**\bin\$(Configuration)\**</CleanDirectories>
-    <DeleteFiles>$(RootPath)\Projects\Architecture3.Web\bin\*</DeleteFiles>
-    <TestsPath>$(RootPath)\Tests\**\bin\$(Configuration)</TestsPath>
-
+    <RootFolderPath>$(MSBuildStartupDirectory)\..\</RootFolderPath>
+    <SolutionFilePath>$(RootFolderPath)\Architecture3.sln</SolutionFilePath>
+    <PackagesPath>$(RootFolderPath)\packages</PackagesPath>
+    <BuildResultFolderPath>$(RootFolderPath)\build_results</BuildResultFolderPath>
+    <BuildResultReportsFolderPath>$(BuildResultFolderPath)\reports</BuildResultReportsFolderPath>
+    
+    <TestsFolderPath>$(RootFolderPath)\Tests\**\bin\$(Configuration)</TestsFolderPath>
+    <TestsAssemblies>$(TestsFolderPath)\*.Tests.dll</TestsAssemblies>
+    <CleanDirectories>$(RootFolderPath)\Projects\**\obj\$(Configuration)\**;$(RootFolderPath)\Projects\**\bin\$(Configuration)\**;$(RootFolderPath)\Projects\Architecture3.Web\bin\**;$(RootFolderPath)\Tests\**\obj\$(Configuration)\**;$(RootFolderPath)\Tests\**\bin\$(Configuration)\**</CleanDirectories>
+    <DeleteFiles>$(RootFolderPath)\Projects\Architecture3.Web\bin\*</DeleteFiles>
+    
     <NugetPathScript>
       public static string ScriptMain()
       {
@@ -25,7 +27,6 @@
       return Directory.GetDirectories(@"$(PackagesPath)", "NUnit.ConsoleRunner.*").FirstOrDefault();
       }
     </NUnitPathScript>  
-    <NUnitAssemblies>$(TestsPath)\*.Tests.dll</NUnitAssemblies>  
   </PropertyGroup>
 
   <Import Project="$(PackagesPath)\MSBuildTasks.*\tools\MSBuild.Community.Tasks.Targets"/>
@@ -38,8 +39,8 @@
       <FilesToDelete Include="$(DeleteFiles)"/>
     </ItemGroup>
     <Delete Files="@(FilesToDelete)" />
-    <RemoveDir Directories="$(BuildReportsPath)" />
-    <MakeDir Directories = "$(BuildReportsPath)" />
+    <RemoveDir Directories="$(BuildResultReportsFolderPath)" />
+    <MakeDir Directories = "$(BuildResultReportsFolderPath)" />
     <DeleteTree Directories="$(CleanDirectories)" ContinueOnError="true"/>
     <Delete Files="$(FilesToDelete)" ContinueOnError="true"/>
     <Message Importance="high" Text="Finished Clean"/>
@@ -48,26 +49,26 @@
   <Target Name="Compile">
     <Message Importance="high" Text="Executing Compile"/>
     <ItemGroup>
-      <ProjectFiles Include="$(Solution)"/>
+      <ProjectFiles Include="$(SolutionFilePath)"/>
     </ItemGroup>
     <MSBuild Projects="@(ProjectFiles)" Properties="Configuration=$(Configuration);Platform=$(Platform)"/>
     <Message Importance="high" Text="Finished Compile"/>
   </Target>  
   
-  <Target Name="GetNuGetCmdExe">
-    <Message Importance="high" Text="Executing GetNuGetCmdExe" />
+  <Target Name="GetNugetCmdExe">
+    <Message Importance="high" Text="Executing GetNugetCmdExe" />
     <Script Language="C#" Code="$(NugetPathScript)" Imports="System.Linq">
       <Output TaskParameter="ReturnValue" PropertyName="NugetPath" />
     </Script>
     <CreateProperty Value="$(NugetPath)\tools\NuGet.exe">
-      <Output TaskParameter="Value" PropertyName="NuGetCmdExe"/>
+      <Output TaskParameter="Value" PropertyName="NugetCmdExe"/>
     </CreateProperty>
-    <Message Importance="high" Text="Finished GetNuGetCmdExe: $(NuGetCmdExe)" />
+    <Message Importance="high" Text="Finished GetNugetCmdExe: $(NugetCmdExe)" />
   </Target>
 
-  <Target Name="RestoreNugetPackages" DependsOnTargets="GetNuGetCmdExe">
+  <Target Name="RestoreNugetPackages" DependsOnTargets="GetNugetCmdExe">
     <Message Importance="high" Text="Executing RestoreNugetPackages" />
-    <Exec Command="$(NuGetCmdExe) restore $(Solution)"  />
+    <Exec Command="$(NugetCmdExe) restore $(SolutionFilePath)"  />
     <Message Importance="high" Text="Finsihed RestoreNugetPackages" />
   </Target>
 
@@ -85,7 +86,7 @@
   <Target Name="NUnit" DependsOnTargets="GetNUnitPathFull">
     <Message Importance="high" Text="Executing NUnit"/>
     <ItemGroup>
-      <NUnitTestDlls Include="$(NUnitAssemblies)" />
+      <NUnitTestDlls Include="$(TestsAssemblies)" />
     </ItemGroup>
     <ItemGroup>
       <TempProjectsNUnit Include="$(MSBuildProjectFile)" >
@@ -101,7 +102,7 @@
     <ItemGroup>
       <ThisDll Include="$(NUnitTestDllFile)"/>
     </ItemGroup>
-    <Exec Command="$(NUnitPathFull)\nunit3-console.exe @(ThisDll) --result=$(BuildReportsPath)\%(ThisDll.Filename).Results.nunit.xml" />
+    <Exec Command="$(NUnitPathFull)\nunit3-console.exe @(ThisDll) --result=$(BuildResultReportsFolderPath)\%(ThisDll.Filename).Results.nunit.xml" />
     <Message Importance="high" Text="Finnished RunOneNUnitTestDll: $(NUnitTestDllFile)" />
   </Target>
 </Project>
