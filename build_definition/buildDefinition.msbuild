@@ -1,0 +1,139 @@
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration>Release</Configuration>
+    <Platform>Any CPU</Platform>
+
+    <RootPath>$(MSBuildStartupDirectory)</RootPath>
+    <RootPathWeb>$(RootPath)\Projects\Komplett.ServiceMaker.Web\</RootPathWeb>
+    <CompileProjects>$(RootPath)\Komplett.ServiceMaker.sln</CompileProjects>
+    <BuildFolder>$(RootPath)\.build</BuildFolder>
+    <BuildFolderResult>$(RootPath)\BuildResult</BuildFolderResult>
+    <ReportsPath>$(BuildFolderResult)\Reports</ReportsPath>
+    <TestsFolder>$(RootPath)\Tests\**\bin\$(Configuration)</TestsFolder>
+    <Packages>$(RootPath)\packages</Packages>
+    <CleanDirectories>$(RootPath)\Projects\**\obj\$(Configuration)\**;$(RootPath)\Projects\**\bin\$(Configuration)\**;$(RootPath)\Projects\Komplett.ServiceMaker.Api.WebHost\bin\**;$(RootPath)\Projects\Komplett.ServiceMaker.Web\bin\**;$(RootPath)\Tests\**\obj\$(Configuration)\**;$(RootPath)\Tests\**\bin\$(Configuration)\**</CleanDirectories>
+    <DeleteFiles>$(RootPath)\Projects\Komplett.ServiceMaker.Api.WebHost\bin\*;$(RootPath)\Projects\Komplett.ServiceMaker.Web\bin\*</DeleteFiles>
+
+    <NUnitPathScript>
+      public static string ScriptMain() {
+      return Directory.GetDirectories(@"$(Packages)", "NUnit.ConsoleRunner.*").FirstOrDefault();
+      }
+    </NUnitPathScript>
+    <NUnitAssemblies>$(TestsFolder)\*.Tests.dll</NUnitAssemblies>
+
+    <NugetPathScript>
+      public static string ScriptMain() {
+      return Directory.GetDirectories(@"$(Packages)", "NuGet.CommandLine.*").FirstOrDefault();
+      }
+    </NugetPathScript>
+    <NuGetPackageDir>$(BuildFolderResult)\NuGetPackage</NuGetPackageDir>
+    <NuGetServerUrl></NuGetServerUrl>
+    <NuGetApiKey></NuGetApiKey>
+    <VersioningStrategy>Major</VersioningStrategy>
+
+  </PropertyGroup>
+
+  <Import Project="$(Packages)\MSBuildTasks.*\tools\MSBuild.Community.Tasks.Targets"/>
+  <Import Project="$(Packages)\Komplett.MsBuild.Versioning.*\build\Komplett.MsBuild.Versioning.Targets"/>
+
+  <Target Name="Deploy" DependsOnTargets="Clean;NpmInstall;BowerInstall;RestorePackages;BundleMinifyJsCss;KomplettVersioningBeforeBuild;Compile;NUnit;NuGetPackagePublish;KomplettVersioningOnSuccessfulBuild"/>
+
+  <Target Name="Clean">
+    <Message Importance="high" Text="Executing Clean"/>
+    <ItemGroup>
+      <FilesToDelete Include="$(DeleteFiles)"/>
+    </ItemGroup>
+    <Delete Files="@(FilesToDelete)" />
+    <RemoveDir Directories="$(ReportsPath);$(NuGetPackageDir)" />
+    <MakeDir Directories = "$(ReportsPath);$(NuGetPackageDir)" />
+    <DeleteTree Directories="$(CleanDirectories)" ContinueOnError="true"/>
+    <Delete Files="$(FilesToDelete)" ContinueOnError="true"/>
+    <Message Importance="high" Text="Finished Clean"/>
+  </Target>
+
+  <Target Name="NpmInstall">
+    <Message Importance="high" Text="Executing Npm Install"/>
+    <Exec Command="npm install" WorkingDirectory="$(RootPathWeb)" />
+    <Message Importance="high" Text="Finished Npm Install"/>
+  </Target>
+
+  <Target Name="BowerInstall">
+    <Message Importance="high" Text="Executing Bower Install"/>
+    <Exec Command="bower install" WorkingDirectory="$(RootPathWeb)"/>
+    <Message Importance="high" Text="Finished Bower Install"/>
+  </Target>
+
+  <Target Name="BundleMinifyJsCss">
+    <Message Importance="high" Text="Executing Bundle Minify Js Css"/>
+    <Exec Command="gulp default" WorkingDirectory="$(RootPathWeb)"/>
+    <Message Importance="high" Text="Finished Bundle Minify Js Css"/>
+  </Target>
+
+  <Target Name="Compile">
+    <Message Importance="high" Text="Executing Compile"/>
+    <ItemGroup>
+      <ProjectFiles Include="$(CompileProjects)"/>
+    </ItemGroup>
+    <MSBuild Projects="@(ProjectFiles)" Properties="Configuration=$(Configuration);Platform=$(Platform);RunOctoPack=true;OctoPackPublishPackageToFileShare=$(NuGetPackageDir);CurrentGitTagVersion=$(CurrentGitTagVersion);NextGitTagVersion=$(NextGitTagVersion);JiraIssuesFixedSincePreviousVersion=$(JiraIssuesFixedSincePreviousVersion);RepositoryPrefixForJiraVersion=$(RepositoryPrefixForJiraVersion);VersioningStrategy=$(VersioningStrategy)"/>
+    <Message Importance="high" Text="Finished Compile"/>
+  </Target>
+
+  <Target Name="GetNUnitPathFull">
+    <Message Importance="high" Text="Executing GetNUnitPathFull" />
+    <Script Language="C#" Code="$(NUnitPathScript)" Imports="System.Linq">
+      <Output TaskParameter="ReturnValue" PropertyName="NUnitPath" />
+    </Script>
+    <CreateProperty Value="$(NUnitPath)\tools\">
+      <Output TaskParameter="Value" PropertyName="NUnitPathFull"/>
+    </CreateProperty>
+    <Message Importance="high" Text="Finished GetNUnitPathFull: $(NUnitPathFull)" />
+  </Target>
+
+  <Target Name="NUnit" DependsOnTargets="GetNUnitPathFull">
+    <Message Importance="high" Text="Executing NUnit"/>
+    <ItemGroup>
+      <NUnitTestDlls Include="$(NUnitAssemblies)" />
+    </ItemGroup>
+    <ItemGroup>
+      <TempProjectsNUnit Include="$(MSBuildProjectFile)" >
+        <Properties>NUnitTestDllFile=%(NUnitTestDlls.FullPath);NUnitPathFull=$(NUnitPathFull)</Properties>
+      </TempProjectsNUnit>
+    </ItemGroup>
+    <MSBuild Projects="@(TempProjectsNUnit)" BuildInParallel="true" Targets="RunOneNUnitTestDll" />
+    <Message Importance="high" Text="Finished NUnit"/>
+  </Target>
+
+  <Target Name="RunOneNUnitTestDll">
+    <Message Importance="high" Text="Executing RunOneNUnitTestDll: $(NUnitTestDllFile)" />
+    <ItemGroup>
+      <ThisDll Include="$(NUnitTestDllFile)"/>
+    </ItemGroup>
+    <Exec Command="$(NUnitPathFull)\nunit3-console.exe @(ThisDll) --result=$(ReportsPath)\%(ThisDll.Filename).Results.nunit.xml;format=nunit2" />
+    <Message Importance="high" Text="Finnished RunOneNUnitTestDll: $(NUnitTestDllFile)" />
+  </Target>
+
+  <Target Name="GetNuGetCmdExe">
+    <Message Importance="high" Text="Executing GetNuGetCmdExe" />
+    <Script Language="C#" Code="$(NugetPathScript)" Imports="System.Linq">
+      <Output TaskParameter="ReturnValue" PropertyName="NugetPath" />
+    </Script>
+    <CreateProperty Value="$(NugetPath)\tools\NuGet.exe">
+      <Output TaskParameter="Value" PropertyName="NuGetCmdExe"/>
+    </CreateProperty>
+    <Message Importance="high" Text="Finished GetNuGetCmdExe: $(NuGetCmdExe)" />
+  </Target>
+
+  <Target Name="NuGetPackagePublish" DependsOnTargets="Compile;NUnit;GetNuGetCmdExe">
+    <Message Importance="high" Text="Executing NuGetPackagePublish" />
+    <Exec WorkingDirectory="$(NuGetPackageDir)" Command="$(NuGetCmdExe) push Komplett.ServiceMaker.DbUp.*.nupkg -ApiKey $(NuGetApiKey) -Source $(NuGetServerUrl)" />
+    <Exec WorkingDirectory="$(NuGetPackageDir)" Command="$(NuGetCmdExe) push Komplett.ServiceMaker.Api.WebHost.*.nupkg -ApiKey $(NuGetApiKey) -Source $(NuGetServerUrl)" />
+    <Exec WorkingDirectory="$(NuGetPackageDir)" Command="$(NuGetCmdExe) push Komplett.ServiceMaker.Web.*.nupkg -ApiKey $(NuGetApiKey) -Source $(NuGetServerUrl)" />    
+    <Message Importance="high" Text="Finished Nu Get Package Publish" />
+  </Target>
+
+  <Target Name="RestorePackages" DependsOnTargets="GetNuGetCmdExe">
+    <Message Importance="high" Text="Executing RestorePackages" />
+    <Exec Command="$(NuGetCmdExe) restore $(CompileProjects)"  />
+    <Message Importance="high" Text="Finsihed RestorePackages" />
+  </Target>
+</Project>

@@ -36,6 +36,12 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Architecture3.Common.Web.Te
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Architecture3.Web.Tests", "Tests\Architecture3.Web.Tests\Architecture3.Web.Tests.csproj", "{1E1063E7-0934-4C11-AFDB-99DF50DC1FA3}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "build_definition", "build_definition", "{33B83DF4-D66F-4152-B2B8-9E27069C1E70}"
+	ProjectSection(SolutionItems) = preProject
+		build_definition\buildDefinition.cmd = build_definition\buildDefinition.cmd
+		build_definition\buildDefinition.msbuild = build_definition\buildDefinition.msbuild
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU

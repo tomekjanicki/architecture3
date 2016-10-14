@@ -246,3 +246,4 @@ ModelManifest.xml
 /bower_components
 /Projects/Architecture3.Web/Logs
 !/packages/NuGet.CommandLine*
+/build_results
