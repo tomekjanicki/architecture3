@@ -6,19 +6,45 @@
     <RootPath>$(MSBuildStartupDirectory)\..\</RootPath>
     <Solution>$(RootPath)\Architecture3.sln</Solution>
     <PackagesPath>$(RootPath)\packages</PackagesPath>
+    <BuildResultPath>$(RootPath)\build_results</BuildResultPath>
+    <BuildReportsPath>$(BuildResultPath)\reports</BuildReportsPath>
+    <CleanDirectories>$(RootPath)\Projects\**\obj\$(Configuration)\**;$(RootPath)\Projects\**\bin\$(Configuration)\**;$(RootPath)\Projects\Architecture3.Web\bin\**;$(RootPath)\Tests\**\obj\$(Configuration)\**;$(RootPath)\Tests\**\bin\$(Configuration)\**</CleanDirectories>
+    <DeleteFiles>$(RootPath)\Projects\Architecture3.Web\bin\*</DeleteFiles>
 
     <NugetPathScript>
       public static string ScriptMain()
       {
-        return Directory.GetDirectories(@"$(PackagesPath)", "NuGet.CommandLine.*").FirstOrDefault();
+      return Directory.GetDirectories(@"$(PackagesPath)", "NuGet.CommandLine.*").FirstOrDefault();
       }
     </NugetPathScript>
   </PropertyGroup>
 
   <Import Project="$(PackagesPath)\MSBuildTasks.*\tools\MSBuild.Community.Tasks.Targets"/>
 
-  <Target Name="CI" DependsOnTargets="RestoreNugetPackages"/>
+  <Target Name="CI" DependsOnTargets="Clean;RestoreNugetPackages;Compile"/>
 
+  <Target Name="Clean">
+    <Message Importance="high" Text="Executing Clean"/>
+    <ItemGroup>
+      <FilesToDelete Include="$(DeleteFiles)"/>
+    </ItemGroup>
+    <Delete Files="@(FilesToDelete)" />
+    <RemoveDir Directories="$(BuildReportsPath)" />
+    <MakeDir Directories = "$(BuildReportsPath)" />
+    <DeleteTree Directories="$(CleanDirectories)" ContinueOnError="true"/>
+    <Delete Files="$(FilesToDelete)" ContinueOnError="true"/>
+    <Message Importance="high" Text="Finished Clean"/>
+  </Target>
+  
+  <Target Name="Compile">
+    <Message Importance="high" Text="Executing Compile"/>
+    <ItemGroup>
+      <ProjectFiles Include="$(Solution)"/>
+    </ItemGroup>
+    <MSBuild Projects="@(ProjectFiles)" Properties="Configuration=$(Configuration);Platform=$(Platform)"/>
+    <Message Importance="high" Text="Finished Compile"/>
+  </Target>  
+  
   <Target Name="GetNuGetCmdExe">
     <Message Importance="high" Text="Executing GetNuGetCmdExe" />
     <Script Language="C#" Code="$(NugetPathScript)" Imports="System.Linq">
@@ -29,7 +55,7 @@
     </CreateProperty>
     <Message Importance="high" Text="Finished GetNuGetCmdExe: $(NuGetCmdExe)" />
   </Target>
-  
+
   <Target Name="RestoreNugetPackages" DependsOnTargets="GetNuGetCmdExe">
     <Message Importance="high" Text="Executing RestoreNugetPackages" />
     <Exec Command="$(NuGetCmdExe) restore $(Solution)"  />
