@@ -8,6 +8,7 @@
     <PackagesPath>$(RootFolderPath)\packages</PackagesPath>
     <BuildResultFolderPath>$(RootFolderPath)\build_results</BuildResultFolderPath>
     <BuildResultReportsFolderPath>$(BuildResultFolderPath)\reports</BuildResultReportsFolderPath>
+    <NugetPackageFolderPath>$(BuildResultFolderPath)\NuGetPackage</NugetPackageFolderPath>
     
     <TestsFolderPath>$(RootFolderPath)\Tests\**\bin\$(Configuration)</TestsFolderPath>
     <TestsAssemblies>$(TestsFolderPath)\*.Tests.dll</TestsAssemblies>
@@ -33,14 +34,16 @@
 
   <Target Name="CI" DependsOnTargets="Clean;RestoreNugetPackages;CompileDotNetCode;ExecuteNUnitTests"/>
 
+  <Target Name="D" DependsOnTargets="Clean;RestoreNugetPackages;CompileDotNetCodeCreateOctopack;ExecuteNUnitTests"/>
+
   <Target Name="Clean">
     <Message Importance="high" Text="Executing Clean"/>
     <ItemGroup>
       <FilesToDelete Include="$(DeleteFiles)"/>
     </ItemGroup>
     <Delete Files="@(FilesToDelete)" />
-    <RemoveDir Directories="$(BuildResultReportsFolderPath)" />
-    <MakeDir Directories = "$(BuildResultReportsFolderPath)" />
+    <RemoveDir Directories="$(BuildResultReportsFolderPath);$(NugetPackageFolderPath)" />
+    <MakeDir Directories = "$(BuildResultReportsFolderPath);$(NugetPackageFolderPath)" />
     <DeleteTree Directories="$(CleanDirectories)" ContinueOnError="true"/>
     <Delete Files="$(FilesToDelete)" ContinueOnError="true"/>
     <Message Importance="high" Text="Finished Clean"/>
@@ -53,8 +56,17 @@
     </ItemGroup>
     <MSBuild Projects="@(ProjectFiles)" Properties="Configuration=$(Configuration);Platform=$(Platform)"/>
     <Message Importance="high" Text="Finished CompileDotNetCode"/>
-  </Target>  
-  
+  </Target>
+
+  <Target Name="CompileDotNetCodeCreateOctopack">
+    <Message Importance="high" Text="Executing CompileDotNetCode"/>
+    <ItemGroup>
+      <ProjectFiles Include="$(SolutionFilePath)"/>
+    </ItemGroup>
+    <MSBuild Projects="@(ProjectFiles)" Properties="Configuration=$(Configuration);Platform=$(Platform);RunOctoPack=true;OctoPackPublishPackageToFileShare=$(NugetPackageFolderPath)"/>
+    <Message Importance="high" Text="Finished CompileDotNetCode"/>
+  </Target>
+
   <Target Name="GetNugetCmdExe">
     <Message Importance="high" Text="Executing GetNugetCmdExe" />
     <Script Language="C#" Code="$(NugetPathScript)" Imports="System.Linq">
