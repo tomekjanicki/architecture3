@@ -80,9 +80,15 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
-    <Content Include="log4net.config">
+    <None Include="connectionStrings.octopus.config">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
+    </None>
+    <None Include="log4net.config">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="connectionStrings.config">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
