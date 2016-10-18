@@ -250,9 +250,6 @@
     <Content Include="log4net.config" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="connectionStrings.config" />
-  </ItemGroup>
-  <ItemGroup>
     <Content Include="connectionStrings.octopus.config" />
   </ItemGroup>
   <PropertyGroup>

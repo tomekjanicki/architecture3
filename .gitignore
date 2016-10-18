@@ -248,3 +248,14 @@ ModelManifest.xml
 !/packages/NuGet.CommandLine.*
 !/packages/MSBuildTasks.*
 /build_results
+
+/Projects/Architecture3.Web/*.config
+!/Projects/Architecture3.Web/*.octopus.config
+!/Projects/Architecture3.Web/packages.config
+!/Projects/Architecture3.Web/web.config
+!/Projects/Architecture3.Web/web.Release.config
+
+/Projects/Architecture3.Db/*.config
+!/Projects/Architecture3.Db/*.octopus.config
+!/Projects/Architecture3.Db/packages.config
+!/Projects/Architecture3.Db/app.config
