@@ -34,6 +34,7 @@
             catch (Exception exception)
             {
                 Logger.Error("Unhadled exception", exception);
+                DispalyMessage(ConsoleColor.Red, exception.ToString());
                 return -2;
             }
         }
