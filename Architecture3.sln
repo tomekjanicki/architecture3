@@ -45,7 +45,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "build_definition", "build_d
 		build_definition\buildDefinitionDTest.cmd = build_definition\buildDefinitionDTest.cmd
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Architecture3.DbMigrator", "Projects\Architecture3.Db\Architecture3.DbMigrator.csproj", "{39777826-5872-43FB-B991-0E40EA109CBD}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Architecture3.DbMigrator", "Projects\Architecture3.DbMigrator\Architecture3.DbMigrator.csproj", "{39777826-5872-43FB-B991-0E40EA109CBD}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
