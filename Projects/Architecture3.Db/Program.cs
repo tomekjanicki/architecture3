@@ -1,4 +1,4 @@
-﻿namespace Architecture3.Db
+﻿namespace Architecture3.DbMigrator
 {
     using System;
     using System.Configuration;

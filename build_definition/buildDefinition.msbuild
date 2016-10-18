@@ -122,7 +122,7 @@
 
   <Target Name="PublishNugetPackages" DependsOnTargets="GetNugetCmdExe">
     <Message Importance="high" Text="Executing PublishNugetPackages" />
-    <Exec WorkingDirectory="$(NugetPackageFolderPath)" Command="$(NugetCmdExe) push Architecture3.DbUp.*.nupkg -ApiKey $(OctopusNugetApiKey) -Source $(OctopusNugetServerUrl)" />
+    <Exec WorkingDirectory="$(NugetPackageFolderPath)" Command="$(NugetCmdExe) push Architecture3.DbMigrator.*.nupkg -ApiKey $(OctopusNugetApiKey) -Source $(OctopusNugetServerUrl)" />
     <Exec WorkingDirectory="$(NugetPackageFolderPath)" Command="$(NugetCmdExe) push Architecture3.Web.*.nupkg -ApiKey $(OctopusNugetApiKey) -Source $(OctopusNugetServerUrl)" />
     <Message Importance="high" Text="Finished PublishNugetPackages" />
   </Target>
