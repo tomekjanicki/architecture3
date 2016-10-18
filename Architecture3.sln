@@ -47,6 +47,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "build_definition", "build_d
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Architecture3.DbMigrator", "Projects\Architecture3.DbMigrator\Architecture3.DbMigrator.csproj", "{39777826-5872-43FB-B991-0E40EA109CBD}"
 EndProject
+Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "Architecure3.Db", "Projects\Architecure3.Db\Architecure3.Db.sqlproj", "{328E0E04-D3D0-4C0D-B78C-FB1C692003FC}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -101,6 +103,10 @@ Global
 		{39777826-5872-43FB-B991-0E40EA109CBD}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{39777826-5872-43FB-B991-0E40EA109CBD}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{39777826-5872-43FB-B991-0E40EA109CBD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{328E0E04-D3D0-4C0D-B78C-FB1C692003FC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{328E0E04-D3D0-4C0D-B78C-FB1C692003FC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{328E0E04-D3D0-4C0D-B78C-FB1C692003FC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{328E0E04-D3D0-4C0D-B78C-FB1C692003FC}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -118,5 +124,6 @@ Global
 		{F34C0E7A-3420-47F1-9F92-A24EA76E5E5A} = {8A636113-5D27-43DF-A291-5B66EB1DA71F}
 		{1E1063E7-0934-4C11-AFDB-99DF50DC1FA3} = {8A636113-5D27-43DF-A291-5B66EB1DA71F}
 		{39777826-5872-43FB-B991-0E40EA109CBD} = {9252B1AE-31A9-47A2-A8F5-82489A74EAA8}
+		{328E0E04-D3D0-4C0D-B78C-FB1C692003FC} = {9252B1AE-31A9-47A2-A8F5-82489A74EAA8}
 	EndGlobalSection
 EndGlobal

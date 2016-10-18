@@ -109,8 +109,9 @@
       <Install>false</Install>
     </BootstrapperPackage>
   </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
-    <Folder Include="Scripts\" />
+    <EmbeddedResource Include="Scripts\20161018_0010_Product.sql" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="..\..\packages\OctoPack.3.4.2\tools\OctoPack.targets" Condition="Exists('..\..\packages\OctoPack.3.4.2\tools\OctoPack.targets')" />

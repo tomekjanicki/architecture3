@@ -255,7 +255,7 @@ ModelManifest.xml
 !/Projects/Architecture3.Web/web.config
 !/Projects/Architecture3.Web/web.Release.config
 
-/Projects/Architecture3.Db/*.config
-!/Projects/Architecture3.Db/*.octopus.config
-!/Projects/Architecture3.Db/packages.config
-!/Projects/Architecture3.Db/app.config
+/Projects/Architecture3.DbMigrator/*.config
+!/Projects/Architecture3.DbMigrator/*.octopus.config
+!/Projects/Architecture3.DbMigrator/packages.config
+!/Projects/Architecture3.DbMigrator/app.config
