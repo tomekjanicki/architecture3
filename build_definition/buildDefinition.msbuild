@@ -8,7 +8,7 @@
     <PackagesPath>$(RootFolderPath)\packages</PackagesPath>
     <BuildResultFolderPath>$(RootFolderPath)\build_results</BuildResultFolderPath>
     <BuildResultReportsFolderPath>$(BuildResultFolderPath)\reports</BuildResultReportsFolderPath>
-    <NugetPackageFolderPath>$(BuildResultFolderPath)\NuGetPackage</NugetPackageFolderPath>
+    <NugetPackageFolderPath>$(BuildResultFolderPath)\nugetpackages</NugetPackageFolderPath>
     
     <TestsFolderPath>$(RootFolderPath)\Tests\**\bin\$(Configuration)</TestsFolderPath>
     <TestsAssemblies>$(TestsFolderPath)\*.Tests.dll</TestsAssemblies>
