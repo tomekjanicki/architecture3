@@ -34,7 +34,9 @@
 
   <Target Name="CI" DependsOnTargets="Clean;RestoreNugetPackages;CompileDotNetCode;ExecuteNUnitTests"/>
 
-  <Target Name="D" DependsOnTargets="Clean;RestoreNugetPackages;CompileDotNetCodeCreateOctopack;ExecuteNUnitTests"/>
+  <Target Name="DTest" DependsOnTargets="Clean;RestoreNugetPackages;CompileDotNetCodeCreateOctopack;ExecuteNUnitTests"/>
+
+  <Target Name="D" DependsOnTargets="Clean;RestoreNugetPackages;CompileDotNetCodeCreateOctopack;ExecuteNUnitTests;PublishNugetPackages"/>
 
   <Target Name="Clean">
     <Message Importance="high" Text="Executing Clean"/>
@@ -117,4 +119,12 @@
     <Exec Command="$(NUnitCmdExe) @(ThisDll) --result=$(BuildResultReportsFolderPath)\%(ThisDll.Filename).Results.nunit.xml" />
     <Message Importance="high" Text="Finnished RunOneNUnitTestDll: $(NUnitTestDllFile)" />
   </Target>
+
+  <Target Name="PublishNugetPackages" DependsOnTargets="GetNugetCmdExe">
+    <Message Importance="high" Text="Executing PublishNugetPackages" />
+    <Exec WorkingDirectory="$(NugetPackageFolderPath)" Command="$(NugetCmdExe) push Architecture3.DbUp.*.nupkg -ApiKey $(OctopusNugetApiKey) -Source $(OctopusNugetServerUrl)" />
+    <Exec WorkingDirectory="$(NugetPackageFolderPath)" Command="$(NugetCmdExe) push Architecture3.Web.*.nupkg -ApiKey $(OctopusNugetApiKey) -Source $(OctopusNugetServerUrl)" />
+    <Message Importance="high" Text="Finished PublishNugetPackages" />
+  </Target>
+
 </Project>
