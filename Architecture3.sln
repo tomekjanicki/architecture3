@@ -43,6 +43,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "build_definition", "build_d
 		build_definition\buildDefinitionD.cmd = build_definition\buildDefinitionD.cmd
 	EndProjectSection
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Architecture3.Db", "Projects\Architecture3.Db\Architecture3.Db.csproj", "{39777826-5872-43FB-B991-0E40EA109CBD}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -93,6 +95,10 @@ Global
 		{1E1063E7-0934-4C11-AFDB-99DF50DC1FA3}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1E1063E7-0934-4C11-AFDB-99DF50DC1FA3}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1E1063E7-0934-4C11-AFDB-99DF50DC1FA3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{39777826-5872-43FB-B991-0E40EA109CBD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{39777826-5872-43FB-B991-0E40EA109CBD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{39777826-5872-43FB-B991-0E40EA109CBD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{39777826-5872-43FB-B991-0E40EA109CBD}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -109,5 +115,6 @@ Global
 		{CC8DD834-7317-4928-ABCE-ED4A0A99D8D2} = {8A636113-5D27-43DF-A291-5B66EB1DA71F}
 		{F34C0E7A-3420-47F1-9F92-A24EA76E5E5A} = {8A636113-5D27-43DF-A291-5B66EB1DA71F}
 		{1E1063E7-0934-4C11-AFDB-99DF50DC1FA3} = {8A636113-5D27-43DF-A291-5B66EB1DA71F}
+		{39777826-5872-43FB-B991-0E40EA109CBD} = {9252B1AE-31A9-47A2-A8F5-82489A74EAA8}
 	EndGlobalSection
 EndGlobal
