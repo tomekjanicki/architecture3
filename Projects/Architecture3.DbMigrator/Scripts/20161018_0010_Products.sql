@@ -1,4 +1,4 @@
-﻿CREATE TABLE [dbo].[Product]
+﻿CREATE TABLE [dbo].[Products]
 (
 	[Id] INT NOT NULL PRIMARY KEY, 
     [Code] NVARCHAR(50) NOT NULL, 
@@ -9,4 +9,4 @@
 
 GO
 
-CREATE UNIQUE INDEX [IX_Product_Name] ON [dbo].[Product] ([Name])
+CREATE UNIQUE INDEX [IX_Products_Name] ON [dbo].[Products] ([Name])
