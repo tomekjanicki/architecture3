@@ -159,6 +159,9 @@
     <Analyzer Include="..\..\packages\StyleCop.Analyzers.1.0.0\analyzers\dotnet\cs\StyleCop.Analyzers.dll" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="..\..\CommonAssemblyInfo.cs">
+      <Link>Properties\CommonAssemblyInfo.cs</Link>
+    </Compile>
     <Compile Include="App_Start\RegisterContainer.cs" />
     <Compile Include="App_Start\RegisterMvcMiscs.cs" />
     <Compile Include="App_Start\RegisterMvcRoutes.cs" />
