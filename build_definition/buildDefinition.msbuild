@@ -54,7 +54,7 @@
     <ItemGroup>
       <ProjectFiles Include="$(SolutionFilePath)"/>
     </ItemGroup>
-    <MSBuild Projects="@(ProjectFiles)" Properties="Configuration=$(Configuration);Platform=$(Platform)"/>
+    <MSBuild Projects="@(ProjectFiles)" Properties="Configuration=$(Configuration);Platform=$(Platform);RunFromVS=false"/>
     <Message Importance="high" Text="Finished CompileDotNetCode"/>
   </Target>
 
@@ -63,7 +63,7 @@
     <ItemGroup>
       <ProjectFiles Include="$(SolutionFilePath)"/>
     </ItemGroup>
-    <MSBuild Projects="@(ProjectFiles)" Properties="Configuration=$(Configuration);Platform=$(Platform);RunOctoPack=true;OctoPackPublishPackageToFileShare=$(NugetPackageFolderPath)"/>
+    <MSBuild Projects="@(ProjectFiles)" Properties="Configuration=$(Configuration);Platform=$(Platform);RunOctoPack=true;OctoPackPublishPackageToFileShare=$(NugetPackageFolderPath);RunFromVS=false"/>
     <Message Importance="high" Text="Finished CompileDotNetCode"/>
   </Target>
 

@@ -2,6 +2,7 @@
 <Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
+    <RunFromVS>true</RunFromVS>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{39777826-5872-43FB-B991-0E40EA109CBD}</ProjectGuid>
@@ -115,7 +116,7 @@
     <Error Condition="Exists('..\..\packages\OctoPack.3.4.2\tools\OctoPack.targets') And ('$(RunOctoPack)' != '' And $(RunOctoPack))" Text="OctoPack cannot be run because NuGet packages were restored prior to the build running, and the targets file was unavailable when the build started. Please build the project again to include these packages in the build. You may also need to make sure that your build server does not delete packages prior to each build. For more information, see http://go.microsoft.com/fwlink/?LinkID=317568." HelpKeyword="BCLBUILD2002" />
   </Target>
   <PropertyGroup>
-    <PostBuildEvent>IF EXIST $(ProjectDir)"connectionStrings.config" (
+    <PostBuildEvent Condition=" '$(RunFromVS)' == true ">IF EXIST $(ProjectDir)"connectionStrings.config" (
 xcopy $(ProjectDir)"connectionStrings.config" $(ProjectDir)$(OutDir) /Y
 )</PostBuildEvent>
   </PropertyGroup>
