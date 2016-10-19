@@ -24,7 +24,7 @@
         public Paged<Product> Handle(Query query)
         {
             var whereFragment = GetWhereFragment(query.Code, query.Name);
-            var pagedFragment = CommandHelper.GetPagedFragment(query.OrderByTopSkip.TopSkip, GetTranslatedSort(query.OrderByTopSkip.OrderBy));
+            var pagedFragment = CommandHelper.GetPagedFragment(query.OrderByTopSkip.TopSkip, GetSortColumns(query.OrderByTopSkip.OrderBy));
             var countQuery = string.Format(CountQuery, whereFragment.Where);
             var selectQuery = string.Format(SelectQuery, whereFragment.Where, pagedFragment.Data);
             using (var connection = _dbConnectionProvider.GetOpenDbConnection())
@@ -56,19 +56,9 @@
             return CommandHelper.GetWhereStringWithParams(criteria, dp);
         }
 
-        private NonEmptyString GetTranslatedSort(string modelColumn)
+        private static NonEmptyString GetSortColumns(IReadOnlyCollection<OrderBy> modelOrderBy)
         {
-            var allowedColumns = new[]
-            {
-                (NonEmptyString)nameof(Product.Id),
-                (NonEmptyString)nameof(Product.Code),
-                (NonEmptyString)nameof(Product.Name),
-                (NonEmptyString)nameof(Product.Price),
-                (NonEmptyString)nameof(Product.Date),
-                (NonEmptyString)nameof(Product.Version),
-                (NonEmptyString)nameof(Product.CanDelete)
-            };
-            return CommandHelper.GetTranslatedSort(modelColumn, (NonEmptyString)$"{nameof(Product.Code)} ASC", allowedColumns);
+            return CommandHelper.GetTranslatedSort(modelOrderBy, OrderBy.Create((NonEmptyString)"CODE", true), Columns.GetMappings());
         }
     }
 }

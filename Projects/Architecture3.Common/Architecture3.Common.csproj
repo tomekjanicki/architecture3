@@ -81,6 +81,7 @@
     <Compile Include="Tools\AssemblyVersionProvider.cs" />
     <Compile Include="Tools\Interfaces\IAssemblyVersionProvider.cs" />
     <Compile Include="ValueObjects\IdVersion.cs" />
+    <Compile Include="ValueObjects\OrderBy.cs" />
     <Compile Include="ValueObjects\Paged.cs" />
     <Compile Include="ValueObjects\TopSkip.cs" />
     <Compile Include="ValueObjects\OrderByTopSkip.cs" />

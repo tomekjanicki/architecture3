@@ -58,30 +58,38 @@ namespace Architecture3.Common.Database
             return new WhereResult(where, dp);
         }
 
-        public static NonEmptyString GetTranslatedSort(string modelColumn, NonEmptyString defaultSort, IReadOnlyCollection<NonEmptyString> allowedColumns)
+        public static NonEmptyString GetTranslatedSort(IReadOnlyCollection<OrderBy> modelOrderBy, OrderBy defaultDatabaseOrderBy, IReadOnlyDictionary<NonEmptyString, NonEmptyString> modelDatabaseColumnMappings)
         {
-            if (modelColumn == string.Empty)
+            if (modelOrderBy.Count == 0)
             {
-                return defaultSort.ToUpperInvariant();
+                return GetSortColumn(defaultDatabaseOrderBy.Column, defaultDatabaseOrderBy.Order);
             }
 
-            var arguments = modelColumn.Split(' ');
-            if (arguments.Length != 2)
+            var dictionaryWithLowerCaseKeys = modelDatabaseColumnMappings.ToDictionary(pair => (NonEmptyString)pair.Key.Value.ToLower(), pair => pair.Value);
+
+            var result = new List<NonEmptyString>();
+
+            foreach (var orderBy in modelOrderBy)
             {
-                return defaultSort.ToUpperInvariant();
+                var key = (NonEmptyString)orderBy.Column.Value.ToLower();
+
+                if (dictionaryWithLowerCaseKeys.ContainsKey(key))
+                {
+                    result.Add(GetSortColumn(dictionaryWithLowerCaseKeys[key], orderBy.Order));
+                }
             }
 
-            var ascendingResult = NonEmptyString.Create(arguments[1], (NonEmptyString)"Value");
-            var columnResult = NonEmptyString.Create(arguments[0], (NonEmptyString)"Value");
-
-            if (ascendingResult.IsFailure || columnResult.IsFailure)
+            if (result.Count == 0)
             {
-                return defaultSort.ToUpperInvariant();
+                return GetSortColumn(defaultDatabaseOrderBy.Column, defaultDatabaseOrderBy.Order);
             }
 
-            var ascending = ascendingResult.Value.ToUpperInvariant() == "ASC";
-            var column = columnResult.Value.ToUpperInvariant();
-            return !allowedColumns.Select(c => c.ToUpperInvariant()).Contains(column) ? defaultSort.ToUpperInvariant() : (NonEmptyString)$"{column} {(@ascending ? "ASC" : "DESC")}";
+            return (NonEmptyString)string.Join(", ", result);
+        }
+
+        private static NonEmptyString GetSortColumn(NonEmptyString column, bool order)
+        {
+            return (NonEmptyString)(column.Value.ToUpper() + " " + (order ? "ASC" : "DESC"));
         }
 
         private static DataResult GetLikeCaluseInternal(NonEmptyString fieldName, NonEmptyString paramName, NonEmptyString value, LikeType likeType)

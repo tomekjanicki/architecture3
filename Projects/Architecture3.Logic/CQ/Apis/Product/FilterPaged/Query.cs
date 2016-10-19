@@ -23,8 +23,14 @@
         public static IResult<Query, NonEmptyString> Create(string orderBy, int skip, int top, string filter)
         {
             // todo filter parser
-            // todo orderBy parser
-            var result = OrderByTopSkip.Create(string.Empty, skip, top, (NonEmptyString)nameof(TopSkip.Top), (NonEmptyString)nameof(TopSkip.Skip));
+            var orderByParseResult = new OrderByParser().Parse(orderBy, Columns.GetAllowedColumns());
+
+            if (orderByParseResult.IsFailure)
+            {
+                return GetFailResult(orderByParseResult.Error);
+            }
+
+            var result = OrderByTopSkip.Create(orderByParseResult.Value, skip, top, (NonEmptyString)nameof(TopSkip.Top), (NonEmptyString)nameof(TopSkip.Skip));
             return result.IsFailure ? GetFailResult(result.Error) : GetOkResult(new Query(string.Empty, string.Empty, result.Value));
         }
 
