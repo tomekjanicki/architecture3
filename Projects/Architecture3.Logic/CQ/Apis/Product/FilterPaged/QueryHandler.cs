@@ -58,7 +58,7 @@
 
         private static NonEmptyString GetSortColumns(IReadOnlyCollection<OrderBy> modelOrderBy)
         {
-            return CommandHelper.GetTranslatedSort(modelOrderBy, OrderBy.Create((NonEmptyString)"CODE", true), Columns.GetMappings());
+            return CommandHelper.GetTranslatedSort(modelOrderBy, new List<OrderBy> { OrderBy.Create((NonEmptyString)"CODE", true) }, Columns.GetMappings());
         }
     }
 }

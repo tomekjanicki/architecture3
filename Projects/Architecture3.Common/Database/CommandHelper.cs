@@ -58,11 +58,11 @@ namespace Architecture3.Common.Database
             return new WhereResult(where, dp);
         }
 
-        public static NonEmptyString GetTranslatedSort(IReadOnlyCollection<OrderBy> modelOrderBy, OrderBy defaultDatabaseOrderBy, IReadOnlyDictionary<NonEmptyString, NonEmptyString> modelDatabaseColumnMappings)
+        public static NonEmptyString GetTranslatedSort(IReadOnlyCollection<OrderBy> modelOrderBy, IReadOnlyCollection<OrderBy> defaultDatabaseOrderBy, IReadOnlyDictionary<NonEmptyString, NonEmptyString> modelDatabaseColumnMappings)
         {
             if (modelOrderBy.Count == 0)
             {
-                return GetSortColumn(defaultDatabaseOrderBy.Column, defaultDatabaseOrderBy.Order);
+                return (NonEmptyString)string.Join(", ", defaultDatabaseOrderBy.Select(orderBy => GetSortColumn(orderBy.Column, orderBy.Order)));
             }
 
             var dictionaryWithLowerCaseKeys = modelDatabaseColumnMappings.ToDictionary(pair => (NonEmptyString)pair.Key.Value.ToLower(), pair => pair.Value);
@@ -81,7 +81,7 @@ namespace Architecture3.Common.Database
 
             if (result.Count == 0)
             {
-                return GetSortColumn(defaultDatabaseOrderBy.Column, defaultDatabaseOrderBy.Order);
+                return (NonEmptyString)string.Join(", ", defaultDatabaseOrderBy.Select(orderBy => GetSortColumn(orderBy.Column, orderBy.Order)));
             }
 
             return (NonEmptyString)string.Join(", ", result);
