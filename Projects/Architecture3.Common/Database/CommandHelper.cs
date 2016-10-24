@@ -71,15 +71,20 @@ namespace Architecture3.Common.Database
 
             foreach (var orderBy in modelOrderBy)
             {
-                var key = (NonEmptyString)orderBy.Column.Value.ToLower();
-
-                if (dictionaryWithLowerCaseKeys.ContainsKey(key))
-                {
-                    result.Add(GetSortColumn(dictionaryWithLowerCaseKeys[key], orderBy.Order));
-                }
+                AddIfContainsKey(orderBy, dictionaryWithLowerCaseKeys, result);
             }
 
             return GetNonEmptyString(result.Count == 0 ? defaultDatabaseOrderBy.Select(orderBy => GetSortColumn(orderBy.Column, orderBy.Order)) : result);
+        }
+
+        private static void AddIfContainsKey(OrderBy orderBy, IReadOnlyDictionary<NonEmptyString, NonEmptyString> dictionaryWithLowerCaseKeys, ICollection<NonEmptyString> result)
+        {
+            var key = (NonEmptyString)orderBy.Column.Value.ToLower();
+
+            if (dictionaryWithLowerCaseKeys.ContainsKey(key))
+            {
+                result.Add(GetSortColumn(dictionaryWithLowerCaseKeys[key], orderBy.Order));
+            }
         }
 
         private static NonEmptyString GetNonEmptyString(IEnumerable<NonEmptyString> list)
