@@ -62,7 +62,7 @@ namespace Architecture3.Common.Database
         {
             if (modelOrderBy.Count == 0)
             {
-                return (NonEmptyString)string.Join(", ", defaultDatabaseOrderBy.Select(orderBy => GetSortColumn(orderBy.Column, orderBy.Order)));
+                return GetNonEmptyString(defaultDatabaseOrderBy.Select(orderBy => GetSortColumn(orderBy.Column, orderBy.Order)));
             }
 
             var dictionaryWithLowerCaseKeys = modelDatabaseColumnMappings.ToDictionary(pair => (NonEmptyString)pair.Key.Value.ToLower(), pair => pair.Value);
@@ -79,12 +79,12 @@ namespace Architecture3.Common.Database
                 }
             }
 
-            if (result.Count == 0)
-            {
-                return (NonEmptyString)string.Join(", ", defaultDatabaseOrderBy.Select(orderBy => GetSortColumn(orderBy.Column, orderBy.Order)));
-            }
+            return GetNonEmptyString(result.Count == 0 ? defaultDatabaseOrderBy.Select(orderBy => GetSortColumn(orderBy.Column, orderBy.Order)) : result);
+        }
 
-            return (NonEmptyString)string.Join(", ", result);
+        private static NonEmptyString GetNonEmptyString(IEnumerable<NonEmptyString> list)
+        {
+            return (NonEmptyString)string.Join(", ", list);
         }
 
         private static NonEmptyString GetSortColumn(NonEmptyString column, bool order)
