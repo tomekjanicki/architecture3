@@ -1,4 +1,4 @@
-namespace Architecture3.Logic.CQ.Apis
+﻿namespace Architecture3.Logic.CQ.Apis
 {
     using System.Collections.Generic;
     using System.Linq;
@@ -18,6 +18,11 @@ namespace Architecture3.Logic.CQ.Apis
             return (NonEmptyString)("Invalid order expression (it has empty elements). Expression: " + orderBy + ".");
         }
 
+        public NonEmptyString GetDuplicatedColumnMessage()
+        {
+            return (NonEmptyString)"At least one column is duplicated in sort expression.";
+        }
+
         public IResult<IReadOnlyCollection<OrderBy>, NonEmptyString> Parse(string orderBy, IEnumerable<NonEmptyString> allowedColumns)
         {
             var result = new List<OrderBy>();
@@ -31,12 +36,10 @@ namespace Architecture3.Logic.CQ.Apis
 
             var allowedColumnsLowerCase = allowedColumns.Select(s => (NonEmptyString)s.Value.ToLower()).ToList();
 
-            var orderByArray = orderByLowerCaseTrimmed.Split(',');
+            var orderByArrayLowerCaseTrimmed = orderByLowerCaseTrimmed.Split(',').Select(orderByItem => orderByItem.ToLower().Trim());
 
-            foreach (var orderByItem in orderByArray)
+            foreach (var orderByItemLowerCaseTrimmed in orderByArrayLowerCaseTrimmed)
             {
-                var orderByItemLowerCaseTrimmed = orderByItem.ToLower().Trim();
-
                 if (orderByItemLowerCaseTrimmed != string.Empty)
                 {
                     var nonEmptyOrderByItemLowerCaseTrimmed = (NonEmptyString)orderByItemLowerCaseTrimmed;
@@ -83,7 +86,9 @@ namespace Architecture3.Logic.CQ.Apis
                 }
             }
 
-            return result.GetOkMessage();
+            var groupedList = result.GroupBy(by => by.Column).Select(bys => new { bys.Key, Count = bys.Count() }).Where(arg => arg.Count > 1).ToList();
+
+            return groupedList.Count > 0 ? GetDuplicatedColumnMessage().GetFailResult<IReadOnlyCollection<OrderBy>>() : result.GetOkMessage();
         }
 
         private static bool? GetOrder(NonEmptyString nonEmptyOrderByItemLowerCaseTrimmed)
